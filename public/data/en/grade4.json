@@ -1,0 +1,27 @@
+{
+  "name": "English Grade 4",
+  "language": "en",
+  "category": "Grade 4",
+  "words": [
+    { "word": "beautiful", "meaning": "美丽的", "phonetic": "/ˈbjuː.tɪ.fəl/" },
+    { "word": "classroom", "meaning": "教室", "phonetic": "/ˈklɑːs.ruːm/" },
+    { "word": "dangerous", "meaning": "危险的", "phonetic": "/ˈdeɪn.dʒər.əs/" },
+    { "word": "elephant", "meaning": "大象", "phonetic": "/ˈel.ɪ.fənt/" },
+    { "word": "favourite", "meaning": "最喜欢的", "phonetic": "/ˈfeɪ.vər.ɪt/" },
+    { "word": "garden", "meaning": "花园", "phonetic": "/ˈɡɑː.dən/" },
+    { "word": "hundred", "meaning": "一百", "phonetic": "/ˈhʌn.drəd/" },
+    { "word": "important", "meaning": "重要的", "phonetic": "/ɪmˈpɔː.tənt/" },
+    { "word": "journey", "meaning": "旅行", "phonetic": "/ˈdʒɜː.ni/" },
+    { "word": "kitchen", "meaning": "厨房", "phonetic": "/ˈkɪtʃ.ɪn/" },
+    { "word": "library", "meaning": "图书馆", "phonetic": "/ˈlaɪ.brər.i/" },
+    { "word": "mountain", "meaning": "山", "phonetic": "/ˈmaʊn.tɪn/" },
+    { "word": "newspaper", "meaning": "报纸", "phonetic": "/ˈnjuːz.peɪ.pər/" },
+    { "word": "October", "meaning": "十月", "phonetic": "/ɒkˈtəʊ.bər/" },
+    { "word": "picture", "meaning": "图画", "phonetic": "/ˈpɪk.tʃər/" },
+    { "word": "question", "meaning": "问题", "phonetic": "/ˈkwes.tʃən/" },
+    { "word": "restaurant", "meaning": "餐厅", "phonetic": "/ˈres.tər.ɒnt/" },
+    { "word": "sandwich", "meaning": "三明治", "phonetic": "/ˈsæn.wɪdʒ/" },
+    { "word": "telephone", "meaning": "电话", "phonetic": "/ˈtel.ɪ.fəʊn/" },
+    { "word": "umbrella", "meaning": "雨伞", "phonetic": "/ʌmˈbrel.ə/" }
+  ]
+}

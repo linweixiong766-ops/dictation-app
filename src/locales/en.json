@@ -1,0 +1,82 @@
+{
+  "app": {
+    "title": "Dictation Practice",
+    "subtitle": "Improve your spelling skills"
+  },
+  "nav": {
+    "home": "Home",
+    "practice": "Practice",
+    "manage": "Manage Words",
+    "language": "Language"
+  },
+  "home": {
+    "welcome": "Welcome to Dictation Practice",
+    "description": "Choose a word list to start practicing your spelling skills",
+    "startPractice": "Start Practice",
+    "manageWords": "Manage Word Lists",
+    "selectLanguage": "Select Language",
+    "selectList": "Select Word List"
+  },
+  "practice": {
+    "title": "Dictation Practice",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "next": "Next",
+    "previous": "Previous",
+    "check": "Check",
+    "showAnswer": "Show Answer",
+    "hideAnswer": "Hide Answer",
+    "playAudio": "Play Audio",
+    "inputPlaceholder": "Type the word here...",
+    "correct": "Correct!",
+    "incorrect": "Incorrect!",
+    "score": "Score",
+    "total": "Total",
+    "accuracy": "Accuracy",
+    "complete": "Practice Complete!",
+    "tryAgain": "Try Again",
+    "backToList": "Back to Lists",
+    "wordOf": "Word {current} of {total}",
+    "retry": "Retry",
+    "showMeaning": "Show Meaning",
+    "hideMeaning": "Hide Meaning"
+  },
+  "manage": {
+    "title": "Word List Management",
+    "addWord": "Add Word",
+    "editWord": "Edit Word",
+    "deleteWord": "Delete Word",
+    "word": "Word",
+    "meaning": "Meaning",
+    "phonetic": "Phonetic",
+    "pinyin": "Pinyin",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirmDelete": "Are you sure you want to delete this word?",
+    "noWords": "No words in this list",
+    "addNewList": "Add New List",
+    "listName": "List Name",
+    "importList": "Import List",
+    "exportList": "Export List"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "save": "Save",
+    "close": "Close",
+    "back": "Back",
+    "search": "Search",
+    "noData": "No data available"
+  },
+  "language": {
+    "en": "English",
+    "zh": "Chinese"
+  }
+}

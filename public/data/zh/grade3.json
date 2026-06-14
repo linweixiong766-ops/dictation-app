@@ -1,0 +1,27 @@
+{
+  "name": "中文三年级",
+  "language": "zh",
+  "category": "三年级",
+  "words": [
+    { "word": "春天", "meaning": "spring", "pinyin": "chūn tiān" },
+    { "word": "花朵", "meaning": "flower", "pinyin": "huā duǒ" },
+    { "word": "阳光", "meaning": "sunshine", "pinyin": "yáng guāng" },
+    { "word": "老师", "meaning": "teacher", "pinyin": "lǎo shī" },
+    { "word": "同学", "meaning": "classmate", "pinyin": "tóng xué" },
+    { "word": "教室", "meaning": "classroom", "pinyin": "jiào shì" },
+    { "word": "操场", "meaning": "playground", "pinyin": "cāo chǎng" },
+    { "word": "铅笔", "meaning": "pencil", "pinyin": "qiān bǐ" },
+    { "word": "橡皮", "meaning": "eraser", "pinyin": "xiàng pí" },
+    { "word": "课本", "meaning": "textbook", "pinyin": "kè běn" },
+    { "word": "作业", "meaning": "homework", "pinyin": "zuò yè" },
+    { "word": "故事", "meaning": "story", "pinyin": "gù shì" },
+    { "word": "唱歌", "meaning": "sing", "pinyin": "chàng gē" },
+    { "word": "跳舞", "meaning": "dance", "pinyin": "tiào wǔ" },
+    { "word": "跑步", "meaning": "run", "pinyin": "pǎo bù" },
+    { "word": "游泳", "meaning": "swim", "pinyin": "yóu yǒng" },
+    { "word": "画画", "meaning": "draw", "pinyin": "huà huà" },
+    { "word": "写字", "meaning": "write", "pinyin": "xiě zì" },
+    { "word": "读书", "meaning": "read", "pinyin": "dú shū" },
+    { "word": "吃饭", "meaning": "eat", "pinyin": "chī fàn" }
+  ]
+}

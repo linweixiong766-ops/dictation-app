@@ -1,0 +1,82 @@
+{
+  "app": {
+    "title": "听写练习",
+    "subtitle": "提升你的拼写能力"
+  },
+  "nav": {
+    "home": "首页",
+    "practice": "练习",
+    "manage": "词库管理",
+    "language": "语言"
+  },
+  "home": {
+    "welcome": "欢迎使用听写练习",
+    "description": "选择一个词库开始练习拼写能力",
+    "startPractice": "开始练习",
+    "manageWords": "管理词库",
+    "selectLanguage": "选择语言",
+    "selectList": "选择词库"
+  },
+  "practice": {
+    "title": "听写练习",
+    "start": "开始",
+    "pause": "暂停",
+    "resume": "继续",
+    "next": "下一个",
+    "previous": "上一个",
+    "check": "检查",
+    "showAnswer": "显示答案",
+    "hideAnswer": "隐藏答案",
+    "playAudio": "播放语音",
+    "inputPlaceholder": "在此输入单词...",
+    "correct": "正确！",
+    "incorrect": "错误！",
+    "score": "得分",
+    "total": "总数",
+    "accuracy": "正确率",
+    "complete": "练习完成！",
+    "tryAgain": "再试一次",
+    "backToList": "返回词库",
+    "wordOf": "第 {current} 个，共 {total} 个",
+    "retry": "重试",
+    "showMeaning": "显示释义",
+    "hideMeaning": "隐藏释义"
+  },
+  "manage": {
+    "title": "词库管理",
+    "addWord": "添加单词",
+    "editWord": "编辑单词",
+    "deleteWord": "删除单词",
+    "word": "单词",
+    "meaning": "释义",
+    "phonetic": "音标",
+    "pinyin": "拼音",
+    "save": "保存",
+    "cancel": "取消",
+    "confirmDelete": "确定要删除这个单词吗？",
+    "noWords": "词库中暂无单词",
+    "addNewList": "添加新词库",
+    "listName": "词库名称",
+    "importList": "导入词库",
+    "exportList": "导出词库"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "confirm": "确认",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "add": "添加",
+    "save": "保存",
+    "close": "关闭",
+    "back": "返回",
+    "search": "搜索",
+    "noData": "暂无数据"
+  },
+  "language": {
+    "en": "英文",
+    "zh": "中文"
+  }
+}

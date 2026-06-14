@@ -1,0 +1,27 @@
+{
+  "name": "English Grade 3",
+  "language": "en",
+  "category": "Grade 3",
+  "words": [
+    { "word": "apple", "meaning": "苹果", "phonetic": "/ˈæp.əl/" },
+    { "word": "book", "meaning": "书", "phonetic": "/bʊk/" },
+    { "word": "cat", "meaning": "猫", "phonetic": "/kæt/" },
+    { "word": "dog", "meaning": "狗", "phonetic": "/dɒɡ/" },
+    { "word": "egg", "meaning": "鸡蛋", "phonetic": "/eɡ/" },
+    { "word": "fish", "meaning": "鱼", "phonetic": "/fɪʃ/" },
+    { "word": "girl", "meaning": "女孩", "phonetic": "/ɡɜːl/" },
+    { "word": "house", "meaning": "房子", "phonetic": "/haʊs/" },
+    { "word": "ice", "meaning": "冰", "phonetic": "/aɪs/" },
+    { "word": "juice", "meaning": "果汁", "phonetic": "/dʒuːs/" },
+    { "word": "kite", "meaning": "风筝", "phonetic": "/kaɪt/" },
+    { "word": "lion", "meaning": "狮子", "phonetic": "/ˈlaɪ.ən/" },
+    { "word": "milk", "meaning": "牛奶", "phonetic": "/mɪlk/" },
+    { "word": "nose", "meaning": "鼻子", "phonetic": "/nəʊz/" },
+    { "word": "orange", "meaning": "橙子", "phonetic": "/ˈɒr.ɪndʒ/" },
+    { "word": "pen", "meaning": "钢笔", "phonetic": "/pen/" },
+    { "word": "queen", "meaning": "女王", "phonetic": "/kwiːn/" },
+    { "word": "rabbit", "meaning": "兔子", "phonetic": "/ˈræb.ɪt/" },
+    { "word": "sun", "meaning": "太阳", "phonetic": "/sʌn/" },
+    { "word": "tree", "meaning": "树", "phonetic": "/triː/" }
+  ]
+}
