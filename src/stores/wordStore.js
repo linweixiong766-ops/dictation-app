@@ -10,23 +10,48 @@ export const useWordStore = defineStore('word', () => {
   const isLoading = ref(false)
   const error = ref(null)
 
+  // All available word list files
+  const wordListFiles = {
+    en: [
+      'grade3.json',
+      'grade4.json',
+      'grade3-spring.json',
+      'grade4-spring.json',
+      'grade5-spring.json',
+      'grade6-spring.json'
+    ],
+    zh: [
+      'grade3.json',
+      'grade4.json'
+    ]
+  }
+
   // Load word lists from JSON files
   async function loadWordLists(lang) {
     isLoading.value = true
     error.value = null
     try {
-      const response = await fetch(`/data/${lang}/grade3.json`)
-      const response2 = await fetch(`/data/${lang}/grade4.json`)
+      const files = wordListFiles[lang] || []
       const lists = []
 
-      if (response.ok) {
-        const data = await response.json()
-        lists.push(data)
-      }
-      if (response2.ok) {
-        const data2 = await response2.json()
-        lists.push(data2)
-      }
+      // Load all files in parallel
+      const promises = files.map(async (file) => {
+        try {
+          const response = await fetch(`/data/${lang}/${file}`)
+          if (response.ok) {
+            const data = await response.json()
+            return data
+          }
+        } catch (err) {
+          console.warn(`Failed to load ${file}:`, err)
+        }
+        return null
+      })
+
+      const results = await Promise.all(promises)
+      results.forEach(data => {
+        if (data) lists.push(data)
+      })
 
       wordLists.value = lists
     } catch (err) {
