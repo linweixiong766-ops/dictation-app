@@ -7,6 +7,12 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
+    path: '/select/:lang/:listId',
+    name: 'WordSelect',
+    component: () => import('../views/WordSelectView.vue'),
+    props: true
+  },
+  {
     path: '/practice/:lang/:listId',
     name: 'Practice',
     component: () => import('../views/PracticeView.vue'),

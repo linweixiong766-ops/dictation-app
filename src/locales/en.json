@@ -40,7 +40,13 @@
     "wordOf": "Word {current} of {total}",
     "retry": "Retry",
     "showMeaning": "Show Meaning",
-    "hideMeaning": "Hide Meaning"
+    "hideMeaning": "Hide Meaning",
+    "selected": "Selected",
+    "selectAll": "Select All",
+    "searchWords": "Search words...",
+    "startWithSelected": "Practice Selected",
+    "selectedWords": "Selected Words",
+    "startPractice": "Start Practice"
   },
   "manage": {
     "title": "Word List Management",

@@ -16,6 +16,8 @@ const props = defineProps({
 })
 
 const currentList = ref(null)
+const selectedIndices = ref([])
+const practiceWords = ref([])
 const currentIndex = ref(0)
 const userInput = ref('')
 const showResult = ref(false)
@@ -27,13 +29,13 @@ const completed = ref(false)
 const answers = ref([])
 
 const currentWord = computed(() => {
-  if (!currentList.value || !currentList.value.words) return null
-  return currentList.value.words[currentIndex.value]
+  if (!practiceWords.value.length) return null
+  return practiceWords.value[currentIndex.value]
 })
 
 const progress = computed(() => {
-  if (!currentList.value) return 0
-  return ((currentIndex.value + 1) / currentList.value.words.length) * 100
+  if (!practiceWords.value.length) return 0
+  return ((currentIndex.value + 1) / practiceWords.value.length) * 100
 })
 
 const accuracy = computed(() => {
@@ -53,6 +55,22 @@ async function loadList() {
 
   if (!currentList.value) {
     router.push('/')
+    return
+  }
+
+  // 解析URL中的选中单词索引
+  const wordsQuery = route.query.words
+  if (wordsQuery) {
+    selectedIndices.value = wordsQuery.split(',').map(Number).filter(i =>
+      !isNaN(i) && i >= 0 && i < currentList.value.words.length
+    )
+  }
+
+  // 如果没有选中单词或索引无效，使用全部单词
+  if (selectedIndices.value.length === 0) {
+    practiceWords.value = [...currentList.value.words]
+  } else {
+    practiceWords.value = selectedIndices.value.map(i => currentList.value.words[i])
   }
 }
 
@@ -90,7 +108,7 @@ function checkAnswer() {
 }
 
 function nextWord() {
-  if (currentIndex.value < currentList.value.words.length - 1) {
+  if (currentIndex.value < practiceWords.value.length - 1) {
     currentIndex.value++
     userInput.value = ''
     showResult.value = false
@@ -158,7 +176,7 @@ function handleKeydown(event) {
     <!-- Completed Screen -->
     <div v-if="completed" class="card score-card">
       <h2>{{ t('practice.complete') }}</h2>
-      <div class="score-number">{{ score }}/{{ currentList.words.length }}</div>
+      <div class="score-number">{{ score }}/{{ practiceWords.length }}</div>
       <div class="score-label">{{ t('practice.accuracy') }}: {{ accuracy }}%</div>
       <div class="actions">
         <button class="btn btn-primary btn-lg" @click="tryAgain">
@@ -174,7 +192,7 @@ function handleKeydown(event) {
     <div v-else>
       <div class="word-display">
         <div class="word-number">
-          {{ t('practice.wordOf', { current: currentIndex + 1, total: currentList.words.length }) }}
+          {{ t('practice.wordOf', { current: currentIndex + 1, total: practiceWords.length }) }}
         </div>
 
         <!-- Play Button -->
@@ -231,7 +249,7 @@ function handleKeydown(event) {
 
         <template v-else>
           <button class="btn btn-primary btn-lg" @click="nextWord">
-            {{ currentIndex < currentList.words.length - 1 ? t('practice.next') : t('practice.complete') }}
+            {{ currentIndex < practiceWords.length - 1 ? t('practice.next') : t('practice.complete') }}
           </button>
         </template>
 

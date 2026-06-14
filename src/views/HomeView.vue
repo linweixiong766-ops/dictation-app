@@ -26,7 +26,7 @@ async function switchLanguage(lang) {
 }
 
 function startPractice(listId) {
-  router.push(`/practice/${selectedLang.value}/${listId}`)
+  router.push(`/select/${selectedLang.value}/${listId}`)
 }
 </script>
 

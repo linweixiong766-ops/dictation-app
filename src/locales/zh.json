@@ -40,7 +40,13 @@
     "wordOf": "第 {current} 个，共 {total} 个",
     "retry": "重试",
     "showMeaning": "显示释义",
-    "hideMeaning": "隐藏释义"
+    "hideMeaning": "隐藏释义",
+    "selected": "已选择",
+    "selectAll": "全选",
+    "searchWords": "搜索单词...",
+    "startWithSelected": "开始练习选中的单词",
+    "selectedWords": "已选单词",
+    "startPractice": "开始练习"
   },
   "manage": {
     "title": "词库管理",
