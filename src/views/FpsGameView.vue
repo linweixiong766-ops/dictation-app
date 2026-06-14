@@ -34,7 +34,10 @@ const collectedLetters = ref([]) // Array of collected letters
 const activeTargets = ref([])
 const popEffects = ref([])
 const spawnTimer = ref(null)
+const audioLoopTimer = ref(null)
 const targetIdCounter = ref(0)
+const wordStartTime = ref(null) // Track time per word
+const wordMisses = ref(0) // Track misses per word
 
 // Computed: letters still needed for the word
 const neededLetters = computed(() => {
@@ -94,9 +97,38 @@ const formattedTime = computed(() => {
 
 const totalScore = computed(() => {
   if (wordTimes.value.length === 0) return 0
-  const totalTime = wordTimes.value.reduce((sum, w) => sum + w.time, 0)
-  const accuracy = totalHits.value / (totalHits.value + totalMisses.value) || 0
-  return Math.round((10000 / totalTime) * accuracy * 100)
+
+  let score = 0
+
+  for (const word of wordTimes.value) {
+    const letterCount = word.letterCount || word.word.length
+    const time = word.time || 1
+    const misses = word.misses || 0
+
+    // Base score for completing the word: 100 per letter
+    let wordScore = letterCount * 100
+
+    // Time bonus: faster = more points (max 50 bonus per letter if under 3 seconds)
+    const timePerLetter = time / letterCount
+    if (timePerLetter < 3) {
+      wordScore += (3 - timePerLetter) * 50 * letterCount
+    }
+
+    // Miss penalty: -30 per miss
+    wordScore -= misses * 30
+
+    // Efficiency bonus: if hits close to letter count
+    // (we don't track per-word hits, so use misses as proxy)
+    if (misses === 0) {
+      wordScore += letterCount * 50 // Perfect bonus
+    }
+
+    score += Math.max(0, wordScore)
+  }
+
+  // Normalize to 0-100 range
+  const maxPossible = wordTimes.value.reduce((s, w) => s + w.letterCount * 200, 0)
+  return Math.round((score / maxPossible) * 100)
 })
 
 const rank = computed(() => {
@@ -192,8 +224,10 @@ onUnmounted(() => {
 function stopTimers() {
   if (timerInterval.value) clearInterval(timerInterval.value)
   if (spawnTimer.value) clearInterval(spawnTimer.value)
+  if (audioLoopTimer.value) clearInterval(audioLoopTimer.value)
   timerInterval.value = null
   spawnTimer.value = null
+  audioLoopTimer.value = null
 }
 
 function startGame() {
@@ -219,11 +253,31 @@ function loadWord() {
   collectedLetters.value = []
   activeTargets.value = []
   popEffects.value = []
+  wordStartTime.value = Date.now()
+  wordMisses.value = 0
 
   setTimeout(() => {
     playWordAudio()
     startContinuousSpawning()
+    startAudioLoop()
   }, 300)
+}
+
+function startAudioLoop() {
+  // Clear any existing audio loop
+  if (audioLoopTimer.value) {
+    clearInterval(audioLoopTimer.value)
+  }
+
+  // Play audio every 3 seconds until word is complete
+  audioLoopTimer.value = setInterval(() => {
+    if (isWordComplete.value) {
+      clearInterval(audioLoopTimer.value)
+      audioLoopTimer.value = null
+    } else {
+      playWordAudio()
+    }
+  }, 3000)
 }
 
 function startContinuousSpawning() {
@@ -280,12 +334,33 @@ function spawnOneTarget() {
   const size = 45 + Math.random() * 35 // Random size 45-80px
   const color = colors[Math.floor(Math.random() * colors.length)]
 
+  // Find non-overlapping position
+  let x, y
+  let attempts = 0
+  const minDistance = size + 15 // Minimum distance between bubbles
+
+  do {
+    x = padding + Math.random() * (areaWidth - padding * 2 - size)
+    y = padding + Math.random() * (areaHeight - padding * 2 - size)
+    attempts++
+
+    // Check distance from all existing targets
+    const overlaps = activeTargets.value.some(target => {
+      const dx = (x + size / 2) - (target.x + target.size / 2)
+      const dy = (y + size / 2) - (target.y + target.size / 2)
+      const distance = Math.sqrt(dx * dx + dy * dy)
+      return distance < minDistance
+    })
+
+    if (!overlaps) break
+  } while (attempts < 30) // Max 30 attempts to find position
+
   const target = {
     id: targetIdCounter.value++,
     letter: letterData.letter,
     isCorrect: letterData.isCorrect,
-    x: padding + Math.random() * (areaWidth - padding * 2 - size),
-    y: padding + Math.random() * (areaHeight - padding * 2 - size),
+    x,
+    y,
     size,
     color,
     opacity: 0,
@@ -377,6 +452,7 @@ function handleHit(target) {
   } else {
     // Wrong letter - miss!
     totalMisses.value++
+    wordMisses.value++
     playMissSound()
     flashArea('rgba(239, 68, 68, 0.2)')
   }
@@ -394,6 +470,7 @@ function flashArea(color) {
 
 function handleMiss(x, y) {
   totalMisses.value++
+  wordMisses.value++
   playMissSound()
 
   // Miss effect
@@ -411,20 +488,26 @@ function handleMiss(x, y) {
 }
 
 function wordComplete() {
-  // Stop spawning
+  // Stop spawning and audio loop
   if (spawnTimer.value) {
     clearInterval(spawnTimer.value)
     spawnTimer.value = null
+  }
+  if (audioLoopTimer.value) {
+    clearInterval(audioLoopTimer.value)
+    audioLoopTimer.value = null
   }
 
   // Play success sound
   playSuccessSound()
 
-  // Record time
-  const wordTime = Math.floor((Date.now() - startTime.value) / 1000) - wordTimes.value.reduce((s, w) => s + w.time, 0)
+  // Record time and misses for this word
+  const wordTime = Math.floor((Date.now() - wordStartTime.value) / 1000)
   wordTimes.value.push({
     word: currentWord.value.word,
-    time: wordTime
+    time: wordTime,
+    misses: wordMisses.value,
+    letterCount: currentWord.value.word.length
   })
 
   // Clear remaining targets
@@ -622,7 +705,7 @@ onUnmounted(() => {
             >
               <span class="result-index">{{ index + 1 }}.</span>
               <span class="result-word">{{ result.word }}</span>
-              <span class="result-time">{{ result.time }}s</span>
+              <span class="result-detail">{{ result.time }}s | {{ result.misses || 0 }}❌</span>
             </div>
           </div>
         </div>
@@ -811,7 +894,7 @@ onUnmounted(() => {
   font-weight: 800;
   color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
+  cursor: crosshair;
   transition: transform 0.15s ease-out, opacity 0.15s;
   box-shadow:
     0 0 15px rgba(255, 255, 255, 0.2),
@@ -824,14 +907,6 @@ onUnmounted(() => {
 @keyframes float {
   0%, 100% { transform: translateY(0) scale(var(--scale, 1)); }
   50% { transform: translateY(-8px) scale(var(--scale, 1)); }
-}
-
-.target-bubble:hover {
-  transform: scale(1.1) !important;
-  box-shadow:
-    0 0 25px rgba(255, 255, 255, 0.4),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.2),
-    inset 0 3px 6px rgba(255, 255, 255, 0.3);
 }
 
 .target-bubble:active {
