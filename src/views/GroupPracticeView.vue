@@ -246,16 +246,22 @@ onUnmounted(() => {
         {{ t('practice.wordOf', { current: currentIndex + 1, total: practiceWords.length }) }}
       </div>
 
-      <div class="word-main">
-        <div class="word-text">{{ currentWord?.word }}</div>
-      </div>
-
-      <!-- 答案显示 -->
-      <div v-if="showAnswer && currentWord" class="answer-section">
-        <div class="word-meaning">{{ currentWord.meaning }}</div>
-        <div v-if="currentWord.phonetic || currentWord.pinyin" class="word-phonetic">
+      <!-- 中文释义 (默认显示) -->
+      <div class="word-main" v-if="currentWord">
+        <div class="meaning-display">{{ currentWord.meaning }}</div>
+        <div v-if="currentWord.phonetic || currentWord.pinyin" class="phonetic-hint">
           {{ currentWord.phonetic || currentWord.pinyin }}
         </div>
+      </div>
+
+      <!-- 答案显示 (英文单词) -->
+      <div v-if="showAnswer && currentWord" class="answer-section">
+        <div class="word-answer">{{ currentWord.word }}</div>
+      </div>
+
+      <!-- 听写提示 -->
+      <div v-else class="dictation-hint">
+        {{ t('practice.listenAndWrite') }}
       </div>
     </div>
 
@@ -394,29 +400,44 @@ onUnmounted(() => {
   margin: 2rem 0;
 }
 
-.word-text {
-  font-size: 3.5rem;
+.meaning-display {
+  font-size: 2.5rem;
   font-weight: 700;
-  letter-spacing: 4px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+}
+
+.phonetic-hint {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  font-style: italic;
 }
 
 .answer-section {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-md);
   padding: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  animation: fadeIn 0.3s ease-out;
 }
 
-.word-meaning {
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+.word-answer {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.word-phonetic {
+.dictation-hint {
+  margin-top: 1.5rem;
   font-size: 1.1rem;
-  opacity: 0.9;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .controls-card {

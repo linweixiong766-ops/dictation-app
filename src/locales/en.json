@@ -56,7 +56,8 @@
     "seconds": "seconds",
     "shuffle": "Shuffle",
     "shortcuts": "Shortcuts",
-    "playPause": "Play/Pause"
+    "playPause": "Play/Pause",
+    "listenAndWrite": "Listen to the audio and write the word"
   },
   "manage": {
     "title": "Word List Management",

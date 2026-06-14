@@ -56,7 +56,8 @@
     "seconds": "秒",
     "shuffle": "打乱顺序",
     "shortcuts": "快捷键",
-    "playPause": "播放/暂停"
+    "playPause": "播放/暂停",
+    "listenAndWrite": "请听语音并书写单词"
   },
   "manage": {
     "title": "词库管理",
