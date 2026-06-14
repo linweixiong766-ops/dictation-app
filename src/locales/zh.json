@@ -59,7 +59,8 @@
     "playPause": "播放/暂停",
     "listenAndWrite": "请听语音并书写单词",
     "answerSheet": "听写答案表",
-    "playGame": "单词射击"
+    "playGame": "单词射击",
+    "allUnits": "全部单元"
   },
   "game": {
     "title": "单词射击游戏",

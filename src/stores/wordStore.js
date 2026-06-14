@@ -13,13 +13,7 @@ export const useWordStore = defineStore('word', () => {
   // All available word list files
   const wordListFiles = {
     en: [
-      'grade3-fall-welcome.json',
-      'grade3-fall-unit1.json',
-      'grade3-fall-unit2.json',
-      'grade3-fall-unit3.json',
-      'grade3-fall-unit4.json',
-      'grade3-fall-unit5.json',
-      'grade3-fall-unit6.json',
+      'grade3-fall.json',
       'grade3-spring.json',
       'grade4-fall.json',
       'grade4-spring.json',

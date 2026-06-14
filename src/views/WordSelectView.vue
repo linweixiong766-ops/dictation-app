@@ -18,15 +18,39 @@ const currentList = ref(null)
 const selectedWords = ref([])
 const searchQuery = ref('')
 const selectAll = ref(false)
+const selectedUnit = ref('all')
+
+// Get available units from word list
+const availableUnits = computed(() => {
+  if (!currentList.value) return []
+  const units = new Set()
+  currentList.value.words.forEach(w => {
+    if (w.unit) units.add(w.unit)
+  })
+  return Array.from(units)
+})
+
+const hasUnits = computed(() => availableUnits.value.length > 0)
 
 const filteredWords = computed(() => {
   if (!currentList.value) return []
-  if (!searchQuery.value.trim()) return currentList.value.words
-  const query = searchQuery.value.trim().toLowerCase()
-  return currentList.value.words.filter(w =>
-    w.word.toLowerCase().includes(query) ||
-    w.meaning.toLowerCase().includes(query)
-  )
+  let words = currentList.value.words
+
+  // Filter by unit
+  if (selectedUnit.value !== 'all') {
+    words = words.filter(w => w.unit === selectedUnit.value)
+  }
+
+  // Filter by search query
+  if (searchQuery.value.trim()) {
+    const query = searchQuery.value.trim().toLowerCase()
+    words = words.filter(w =>
+      w.word.toLowerCase().includes(query) ||
+      w.meaning.toLowerCase().includes(query)
+    )
+  }
+
+  return words
 })
 
 const selectedCount = computed(() => selectedWords.value.length)
@@ -65,9 +89,18 @@ function toggleSelectAll() {
     selectedWords.value = []
     selectAll.value = false
   } else {
-    selectedWords.value = currentList.value.words.map((_, i) => i)
+    // Select all filtered words (get their original indices)
+    selectedWords.value = filteredWords.value.map(w =>
+      currentList.value.words.indexOf(w)
+    )
     selectAll.value = true
   }
+}
+
+function onUnitChange() {
+  // Reset selection when unit changes
+  selectedWords.value = []
+  selectAll.value = false
 }
 
 function startPractice() {
@@ -119,6 +152,14 @@ function startGame() {
           class="input"
           :placeholder="t('practice.searchWords')"
         />
+      </div>
+      <div class="unit-filter" v-if="hasUnits">
+        <select v-model="selectedUnit" class="input-select" @change="onUnitChange">
+          <option value="all">{{ t('practice.allUnits') }}</option>
+          <option v-for="unit in availableUnits" :key="unit" :value="unit">
+            {{ unit }}
+          </option>
+        </select>
       </div>
       <div class="toolbar-actions">
         <label class="select-all-label">
@@ -268,6 +309,28 @@ function startGame() {
 
 .search-box .input {
   width: 100%;
+}
+
+.unit-filter {
+  min-width: 150px;
+}
+
+.input-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  background: var(--bg-card);
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.input-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
 .toolbar-actions {

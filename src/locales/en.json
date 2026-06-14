@@ -59,7 +59,8 @@
     "playPause": "Play/Pause",
     "listenAndWrite": "Listen to the audio and write the word",
     "answerSheet": "Dictation Answer Sheet",
-    "playGame": "Word Shooter"
+    "playGame": "Word Shooter",
+    "allUnits": "All Units"
   },
   "game": {
     "title": "Word Shooter Game",
