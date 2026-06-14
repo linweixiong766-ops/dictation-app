@@ -250,11 +250,16 @@ onUnmounted(() => {
         {{ t('practice.wordOf', { current: currentIndex + 1, total: practiceWords.length }) }}
       </div>
 
-      <!-- 中文释义 (默认显示) -->
-      <div class="word-main" v-if="currentWord">
+      <!-- 中文模式: 显示拼音 -->
+      <div class="word-main" v-if="currentWord && lang === 'zh'">
+        <div class="meaning-display">{{ currentWord.pinyin }}</div>
+      </div>
+
+      <!-- 英文模式: 显示中文释义 -->
+      <div class="word-main" v-if="currentWord && lang === 'en'">
         <div class="meaning-display">{{ currentWord.meaning }}</div>
-        <div v-if="currentWord.phonetic || currentWord.pinyin" class="phonetic-hint">
-          {{ currentWord.phonetic || currentWord.pinyin }}
+        <div v-if="currentWord.phonetic" class="phonetic-hint">
+          {{ currentWord.phonetic }}
         </div>
       </div>
 
@@ -274,15 +279,31 @@ onUnmounted(() => {
           </button>
         </div>
         <div class="answer-list">
-          <div
-            v-for="(word, index) in practiceWords"
-            :key="index"
-            class="answer-item"
-            :class="{ 'current': index === currentIndex }"
-          >
-            <span class="answer-number">{{ index + 1 }}.</span>
-            <span class="answer-meaning">{{ word.meaning }}</span>
-            <span class="answer-word">{{ word.word }}</span>
+          <!-- 中文模式答案表 -->
+          <div v-if="lang === 'zh'">
+            <div
+              v-for="(word, index) in practiceWords"
+              :key="index"
+              class="answer-item"
+              :class="{ 'current': index === currentIndex }"
+            >
+              <span class="answer-number">{{ index + 1 }}.</span>
+              <span class="answer-pinyin">{{ word.pinyin }}</span>
+              <span class="answer-word">{{ word.word }}</span>
+            </div>
+          </div>
+          <!-- 英文模式答案表 -->
+          <div v-else>
+            <div
+              v-for="(word, index) in practiceWords"
+              :key="index"
+              class="answer-item"
+              :class="{ 'current': index === currentIndex }"
+            >
+              <span class="answer-number">{{ index + 1 }}.</span>
+              <span class="answer-meaning">{{ word.meaning }}</span>
+              <span class="answer-word">{{ word.word }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -617,6 +638,12 @@ onUnmounted(() => {
 .answer-meaning {
   font-size: 1.25rem;
   color: var(--gray-700);
+}
+
+.answer-pinyin {
+  font-size: 1.25rem;
+  color: var(--primary);
+  font-style: italic;
 }
 
 .answer-word {
