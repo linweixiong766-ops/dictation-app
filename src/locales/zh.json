@@ -75,6 +75,8 @@
     "retry": "重新射击",
     "results": "游戏结果",
     "totalTime": "总用时",
+    "totalHits": "命中次数",
+    "totalMisses": "失误次数",
     "correctWords": "正确单词",
     "wrongAttempts": "错误次数",
     "score": "总分",

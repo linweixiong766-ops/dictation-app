@@ -19,27 +19,29 @@ const props = defineProps({
 const practiceWords = ref([])
 const currentWordIndex = ref(0)
 const currentWord = ref(null)
-const letterTargets = ref([])
-const spelledWord = ref('')
 const gameStarted = ref(false)
 const gameCompleted = ref(false)
-const isCorrect = ref(null)
 const startTime = ref(null)
-const endTime = ref(null)
 const elapsedTime = ref(0)
 const timerInterval = ref(null)
 const wordTimes = ref([])
-const correctCount = ref(0)
-const wrongCount = ref(0)
+const totalHits = ref(0)
+const totalMisses = ref(0)
 const gameArea = ref(null)
-const crosshairX = ref(0)
-const crosshairY = ref(0)
-const showMuzzleFlash = ref(false)
-const hitEffects = ref([])
 
-// Audio
-const hitSound = null
-const missSound = null
+// Current word state
+const spelledWord = ref('')
+const activeTargets = ref([])
+const popEffects = ref([])
+const spawnTimer = ref(null)
+const targetIdCounter = ref(0)
+
+// Colors for bubbles
+const colors = [
+  '#ef4444', '#f97316', '#f59e0b', '#eab308', '#84cc16',
+  '#22c55e', '#14b8a6', '#06b6d4', '#0ea5e9', '#3b82f6',
+  '#6366f1', '#8b5cf6', '#a855f7', '#d946ef', '#ec4899', '#f43f5e'
+]
 
 const formattedTime = computed(() => {
   const seconds = elapsedTime.value
@@ -51,7 +53,7 @@ const formattedTime = computed(() => {
 const totalScore = computed(() => {
   if (wordTimes.value.length === 0) return 0
   const totalTime = wordTimes.value.reduce((sum, w) => sum + w.time, 0)
-  const accuracy = correctCount.value / (correctCount.value + wrongCount.value) || 0
+  const accuracy = totalHits.value / (totalHits.value + totalMisses.value) || 0
   return Math.round((10000 / totalTime) * accuracy * 100)
 })
 
@@ -64,6 +66,60 @@ const rank = computed(() => {
   return { grade: 'D', color: '#ef4444', label: 'Keep Trying' }
 })
 
+// Audio context for sound effects
+let audioCtx = null
+
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+  }
+}
+
+function playPopSound() {
+  initAudio()
+  const osc = audioCtx.createOscillator()
+  const gain = audioCtx.createGain()
+  osc.connect(gain)
+  gain.connect(audioCtx.destination)
+  osc.frequency.setValueAtTime(600, audioCtx.currentTime)
+  osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.15)
+  gain.gain.setValueAtTime(0.3, audioCtx.currentTime)
+  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15)
+  osc.start(audioCtx.currentTime)
+  osc.stop(audioCtx.currentTime + 0.15)
+}
+
+function playMissSound() {
+  initAudio()
+  const osc = audioCtx.createOscillator()
+  const gain = audioCtx.createGain()
+  osc.connect(gain)
+  gain.connect(audioCtx.destination)
+  osc.type = 'sawtooth'
+  osc.frequency.setValueAtTime(150, audioCtx.currentTime)
+  osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.2)
+  gain.gain.setValueAtTime(0.15, audioCtx.currentTime)
+  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2)
+  osc.start(audioCtx.currentTime)
+  osc.stop(audioCtx.currentTime + 0.2)
+}
+
+function playSuccessSound() {
+  initAudio()
+  const notes = [523, 659, 784]
+  notes.forEach((freq, i) => {
+    const osc = audioCtx.createOscillator()
+    const gain = audioCtx.createGain()
+    osc.connect(gain)
+    gain.connect(audioCtx.destination)
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime + i * 0.1)
+    gain.gain.setValueAtTime(0.2, audioCtx.currentTime + i * 0.1)
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + i * 0.1 + 0.3)
+    osc.start(audioCtx.currentTime + i * 0.1)
+    osc.stop(audioCtx.currentTime + i * 0.1 + 0.3)
+  })
+}
+
 onMounted(async () => {
   await wordStore.loadWordLists(props.lang)
   wordStore.loadCustomLists()
@@ -74,7 +130,6 @@ onMounted(async () => {
     return
   }
 
-  // Get selected words from URL
   const wordsQuery = route.query.words
   if (wordsQuery) {
     const indices = wordsQuery.split(',').map(Number).filter(i =>
@@ -89,22 +144,27 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
-  if (timerInterval.value) {
-    clearInterval(timerInterval.value)
-  }
+  stopTimers()
 })
 
+function stopTimers() {
+  if (timerInterval.value) clearInterval(timerInterval.value)
+  if (spawnTimer.value) clearInterval(spawnTimer.value)
+  timerInterval.value = null
+  spawnTimer.value = null
+}
+
 function startGame() {
+  initAudio()
   gameStarted.value = true
   gameCompleted.value = false
   currentWordIndex.value = 0
-  correctCount.value = 0
-  wrongCount.value = 0
+  totalHits.value = 0
+  totalMisses.value = 0
   wordTimes.value = []
   startTime.value = Date.now()
   elapsedTime.value = 0
 
-  // Start timer
   timerInterval.value = setInterval(() => {
     elapsedTime.value = Math.floor((Date.now() - startTime.value) / 1000)
   }, 1000)
@@ -115,91 +175,227 @@ function startGame() {
 function loadWord() {
   currentWord.value = practiceWords.value[currentWordIndex.value]
   spelledWord.value = ''
-  isCorrect.value = null
-  generateTargets()
+  activeTargets.value = []
+  popEffects.value = []
 
-  // Play word audio
   setTimeout(() => {
     playWordAudio()
-  }, 500)
+    spawnTargets()
+  }, 300)
 }
 
-function generateTargets() {
+function spawnTargets() {
   if (!currentWord.value) return
 
   const word = currentWord.value.word.toUpperCase()
   const letters = word.split('')
-  const targets = []
-  const padding = 60
-
-  // Get game area dimensions
   const areaWidth = gameArea.value?.offsetWidth || 800
   const areaHeight = gameArea.value?.offsetHeight || 500
+  const padding = 50
 
-  // Generate random positions for each letter
-  const positions = []
-  for (let i = 0; i < letters.length; i++) {
-    let pos
-    let attempts = 0
-    do {
-      pos = {
-        x: padding + Math.random() * (areaWidth - padding * 2),
-        y: padding + Math.random() * (areaHeight - padding * 2)
-      }
-      attempts++
-    } while (attempts < 50 && positions.some(p =>
-      Math.abs(p.x - pos.x) < 60 && Math.abs(p.y - pos.y) < 60
-    ))
-    positions.push(pos)
+  // Create all targets (correct + decoys)
+  const allTargets = []
 
-    targets.push({
-      id: i,
-      letter: letters[i],
-      x: pos.x,
-      y: pos.y,
-      hit: false,
-      scale: 1,
-      rotation: Math.random() * 30 - 15,
-      animationDelay: i * 0.1
-    })
-  }
+  // Add correct letters
+  letters.forEach((letter, i) => {
+    allTargets.push({ letter, isCorrect: true, index: i })
+  })
 
-  // Add some decoy letters
+  // Add decoy letters (more decoys for harder game)
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const decoyCount = Math.min(5, Math.max(3, Math.floor(letters.length * 0.5)))
+  const decoyCount = Math.min(8, Math.max(4, letters.length))
   for (let i = 0; i < decoyCount; i++) {
     let decoyLetter
     do {
       decoyLetter = alphabet[Math.floor(Math.random() * 26)]
     } while (letters.includes(decoyLetter))
-
-    let pos
-    let attempts = 0
-    do {
-      pos = {
-        x: padding + Math.random() * (areaWidth - padding * 2),
-        y: padding + Math.random() * (areaHeight - padding * 2)
-      }
-      attempts++
-    } while (attempts < 50 && positions.some(p =>
-      Math.abs(p.x - pos.x) < 60 && Math.abs(p.y - pos.y) < 60
-    ))
-    positions.push(pos)
-
-    targets.push({
-      id: `decoy-${i}`,
-      letter: decoyLetter,
-      x: pos.x,
-      y: pos.y,
-      hit: false,
-      isDecoy: true,
-      scale: 1,
-      rotation: Math.random() * 30 - 15,
-      animationDelay: (letters.length + i) * 0.1
-    })
+    allTargets.push({ letter: decoyLetter, isCorrect: false, index: -1 })
   }
 
-  letterTargets.value = targets
+  // Spawn targets one by one with delays
+  let spawnIndex = 0
+  const spawnInterval = setInterval(() => {
+    if (spawnIndex >= allTargets.length || !gameStarted.value) {
+      clearInterval(spawnInterval)
+      return
+    }
+
+    const targetData = allTargets[spawnIndex]
+    const size = 40 + Math.random() * 40 // Random size 40-80px
+    const color = colors[Math.floor(Math.random() * colors.length)]
+
+    const target = {
+      id: targetIdCounter.value++,
+      letter: targetData.letter,
+      isCorrect: targetData.isCorrect,
+      index: targetData.index,
+      x: padding + Math.random() * (areaWidth - padding * 2 - size),
+      y: padding + Math.random() * (areaHeight - padding * 2 - size),
+      size,
+      color,
+      opacity: 0,
+      scale: 0,
+      lifetime: 2000 + Math.random() * 3000, // Live 2-5 seconds
+      born: Date.now()
+    }
+
+    activeTargets.value.push(target)
+    spawnIndex++
+
+    // Animate in
+    requestAnimationFrame(() => {
+      const t = activeTargets.value.find(tt => tt.id === target.id)
+      if (t) {
+        t.opacity = 1
+        t.scale = 1
+      }
+    })
+
+    // Auto remove after lifetime
+    setTimeout(() => {
+      removeTarget(target.id)
+    }, target.lifetime)
+
+  }, 150 + Math.random() * 200) // Spawn every 150-350ms
+
+  spawnTimer.value = spawnInterval
+}
+
+function removeTarget(id) {
+  const index = activeTargets.value.findIndex(t => t.id === id)
+  if (index !== -1) {
+    activeTargets.value.splice(index, 1)
+  }
+}
+
+function handleGameAreaClick(event) {
+  if (!gameStarted.value) return
+
+  const rect = gameArea.value.getBoundingClientRect()
+  const x = event.clientX - rect.left
+  const y = event.clientY - rect.top
+
+  // Check if hit any target
+  let hitTarget = null
+  for (const target of activeTargets.value) {
+    const centerX = target.x + target.size / 2
+    const centerY = target.y + target.size / 2
+    const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2))
+    if (distance < target.size / 2 + 5) {
+      hitTarget = target
+      break
+    }
+  }
+
+  if (hitTarget) {
+    handleHit(hitTarget)
+  } else {
+    handleMiss(x, y)
+  }
+}
+
+function handleHit(target) {
+  // Play pop sound
+  playPopSound()
+
+  // Add pop effect
+  popEffects.value.push({
+    id: Date.now() + Math.random(),
+    x: target.x + target.size / 2,
+    y: target.y + target.size / 2,
+    color: target.color,
+    size: target.size
+  })
+
+  // Remove effect after animation
+  setTimeout(() => {
+    popEffects.value.shift()
+  }, 600)
+
+  // Remove target
+  removeTarget(target.id)
+  totalHits.value++
+
+  if (target.isCorrect) {
+    // Correct letter hit
+    spelledWord.value += target.letter
+
+    // Check if word complete
+    const targetWord = currentWord.value.word.toUpperCase()
+    if (spelledWord.value === targetWord) {
+      wordComplete()
+    }
+  } else {
+    // Wrong letter - reset word
+    totalMisses.value++
+    spelledWord.value = ''
+    playMissSound()
+
+    // Flash effect
+    const gameAreaEl = gameArea.value
+    if (gameAreaEl) {
+      gameAreaEl.style.background = 'rgba(239, 68, 68, 0.2)'
+      setTimeout(() => {
+        gameAreaEl.style.background = ''
+      }, 200)
+    }
+  }
+}
+
+function handleMiss(x, y) {
+  totalMisses.value++
+  playMissSound()
+
+  // Miss effect
+  popEffects.value.push({
+    id: Date.now() + Math.random(),
+    x, y,
+    color: '#6b7280',
+    size: 20,
+    isMiss: true
+  })
+
+  setTimeout(() => {
+    popEffects.value.shift()
+  }, 400)
+}
+
+function wordComplete() {
+  // Stop spawning
+  if (spawnTimer.value) {
+    clearInterval(spawnTimer.value)
+    spawnTimer.value = null
+  }
+
+  // Play success sound
+  playSuccessSound()
+
+  // Record time
+  const wordTime = Math.floor((Date.now() - startTime.value) / 1000) - wordTimes.value.reduce((s, w) => s + w.time, 0)
+  wordTimes.value.push({
+    word: currentWord.value.word,
+    time: wordTime
+  })
+
+  // Clear remaining targets
+  activeTargets.value = []
+
+  // Auto advance after delay
+  setTimeout(() => {
+    if (currentWordIndex.value < practiceWords.value.length - 1) {
+      currentWordIndex.value++
+      loadWord()
+    } else {
+      gameFinish()
+    }
+  }, 1500)
+}
+
+function gameFinish() {
+  elapsedTime.value = Math.floor((Date.now() - startTime.value) / 1000)
+  gameCompleted.value = true
+  gameStarted.value = false
+  stopTimers()
 }
 
 function playWordAudio() {
@@ -215,151 +411,25 @@ function playWordAudio() {
   }
 }
 
-function handleGameAreaClick(event) {
-  if (!gameStarted.value || isCorrect.value !== null) return
-
-  const rect = gameArea.value.getBoundingClientRect()
-  const x = event.clientX - rect.left
-  const y = event.clientY - rect.top
-
-  // Update crosshair position
-  crosshairX.value = x
-  crosshairY.value = y
-
-  // Show muzzle flash
-  showMuzzleFlash.value = true
-  setTimeout(() => {
-    showMuzzleFlash.value = false
-  }, 100)
-
-  // Check if hit any target
-  let hitTarget = null
-  for (const target of letterTargets.value) {
-    if (target.hit) continue
-    const distance = Math.sqrt(
-      Math.pow(x - target.x, 2) + Math.pow(y - target.y, 2)
-    )
-    if (distance < 35) {
-      hitTarget = target
-      break
-    }
-  }
-
-  if (hitTarget) {
-    handleHit(hitTarget)
-  } else {
-    handleMiss(x, y)
-  }
-}
-
-function handleHit(target) {
-  target.hit = true
-  target.scale = 0
-
-  // Add hit effect
-  hitEffects.value.push({
-    id: Date.now(),
-    x: target.x,
-    y: target.y,
-    type: 'hit'
-  })
-
-  setTimeout(() => {
-    hitEffects.value = hitEffects.value.filter(e => e.id !== Date.now())
-  }, 500)
-
-  if (target.isDecoy) {
-    // Hit a decoy - wrong!
-    wrongCount.value++
-    spelledWord.value = ''
-    // Reset all targets
-    setTimeout(() => {
-      generateTargets()
-      playWordAudio()
-    }, 500)
-  } else {
-    // Correct letter
-    spelledWord.value += target.letter
-
-    // Check if word is complete
-    const targetWord = currentWord.value.word.toUpperCase()
-    if (spelledWord.value === targetWord) {
-      // Word complete!
-      isCorrect.value = true
-      correctCount.value++
-      const wordTime = Math.floor((Date.now() - startTime.value) / 1000) - wordTimes.value.reduce((s, w) => s + w.time, 0)
-      wordTimes.value.push({
-        word: currentWord.value.word,
-        time: wordTime
-      })
-    }
-  }
-}
-
-function handleMiss(x, y) {
-  // Add miss effect
-  hitEffects.value.push({
-    id: Date.now(),
-    x,
-    y,
-    type: 'miss'
-  })
-
-  setTimeout(() => {
-    hitEffects.value = hitEffects.value.filter(e => e.id !== Date.now())
-  }, 300)
-}
-
-function confirmWord() {
-  if (isCorrect.value !== true) return
-
-  if (currentWordIndex.value < practiceWords.value.length - 1) {
-    // Next word
-    currentWordIndex.value++
-    loadWord()
-  } else {
-    // Game complete
-    endTime.value = Date.now()
-    elapsedTime.value = Math.floor((endTime.value - startTime.value) / 1000)
-    gameCompleted.value = true
-    if (timerInterval.value) {
-      clearInterval(timerInterval.value)
-    }
-  }
-}
-
-function retryWord() {
-  wrongCount.value++
-  spelledWord.value = ''
-  isCorrect.value = null
-  generateTargets()
-  playWordAudio()
-}
-
-function handleKeydown(event) {
-  if (event.key === 'Enter' && isCorrect.value === true) {
-    confirmWord()
-  } else if (event.key === 'r' || event.key === 'R') {
-    if (isCorrect.value === false) {
-      retryWord()
-    }
-  } else if (event.key === ' ') {
-    event.preventDefault()
-    playWordAudio()
-  }
-}
-
 function restartGame() {
   gameStarted.value = false
   gameCompleted.value = false
   currentWordIndex.value = 0
   elapsedTime.value = 0
   wordTimes.value = []
-  correctCount.value = 0
-  wrongCount.value = 0
+  totalHits.value = 0
+  totalMisses.value = 0
+  activeTargets.value = []
+  popEffects.value = []
 }
 
-// Listen for keyboard events
+function handleKeydown(event) {
+  if (event.key === ' ') {
+    event.preventDefault()
+    playWordAudio()
+  }
+}
+
 onMounted(() => {
   window.addEventListener('keydown', handleKeydown)
 })
@@ -389,26 +459,33 @@ onUnmounted(() => {
     </div>
 
     <!-- Game Screen -->
-    <div v-else-if="gameStarted && !gameCompleted" class="game-screen">
+    <div v-else-if="gameStarted" class="game-screen">
       <!-- Game Header -->
       <div class="game-header">
         <div class="header-left">
           <span class="word-progress">
-            {{ t('practice.wordOf', { current: currentWordIndex + 1, total: practiceWords.length }) }}
+            {{ currentWordIndex + 1 }}/{{ practiceWords.length }}
           </span>
           <span class="timer">⏱️ {{ formattedTime }}</span>
         </div>
         <div class="header-center">
           <div class="spelled-word">
-            <span v-for="(letter, index) in spelledWord" :key="index" class="letter">
-              {{ letter }}
-            </span>
-            <span class="cursor">|</span>
+            <span
+              v-for="(letter, index) in spelledWord"
+              :key="index"
+              class="letter"
+            >{{ letter }}</span>
+            <span class="cursor">_</span>
+          </div>
+          <div class="word-meaning-hint" v-if="currentWord">
+            {{ currentWord.meaning }}
           </div>
         </div>
         <div class="header-right">
+          <span class="hits">✅ {{ totalHits }}</span>
+          <span class="misses">❌ {{ totalMisses }}</span>
           <button class="btn btn-sm btn-outline" @click="playWordAudio">
-            🔊 {{ t('game.replay') }}
+            🔊
           </button>
         </div>
       </div>
@@ -419,74 +496,39 @@ onUnmounted(() => {
         class="game-area"
         @click="handleGameAreaClick"
       >
-        <!-- Crosshair -->
+        <!-- Targets -->
         <div
-          class="crosshair"
-          :style="{ left: crosshairX + 'px', top: crosshairY + 'px' }"
-        >
-          +
-        </div>
-
-        <!-- Muzzle Flash -->
-        <div v-if="showMuzzleFlash" class="muzzle-flash">💥</div>
-
-        <!-- Letter Targets -->
-        <div
-          v-for="target in letterTargets"
+          v-for="target in activeTargets"
           :key="target.id"
-          class="letter-target"
-          :class="{
-            'hit': target.hit,
-            'decoy': target.isDecoy,
-            'hidden': target.hit
-          }"
+          class="target-bubble"
           :style="{
             left: target.x + 'px',
             top: target.y + 'px',
-            transform: `rotate(${target.rotation}deg) scale(${target.scale})`,
-            animationDelay: target.animationDelay + 's'
+            width: target.size + 'px',
+            height: target.size + 'px',
+            backgroundColor: target.color,
+            opacity: target.opacity,
+            transform: `scale(${target.scale})`,
+            fontSize: (target.size * 0.45) + 'px'
           }"
         >
           {{ target.letter }}
         </div>
 
-        <!-- Hit Effects -->
+        <!-- Pop Effects -->
         <div
-          v-for="effect in hitEffects"
+          v-for="effect in popEffects"
           :key="effect.id"
-          class="hit-effect"
-          :class="effect.type"
-          :style="{ left: effect.x + 'px', top: effect.y + 'px' }"
+          class="pop-effect"
+          :class="{ 'miss': effect.isMiss }"
+          :style="{
+            left: effect.x + 'px',
+            top: effect.y + 'px',
+            '--color': effect.color
+          }"
         >
-          {{ effect.type === 'hit' ? '💥' : '💨' }}
-        </div>
-
-        <!-- Word Meaning -->
-        <div class="word-hint" v-if="currentWord">
-          {{ currentWord.meaning }}
-        </div>
-      </div>
-
-      <!-- Word Complete Overlay -->
-      <div v-if="isCorrect === true" class="word-complete-overlay">
-        <div class="word-complete-content">
-          <h2>✅ {{ t('game.correct') }}</h2>
-          <div class="completed-word">{{ currentWord.word }}</div>
-          <p>{{ currentWord.meaning }}</p>
-          <button class="btn btn-primary btn-lg" @click="confirmWord">
-            {{ currentWordIndex < practiceWords.length - 1 ? t('game.nextWord') : t('game.finish') }} →
-          </button>
-        </div>
-      </div>
-
-      <!-- Wrong Answer Overlay -->
-      <div v-if="isCorrect === false" class="wrong-overlay">
-        <div class="wrong-content">
-          <h2>❌ {{ t('game.wrong') }}</h2>
-          <p>{{ t('game.tryAgain') }}</p>
-          <button class="btn btn-primary btn-lg" @click="retryWord">
-            {{ t('game.retry') }} 🔄
-          </button>
+          <div class="pop-particle" v-for="i in 8" :key="i" :style="{ '--i': i }"></div>
+          <span v-if="effect.isMiss" class="miss-x">✕</span>
         </div>
       </div>
     </div>
@@ -507,12 +549,12 @@ onUnmounted(() => {
             <div class="stat-label">{{ t('game.totalTime') }}</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value">{{ correctCount }}</div>
-            <div class="stat-label">{{ t('game.correctWords') }}</div>
+            <div class="stat-value">{{ totalHits }}</div>
+            <div class="stat-label">{{ t('game.totalHits') }}</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value">{{ wrongCount }}</div>
-            <div class="stat-label">{{ t('game.wrongAttempts') }}</div>
+            <div class="stat-value">{{ totalMisses }}</div>
+            <div class="stat-label">{{ t('game.totalMisses') }}</div>
           </div>
           <div class="stat-item">
             <div class="stat-value">{{ totalScore }}</div>
@@ -562,7 +604,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0f0f23 100%);
 }
 
 .start-content {
@@ -574,7 +616,7 @@ onUnmounted(() => {
 .start-content h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  text-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
 }
 
 .start-content p {
@@ -602,66 +644,78 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   background: #0a0a1a;
-  position: relative;
 }
 
 .game-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.8);
+  padding: 0.75rem 1.5rem;
+  background: rgba(0, 0, 0, 0.9);
   color: white;
   z-index: 10;
 }
 
-.header-left {
+.header-left,
+.header-right {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
 }
 
 .word-progress {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: #6366f1;
 }
 
 .timer {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: monospace;
   color: #f59e0b;
+}
+
+.hits {
+  color: #10b981;
+}
+
+.misses {
+  color: #ef4444;
 }
 
 .header-center {
   flex: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .spelled-word {
   display: flex;
-  gap: 0.5rem;
-  font-size: 2rem;
+  gap: 0.25rem;
+  font-size: 1.8rem;
   font-weight: 800;
-  letter-spacing: 4px;
 }
 
 .spelled-word .letter {
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  animation: popIn 0.3s ease-out;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  animation: popIn 0.2s ease-out;
+  min-width: 36px;
+  text-align: center;
 }
 
 @keyframes popIn {
-  from { transform: scale(0); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from { transform: scale(0); }
+  to { transform: scale(1); }
 }
 
 .cursor {
-  animation: blink 1s infinite;
   color: #6366f1;
+  animation: blink 0.8s infinite;
 }
 
 @keyframes blink {
@@ -669,203 +723,102 @@ onUnmounted(() => {
   50% { opacity: 0; }
 }
 
+.word-meaning-hint {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .game-area {
   flex: 1;
   position: relative;
   background:
-    radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%);
+    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+    #0a0a1a;
   cursor: crosshair;
   overflow: hidden;
+  transition: background 0.2s;
 }
 
-.crosshair {
+/* Target Bubbles */
+.target-bubble {
   position: absolute;
-  font-size: 2rem;
-  color: rgba(255, 255, 255, 0.8);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  z-index: 100;
-}
-
-.muzzle-flash {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 3rem;
-  z-index: 100;
-  animation: flash 0.1s ease-out;
-}
-
-@keyframes flash {
-  from { opacity: 1; transform: translateX(-50%) scale(1.5); }
-  to { opacity: 0; transform: translateX(-50%) scale(1); }
-}
-
-.letter-target {
-  position: absolute;
-  width: 60px;
-  height: 60px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
   font-weight: 800;
   color: white;
-  background: radial-gradient(circle, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
-  border-radius: 50%;
-  cursor: pointer;
-  transform-origin: center;
-  animation: floatIn 0.5s ease-out forwards;
-  box-shadow:
-    0 0 20px rgba(239, 68, 68, 0.5),
-    0 0 40px rgba(239, 68, 68, 0.3),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.3);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  user-select: none;
-}
-
-.letter-target.decoy {
-  background: radial-gradient(circle, #6b7280 0%, #4b5563 50%, #374151 100%);
+  cursor: pointer;
+  transition: transform 0.15s ease-out, opacity 0.15s;
   box-shadow:
-    0 0 15px rgba(107, 114, 128, 0.4),
-    0 0 30px rgba(107, 114, 128, 0.2),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.3);
+    0 0 15px rgba(255, 255, 255, 0.2),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.2),
+    inset 0 3px 6px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  animation: float 3s ease-in-out infinite;
 }
 
-.letter-target.hit {
-  animation: hit 0.3s ease-out forwards;
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(var(--scale, 1)); }
+  50% { transform: translateY(-8px) scale(var(--scale, 1)); }
 }
 
-.letter-target.hidden {
-  display: none;
+.target-bubble:hover {
+  transform: scale(1.1) !important;
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.4),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.2),
+    inset 0 3px 6px rgba(255, 255, 255, 0.3);
 }
 
-@keyframes floatIn {
-  from {
-    opacity: 0;
-    transform: scale(0) rotate(180deg);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) rotate(var(--rotation, 0deg));
-  }
+.target-bubble:active {
+  transform: scale(0.9) !important;
 }
 
-@keyframes hit {
+/* Pop Effects */
+.pop-effect {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.pop-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--color);
+  border-radius: 50%;
+  animation: particle 0.5s ease-out forwards;
+  transform: rotate(calc(var(--i) * 45deg)) translateX(20px);
+}
+
+@keyframes particle {
   0% {
-    transform: scale(1);
     opacity: 1;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.5;
+    transform: rotate(calc(var(--i) * 45deg)) translateX(0) scale(1);
   }
   100% {
-    transform: scale(0);
     opacity: 0;
+    transform: rotate(calc(var(--i) * 45deg)) translateX(40px) scale(0);
   }
 }
 
-.letter-target:hover {
-  transform: scale(1.1);
-  box-shadow:
-    0 0 30px rgba(239, 68, 68, 0.7),
-    0 0 60px rgba(239, 68, 68, 0.4),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.hit-effect {
+.miss-x {
   position: absolute;
   font-size: 2rem;
-  pointer-events: none;
+  color: #ef4444;
+  font-weight: 900;
   transform: translate(-50%, -50%);
-  animation: effectFade 0.5s ease-out forwards;
+  animation: missFade 0.4s ease-out forwards;
 }
 
-.hit-effect.hit {
-  color: #10b981;
-}
-
-.hit-effect.miss {
-  color: #6b7280;
-}
-
-@keyframes effectFade {
-  from {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.5);
-  }
-  to {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
-  }
-}
-
-.word-hint {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: var(--radius-lg);
-  font-size: 1.2rem;
-  backdrop-filter: blur(10px);
-}
-
-/* Overlays */
-.word-complete-overlay,
-.wrong-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-out;
-}
-
-.word-complete-overlay {
-  background: rgba(16, 185, 129, 0.9);
-}
-
-.wrong-overlay {
-  background: rgba(239, 68, 68, 0.9);
-}
-
-.word-complete-content,
-.wrong-content {
-  text-align: center;
-  color: white;
-  padding: 3rem;
-}
-
-.word-complete-content h2,
-.wrong-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.completed-word {
-  font-size: 3rem;
-  font-weight: 800;
-  margin: 1rem 0;
-  letter-spacing: 4px;
-}
-
-.word-complete-content p,
-.wrong-content p {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+@keyframes missFade {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
 }
 
 /* Results Screen */
@@ -995,35 +948,27 @@ onUnmounted(() => {
   margin-top: 2rem;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .game-header {
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
   }
 
-  .header-left {
+  .header-left,
+  .header-right {
     gap: 1rem;
+    font-size: 0.9rem;
   }
 
   .spelled-word {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .spelled-word .letter {
-    padding: 0.4rem 0.8rem;
-  }
-
-  .letter-target {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    min-width: 28px;
   }
 
   .stats-grid {
@@ -1032,10 +977,6 @@ onUnmounted(() => {
 
   .results-content {
     padding: 2rem;
-  }
-
-  .rank-grade {
-    font-size: 3rem;
   }
 
   .btn-xl {

@@ -75,6 +75,8 @@
     "retry": "Retry",
     "results": "Game Results",
     "totalTime": "Total Time",
+    "totalHits": "Total Hits",
+    "totalMisses": "Total Misses",
     "correctWords": "Correct Words",
     "wrongAttempts": "Wrong Attempts",
     "score": "Total Score",
