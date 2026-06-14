@@ -22,6 +22,7 @@
     "start": "开始",
     "pause": "暂停",
     "resume": "继续",
+    "play": "播放",
     "next": "下一个",
     "previous": "上一个",
     "check": "检查",
@@ -46,7 +47,16 @@
     "searchWords": "搜索单词...",
     "startWithSelected": "开始练习选中的单词",
     "selectedWords": "已选单词",
-    "startPractice": "开始练习"
+    "startPractice": "开始练习",
+    "singlePractice": "单人练习",
+    "groupPractice": "多人听写",
+    "groupMode": "多人听写模式",
+    "playInterval": "播放间隔",
+    "repeatCount": "重复次数",
+    "seconds": "秒",
+    "shuffle": "打乱顺序",
+    "shortcuts": "快捷键",
+    "playPause": "播放/暂停"
   },
   "manage": {
     "title": "词库管理",

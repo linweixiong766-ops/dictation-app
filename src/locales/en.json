@@ -22,6 +22,7 @@
     "start": "Start",
     "pause": "Pause",
     "resume": "Resume",
+    "play": "Play",
     "next": "Next",
     "previous": "Previous",
     "check": "Check",
@@ -46,7 +47,16 @@
     "searchWords": "Search words...",
     "startWithSelected": "Practice Selected",
     "selectedWords": "Selected Words",
-    "startPractice": "Start Practice"
+    "startPractice": "Start Practice",
+    "singlePractice": "Solo Practice",
+    "groupPractice": "Group Dictation",
+    "groupMode": "Group Dictation Mode",
+    "playInterval": "Play Interval",
+    "repeatCount": "Repeat Count",
+    "seconds": "seconds",
+    "shuffle": "Shuffle",
+    "shortcuts": "Shortcuts",
+    "playPause": "Play/Pause"
   },
   "manage": {
     "title": "Word List Management",

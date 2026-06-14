@@ -77,6 +77,14 @@ function startPractice() {
   const wordIndices = selectedWords.value.join(',')
   router.push(`/practice/${props.lang}/${props.listId}?words=${wordIndices}`)
 }
+
+function startGroupPractice() {
+  if (selectedWords.value.length === 0) return
+
+  // 将选中的单词索引传递给多人听写页面
+  const wordIndices = selectedWords.value.join(',')
+  router.push(`/group/${props.lang}/${props.listId}?words=${wordIndices}`)
+}
 </script>
 
 <template>
@@ -119,7 +127,14 @@ function startPractice() {
           :disabled="selectedCount === 0"
           @click="startPractice"
         >
-          {{ t('practice.startWithSelected') }} ({{ selectedCount }})
+          {{ t('practice.singlePractice') }} ({{ selectedCount }})
+        </button>
+        <button
+          class="btn btn-secondary"
+          :disabled="selectedCount === 0"
+          @click="startGroupPractice"
+        >
+          {{ t('practice.groupPractice') }} ({{ selectedCount }})
         </button>
       </div>
     </div>
@@ -156,13 +171,22 @@ function startPractice() {
       <div class="selected-info">
         {{ t('practice.selectedWords') }}: <strong>{{ selectedCount }}</strong>
       </div>
-      <button
-        class="btn btn-primary btn-lg"
-        :disabled="selectedCount === 0"
-        @click="startPractice"
-      >
-        {{ t('practice.startPractice') }} →
-      </button>
+      <div class="bottom-actions">
+        <button
+          class="btn btn-primary btn-lg"
+          :disabled="selectedCount === 0"
+          @click="startPractice"
+        >
+          {{ t('practice.singlePractice') }} →
+        </button>
+        <button
+          class="btn btn-secondary btn-lg"
+          :disabled="selectedCount === 0"
+          @click="startGroupPractice"
+        >
+          {{ t('practice.groupPractice') }} →
+        </button>
+      </div>
     </div>
   </div>
 
@@ -316,6 +340,11 @@ function startPractice() {
 .selected-info {
   font-size: 1.1rem;
   color: var(--gray-700);
+}
+
+.bottom-actions {
+  display: flex;
+  gap: 1rem;
 }
 
 @media (max-width: 640px) {

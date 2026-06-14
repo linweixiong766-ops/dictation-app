@@ -19,6 +19,12 @@ const routes = [
     props: true
   },
   {
+    path: '/group/:lang/:listId',
+    name: 'GroupPractice',
+    component: () => import('../views/GroupPracticeView.vue'),
+    props: true
+  },
+  {
     path: '/manage',
     name: 'Manage',
     component: () => import('../views/ManageView.vue')
