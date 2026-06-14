@@ -254,14 +254,33 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <!-- 答案显示 (英文单词) -->
-      <div v-if="showAnswer && currentWord" class="answer-section">
-        <div class="word-answer">{{ currentWord.word }}</div>
-      </div>
-
-      <!-- 听写提示 -->
-      <div v-else class="dictation-hint">
+      <!-- 听写提示 (未显示答案时) -->
+      <div v-if="!showAnswer" class="dictation-hint">
         {{ t('practice.listenAndWrite') }}
+      </div>
+    </div>
+
+    <!-- 完整答案表 (模态框) -->
+    <div v-if="showAnswer" class="answer-sheet-overlay" @click.self="showAnswer = false">
+      <div class="answer-sheet card">
+        <div class="answer-sheet-header">
+          <h2>{{ t('practice.answerSheet') }}</h2>
+          <button class="btn btn-outline btn-sm" @click="showAnswer = false">
+            ✕ {{ t('common.close') }}
+          </button>
+        </div>
+        <div class="answer-list">
+          <div
+            v-for="(word, index) in practiceWords"
+            :key="index"
+            class="answer-item"
+            :class="{ 'current': index === currentIndex }"
+          >
+            <span class="answer-number">{{ index + 1 }}.</span>
+            <span class="answer-meaning">{{ word.meaning }}</span>
+            <span class="answer-word">{{ word.word }}</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -497,6 +516,104 @@ onUnmounted(() => {
   border: 1px solid var(--gray-300);
   font-family: monospace;
   font-size: 0.85rem;
+}
+
+/* Answer Sheet Modal */
+.answer-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.answer-sheet {
+  background: white;
+  border-radius: var(--radius-lg);
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+}
+
+.answer-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 2px solid var(--border);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.answer-sheet-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.answer-sheet-header .btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.answer-sheet-header .btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.answer-list {
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.answer-item {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  align-items: center;
+}
+
+.answer-item:hover {
+  background: var(--primary-light);
+}
+
+.answer-item.current {
+  background: rgba(99, 102, 241, 0.15);
+  border-left: 4px solid var(--primary);
+}
+
+.answer-number {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.answer-meaning {
+  font-size: 1rem;
+  color: var(--gray-700);
+}
+
+.answer-word {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  letter-spacing: 1px;
 }
 
 @media (max-width: 640px) {

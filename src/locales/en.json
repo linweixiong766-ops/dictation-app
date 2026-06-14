@@ -57,7 +57,8 @@
     "shuffle": "Shuffle",
     "shortcuts": "Shortcuts",
     "playPause": "Play/Pause",
-    "listenAndWrite": "Listen to the audio and write the word"
+    "listenAndWrite": "Listen to the audio and write the word",
+    "answerSheet": "Dictation Answer Sheet"
   },
   "manage": {
     "title": "Word List Management",
