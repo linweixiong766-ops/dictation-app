@@ -180,85 +180,105 @@ function loadWord() {
 
   setTimeout(() => {
     playWordAudio()
-    spawnTargets()
+    startContinuousSpawning()
   }, 300)
 }
 
-function spawnTargets() {
-  if (!currentWord.value) return
+function startContinuousSpawning() {
+  // Stop any existing spawn timer
+  if (spawnTimer.value) {
+    clearInterval(spawnTimer.value)
+  }
+
+  // Initial burst of targets
+  for (let i = 0; i < 8; i++) {
+    setTimeout(() => spawnOneTarget(), i * 200)
+  }
+
+  // Continue spawning at regular intervals
+  spawnTimer.value = setInterval(() => {
+    // Keep 10-15 targets on screen
+    if (activeTargets.value.length < 12 && gameStarted.value) {
+      spawnOneTarget()
+    }
+  }, 600) // New target every 600ms
+}
+
+function spawnOneTarget() {
+  if (!currentWord.value || !gameStarted.value) return
 
   const word = currentWord.value.word.toUpperCase()
   const letters = word.split('')
   const areaWidth = gameArea.value?.offsetWidth || 800
   const areaHeight = gameArea.value?.offsetHeight || 500
-  const padding = 50
+  const padding = 60
 
-  // Create all targets (correct + decoys)
-  const allTargets = []
+  // Get the next letter needed
+  const nextLetterIndex = spelledWord.value.length
+  const nextLetter = nextLetterIndex < letters.length ? letters[nextLetterIndex] : null
 
-  // Add correct letters
-  letters.forEach((letter, i) => {
-    allTargets.push({ letter, isCorrect: true, index: i })
-  })
+  // 50% chance to spawn the NEXT needed letter, 50% other
+  const spawnNext = Math.random() < 0.5 && nextLetter
+  let letterData
 
-  // Add decoy letters (more decoys for harder game)
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const decoyCount = Math.min(8, Math.max(4, letters.length))
-  for (let i = 0; i < decoyCount; i++) {
-    let decoyLetter
-    do {
-      decoyLetter = alphabet[Math.floor(Math.random() * 26)]
-    } while (letters.includes(decoyLetter))
-    allTargets.push({ letter: decoyLetter, isCorrect: false, index: -1 })
+  if (spawnNext) {
+    // Spawn the exact next letter needed
+    letterData = { letter: nextLetter, isCorrect: true }
+  } else {
+    // Spawn either another needed letter or a decoy
+    const otherNeeded = []
+    for (let i = nextLetterIndex + 1; i < letters.length; i++) {
+      if (letters[i] !== nextLetter) {
+        otherNeeded.push(letters[i])
+      }
+    }
+
+    if (Math.random() < 0.3 && otherNeeded.length > 0) {
+      // Spawn a future needed letter (not the next one)
+      letterData = { letter: otherNeeded[Math.floor(Math.random() * otherNeeded.length)], isCorrect: false }
+    } else {
+      // Spawn a decoy
+      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      let decoyLetter
+      do {
+        decoyLetter = alphabet[Math.floor(Math.random() * 26)]
+      } while (letters.includes(decoyLetter))
+      letterData = { letter: decoyLetter, isCorrect: false }
+    }
   }
 
-  // Spawn targets one by one with delays
-  let spawnIndex = 0
-  const spawnInterval = setInterval(() => {
-    if (spawnIndex >= allTargets.length || !gameStarted.value) {
-      clearInterval(spawnInterval)
-      return
+  const size = 45 + Math.random() * 35 // Random size 45-80px
+  const color = colors[Math.floor(Math.random() * colors.length)]
+
+  const target = {
+    id: targetIdCounter.value++,
+    letter: letterData.letter,
+    isCorrect: letterData.isCorrect,
+    x: padding + Math.random() * (areaWidth - padding * 2 - size),
+    y: padding + Math.random() * (areaHeight - padding * 2 - size),
+    size,
+    color,
+    opacity: 0,
+    scale: 0,
+    lifetime: 5000 + Math.random() * 5000, // Live 5-10 seconds
+    born: Date.now()
+  }
+
+  activeTargets.value.push(target)
+
+  // Animate in
+  requestAnimationFrame(() => {
+    const t = activeTargets.value.find(tt => tt.id === target.id)
+    if (t) {
+      t.opacity = 1
+      t.scale = 1
     }
+  })
 
-    const targetData = allTargets[spawnIndex]
-    const size = 40 + Math.random() * 40 // Random size 40-80px
-    const color = colors[Math.floor(Math.random() * colors.length)]
-
-    const target = {
-      id: targetIdCounter.value++,
-      letter: targetData.letter,
-      isCorrect: targetData.isCorrect,
-      index: targetData.index,
-      x: padding + Math.random() * (areaWidth - padding * 2 - size),
-      y: padding + Math.random() * (areaHeight - padding * 2 - size),
-      size,
-      color,
-      opacity: 0,
-      scale: 0,
-      lifetime: 2000 + Math.random() * 3000, // Live 2-5 seconds
-      born: Date.now()
-    }
-
-    activeTargets.value.push(target)
-    spawnIndex++
-
-    // Animate in
-    requestAnimationFrame(() => {
-      const t = activeTargets.value.find(tt => tt.id === target.id)
-      if (t) {
-        t.opacity = 1
-        t.scale = 1
-      }
-    })
-
-    // Auto remove after lifetime
-    setTimeout(() => {
-      removeTarget(target.id)
-    }, target.lifetime)
-
-  }, 150 + Math.random() * 200) // Spawn every 150-350ms
-
-  spawnTimer.value = spawnInterval
+  // Auto remove after lifetime
+  setTimeout(() => {
+    removeTarget(target.id)
+  }, target.lifetime)
 }
 
 function removeTarget(id) {
@@ -317,28 +337,41 @@ function handleHit(target) {
   totalHits.value++
 
   if (target.isCorrect) {
-    // Correct letter hit
-    spelledWord.value += target.letter
-
-    // Check if word complete
+    // Check if this is the correct NEXT letter needed
     const targetWord = currentWord.value.word.toUpperCase()
-    if (spelledWord.value === targetWord) {
-      wordComplete()
+    const nextLetterIndex = spelledWord.value.length
+
+    if (target.letter === targetWord[nextLetterIndex]) {
+      // Correct next letter!
+      spelledWord.value += target.letter
+
+      // Check if word complete
+      if (spelledWord.value === targetWord) {
+        wordComplete()
+      }
+    } else {
+      // Wrong order - reset
+      totalMisses.value++
+      spelledWord.value = ''
+      playMissSound()
+      flashArea('rgba(239, 68, 68, 0.2)')
     }
   } else {
     // Wrong letter - reset word
     totalMisses.value++
     spelledWord.value = ''
     playMissSound()
+    flashArea('rgba(239, 68, 68, 0.2)')
+  }
+}
 
-    // Flash effect
-    const gameAreaEl = gameArea.value
-    if (gameAreaEl) {
-      gameAreaEl.style.background = 'rgba(239, 68, 68, 0.2)'
-      setTimeout(() => {
-        gameAreaEl.style.background = ''
-      }, 200)
-    }
+function flashArea(color) {
+  const gameAreaEl = gameArea.value
+  if (gameAreaEl) {
+    gameAreaEl.style.background = color
+    setTimeout(() => {
+      gameAreaEl.style.background = ''
+    }, 200)
   }
 }
 
