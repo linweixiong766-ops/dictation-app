@@ -230,8 +230,21 @@ function stopTimers() {
   audioLoopTimer.value = null
 }
 
+function shuffleArray(array) {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
+
 function startGame() {
   initAudio()
+
+  // Shuffle words before starting
+  practiceWords.value = shuffleArray(practiceWords.value)
+
   gameStarted.value = true
   gameCompleted.value = false
   currentWordIndex.value = 0
@@ -246,6 +259,19 @@ function startGame() {
   }, 1000)
 
   loadWord()
+}
+
+function restartGame() {
+  gameStarted.value = false
+  gameCompleted.value = false
+  currentWordIndex.value = 0
+  elapsedTime.value = 0
+  wordTimes.value = []
+  totalHits.value = 0
+  totalMisses.value = 0
+  activeTargets.value = []
+  popEffects.value = []
+  collectedLetters.value = []
 }
 
 function loadWord() {
@@ -542,18 +568,6 @@ function playWordAudio() {
   } catch (err) {
     console.error('Speech error:', err)
   }
-}
-
-function restartGame() {
-  gameStarted.value = false
-  gameCompleted.value = false
-  currentWordIndex.value = 0
-  elapsedTime.value = 0
-  wordTimes.value = []
-  totalHits.value = 0
-  totalMisses.value = 0
-  activeTargets.value = []
-  popEffects.value = []
 }
 
 function handleKeydown(event) {
