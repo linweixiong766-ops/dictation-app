@@ -165,6 +165,10 @@ function shuffleWords() {
 
 function toggleAnswer() {
   showAnswer.value = !showAnswer.value
+  // 显示答案时自动暂停播放
+  if (showAnswer.value && isPlaying.value) {
+    stopAutoPlay()
+  }
 }
 
 function handleKeydown(event) {
@@ -538,9 +542,9 @@ onUnmounted(() => {
 .answer-sheet {
   background: white;
   border-radius: var(--radius-lg);
-  max-width: 600px;
+  max-width: 700px;
   width: 100%;
-  max-height: 80vh;
+  max-height: 85vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -574,19 +578,24 @@ onUnmounted(() => {
 }
 
 .answer-list {
-  padding: 1rem;
+  padding: 1.5rem;
   overflow-y: auto;
   flex: 1;
 }
 
 .answer-item {
   display: grid;
-  grid-template-columns: 40px 1fr auto;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-sm);
+  grid-template-columns: 50px 1fr auto;
+  gap: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
   transition: var(--transition);
   align-items: center;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.answer-item:last-child {
+  border-bottom: none;
 }
 
 .answer-item:hover {
@@ -596,24 +605,25 @@ onUnmounted(() => {
 .answer-item.current {
   background: rgba(99, 102, 241, 0.15);
   border-left: 4px solid var(--primary);
+  font-weight: 600;
 }
 
 .answer-number {
-  font-weight: 700;
+  font-weight: 800;
   color: var(--primary);
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .answer-meaning {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: var(--gray-700);
 }
 
 .answer-word {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--gray-900);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 @media (max-width: 640px) {
