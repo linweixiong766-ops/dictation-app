@@ -58,7 +58,28 @@
     "shortcuts": "快捷键",
     "playPause": "播放/暂停",
     "listenAndWrite": "请听语音并书写单词",
-    "answerSheet": "听写答案表"
+    "answerSheet": "听写答案表",
+    "playGame": "单词射击"
+  },
+  "game": {
+    "title": "单词射击游戏",
+    "description": "听语音，按顺序射击字母拼出单词！",
+    "wordCount": "单词数量",
+    "start": "开始游戏",
+    "replay": "重播语音",
+    "correct": "拼写正确！",
+    "nextWord": "下一个单词",
+    "finish": "完成游戏",
+    "wrong": "拼写错误！",
+    "tryAgain": "请重新尝试",
+    "retry": "重新射击",
+    "results": "游戏结果",
+    "totalTime": "总用时",
+    "correctWords": "正确单词",
+    "wrongAttempts": "错误次数",
+    "score": "总分",
+    "wordDetails": "单词详情",
+    "playAgain": "再玩一次"
   },
   "manage": {
     "title": "词库管理",

@@ -85,6 +85,14 @@ function startGroupPractice() {
   const wordIndices = selectedWords.value.join(',')
   router.push(`/group/${props.lang}/${props.listId}?words=${wordIndices}`)
 }
+
+function startGame() {
+  if (selectedWords.value.length === 0) return
+
+  // 将选中的单词索引传递给游戏页面
+  const wordIndices = selectedWords.value.join(',')
+  router.push(`/game/${props.lang}/${props.listId}?words=${wordIndices}`)
+}
 </script>
 
 <template>
@@ -136,6 +144,13 @@ function startGroupPractice() {
         >
           {{ t('practice.groupPractice') }} ({{ selectedCount }})
         </button>
+        <button
+          class="btn btn-game"
+          :disabled="selectedCount === 0"
+          @click="startGame"
+        >
+          🎯 {{ t('practice.playGame') }} ({{ selectedCount }})
+        </button>
       </div>
     </div>
 
@@ -185,6 +200,13 @@ function startGroupPractice() {
           @click="startGroupPractice"
         >
           {{ t('practice.groupPractice') }} →
+        </button>
+        <button
+          class="btn btn-game btn-lg"
+          :disabled="selectedCount === 0"
+          @click="startGame"
+        >
+          🎯 {{ t('practice.playGame') }} →
         </button>
       </div>
     </div>
@@ -345,6 +367,21 @@ function startGroupPractice() {
 .bottom-actions {
   display: flex;
   gap: 1rem;
+}
+
+.btn-game {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.btn-game:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
+}
+
+.btn-game:active {
+  transform: translateY(0);
 }
 
 @media (max-width: 640px) {

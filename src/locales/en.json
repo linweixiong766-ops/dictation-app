@@ -58,7 +58,28 @@
     "shortcuts": "Shortcuts",
     "playPause": "Play/Pause",
     "listenAndWrite": "Listen to the audio and write the word",
-    "answerSheet": "Dictation Answer Sheet"
+    "answerSheet": "Dictation Answer Sheet",
+    "playGame": "Word Shooter"
+  },
+  "game": {
+    "title": "Word Shooter Game",
+    "description": "Listen and shoot the letters in order to spell the word!",
+    "wordCount": "Word Count",
+    "start": "Start Game",
+    "replay": "Replay Audio",
+    "correct": "Correct Spelling!",
+    "nextWord": "Next Word",
+    "finish": "Finish Game",
+    "wrong": "Wrong Spelling!",
+    "tryAgain": "Try Again",
+    "retry": "Retry",
+    "results": "Game Results",
+    "totalTime": "Total Time",
+    "correctWords": "Correct Words",
+    "wrongAttempts": "Wrong Attempts",
+    "score": "Total Score",
+    "wordDetails": "Word Details",
+    "playAgain": "Play Again"
   },
   "manage": {
     "title": "Word List Management",

@@ -25,6 +25,12 @@ const routes = [
     props: true
   },
   {
+    path: '/game/:lang/:listId',
+    name: 'FpsGame',
+    component: () => import('../views/FpsGameView.vue'),
+    props: true
+  },
+  {
     path: '/manage',
     name: 'Manage',
     component: () => import('../views/ManageView.vue')
