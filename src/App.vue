@@ -47,6 +47,6 @@ function switchLocale(lang) {
   </div>
 </template>
 
-<style scoped>
+<style>
 @import './assets/styles/main.css';
 </style>

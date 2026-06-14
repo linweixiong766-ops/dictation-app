@@ -1,0 +1,27 @@
+{
+  "name": "中文四年级",
+  "language": "zh",
+  "category": "四年级",
+  "words": [
+    { "word": "蝴蝶", "meaning": "butterfly", "pinyin": "hú dié" },
+    { "word": "蜻蜓", "meaning": "dragonfly", "pinyin": "qīng tíng" },
+    { "word": "蚂蚁", "meaning": "ant", "pinyin": "mǎ yǐ" },
+    { "word": "蜘蛛", "meaning": "spider", "pinyin": "zhī zhū" },
+    { "word": "宇宙", "meaning": "universe", "pinyin": "yǔ zhòu" },
+    { "word": "星球", "meaning": "planet", "pinyin": "xīng qiú" },
+    { "word": "森林", "meaning": "forest", "pinyin": "sēn lín" },
+    { "word": "海洋", "meaning": "ocean", "pinyin": "hǎi yáng" },
+    { "word": "沙漠", "meaning": "desert", "pinyin": "shā mò" },
+    { "word": "草原", "meaning": "grassland", "pinyin": "cǎo yuán" },
+    { "word": "勇敢", "meaning": "brave", "pinyin": "yǒng gǎn" },
+    { "word": "诚实", "meaning": "honest", "pinyin": "chéng shí" },
+    { "word": "善良", "meaning": "kind", "pinyin": "shàn liáng" },
+    { "word": "勤劳", "meaning": "diligent", "pinyin": "qín láo" },
+    { "word": "聪明", "meaning": "smart", "pinyin": "cōng míng" },
+    { "word": "发明", "meaning": "invent", "pinyin": "fā míng" },
+    { "word": "创造", "meaning": "create", "pinyin": "chuàng zào" },
+    { "word": "实验", "meaning": "experiment", "pinyin": "shí yàn" },
+    { "word": "观察", "meaning": "observe", "pinyin": "guān chá" },
+    { "word": "思考", "meaning": "think", "pinyin": "sī kǎo" }
+  ]
+}

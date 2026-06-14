@@ -256,4 +256,46 @@ function handleKeydown(event) {
   max-width: 600px;
   margin: 0 auto;
 }
+
+.practice-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+}
+
+.word-display {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.btn-play {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.6);
+  }
+}
+
+.btn-play:hover {
+  animation: none;
+}
+
+.input-area .input-large {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.score-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.score-card .actions .btn {
+  min-width: 140px;
+}
 </style>

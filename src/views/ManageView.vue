@@ -7,7 +7,7 @@ const { t, locale } = useI18n()
 const wordStore = useWordStore()
 
 const selectedLang = ref(locale.value)
-const selectedListIndex = ref(-1)
+const selectedListName = ref('')
 const showAddModal = ref(false)
 const showEditModal = ref(false)
 const showAddListModal = ref(false)
@@ -34,22 +34,36 @@ const phoneticField = computed({
   }
 })
 
+// Get filtered lists for current language
+const filteredLists = computed(() => {
+  return wordStore.customLists.filter(l => l.language === selectedLang.value)
+})
+
+// Get the selected list object
+const selectedList = computed(() => {
+  if (!selectedListName.value) return null
+  return wordStore.customLists.find(
+    l => l.language === selectedLang.value && l.name === selectedListName.value
+  )
+})
+
+// Get the real index of selected list in the unfiltered store array
+const realListIndex = computed(() => {
+  if (!selectedList.value) return -1
+  return wordStore.customLists.indexOf(selectedList.value)
+})
+
 onMounted(() => {
   wordStore.loadCustomLists()
 })
 
 function switchLanguage(lang) {
   selectedLang.value = lang
-  selectedListIndex.value = -1
+  selectedListName.value = ''
 }
 
-function selectList(index) {
-  selectedListIndex.value = index
-}
-
-function getSelectedList() {
-  const customLists = wordStore.customLists.filter(l => l.language === selectedLang.value)
-  return customLists[selectedListIndex.value]
+function selectList(listName) {
+  selectedListName.value = listName
 }
 
 function openAddModal() {
@@ -58,11 +72,10 @@ function openAddModal() {
 }
 
 function openEditModal(wordIndex) {
-  const list = getSelectedList()
-  if (!list) return
+  if (!selectedList.value) return
 
   editingWordIndex.value = wordIndex
-  newWord.value = { ...list.words[wordIndex] }
+  newWord.value = { ...selectedList.value.words[wordIndex] }
   showEditModal.value = true
 }
 
@@ -72,24 +85,22 @@ function openAddListModal() {
 }
 
 function addWord() {
-  const list = getSelectedList()
-  if (!list) return
+  if (!selectedList.value || realListIndex.value < 0) return
 
-  wordStore.addWordToList(selectedListIndex.value, { ...newWord.value })
+  wordStore.addWordToList(realListIndex.value, { ...newWord.value })
   showAddModal.value = false
 }
 
 function updateWord() {
-  const list = getSelectedList()
-  if (!list) return
+  if (!selectedList.value || realListIndex.value < 0) return
 
-  wordStore.updateWordInList(selectedListIndex.value, editingWordIndex.value, { ...newWord.value })
+  wordStore.updateWordInList(realListIndex.value, editingWordIndex.value, { ...newWord.value })
   showEditModal.value = false
 }
 
 function deleteWord(wordIndex) {
-  if (confirm(t('manage.confirmDelete'))) {
-    wordStore.deleteWordFromList(selectedListIndex.value, wordIndex)
+  if (confirm(t('manage.confirmDelete')) && realListIndex.value >= 0) {
+    wordStore.deleteWordFromList(realListIndex.value, wordIndex)
   }
 }
 
@@ -104,25 +115,27 @@ function addList() {
   showAddListModal.value = false
 }
 
-function deleteList(index) {
+function deleteList(listName) {
   if (confirm(t('manage.confirmDelete'))) {
-    wordStore.deleteCustomList(index)
-    if (selectedListIndex.value === index) {
-      selectedListIndex.value = -1
-    } else if (selectedListIndex.value > index) {
-      selectedListIndex.value--
+    const index = wordStore.customLists.findIndex(
+      l => l.language === selectedLang.value && l.name === listName
+    )
+    if (index >= 0) {
+      wordStore.deleteCustomList(index)
+      if (selectedListName.value === listName) {
+        selectedListName.value = ''
+      }
     }
   }
 }
 
 function exportList() {
-  const list = getSelectedList()
-  if (!list) return
+  if (!selectedList.value) return
 
-  const dataStr = JSON.stringify(list, null, 2)
+  const dataStr = JSON.stringify(selectedList.value, null, 2)
   const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr)
 
-  const exportFileDefaultName = `${list.name}.json`
+  const exportFileDefaultName = `${selectedList.value.name}.json`
 
   const linkElement = document.createElement('a')
   linkElement.setAttribute('href', dataUri)
@@ -139,6 +152,7 @@ function importList(event) {
     try {
       const imported = JSON.parse(e.target.result)
       if (imported.name && imported.words && Array.isArray(imported.words)) {
+        imported.language = selectedLang.value
         wordStore.addCustomList(imported)
       } else {
         alert(t('common.error'))
@@ -180,15 +194,15 @@ function importList(event) {
         <h2 class="card-title">{{ t('home.selectList') }}</h2>
         <div class="list-grid">
           <div
-            v-for="(list, index) in wordStore.customLists.filter(l => l.language === selectedLang)"
-            :key="index"
+            v-for="list in filteredLists"
+            :key="list.name"
             class="list-card"
-            :class="{ active: selectedListIndex === index }"
-            @click="selectList(index)"
+            :class="{ active: selectedListName === list.name }"
+            @click="selectList(list.name)"
           >
             <div class="list-card-title">{{ list.name }}</div>
             <div class="list-card-info">{{ list.words.length }} {{ t('practice.total') }}</div>
-            <button class="btn btn-danger btn-sm" @click.stop="deleteList(index)">
+            <button class="btn btn-danger btn-sm" @click.stop="deleteList(list.name)">
               {{ t('common.delete') }}
             </button>
           </div>
@@ -200,9 +214,9 @@ function importList(event) {
       </div>
 
       <!-- Word Management -->
-      <div v-if="selectedListIndex >= 0" class="card">
+      <div v-if="selectedList" class="card">
         <div class="manage-header">
-          <h2 class="card-title">{{ getSelectedList()?.name }}</h2>
+          <h2 class="card-title">{{ selectedList.name }}</h2>
           <div class="actions">
             <button class="btn btn-primary" @click="openAddModal">
               {{ t('manage.addWord') }}
@@ -217,7 +231,7 @@ function importList(event) {
           </div>
         </div>
 
-        <table v-if="getSelectedList()?.words.length" class="word-table">
+        <table v-if="selectedList.words.length" class="word-table">
           <thead>
             <tr>
               <th>{{ t('manage.word') }}</th>
@@ -228,7 +242,7 @@ function importList(event) {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(word, wordIndex) in getSelectedList()?.words" :key="wordIndex">
+            <tr v-for="(word, wordIndex) in selectedList.words" :key="wordIndex">
               <td>{{ word.word }}</td>
               <td>{{ word.meaning }}</td>
               <td>{{ word.phonetic || word.pinyin }}</td>
@@ -246,8 +260,16 @@ function importList(event) {
           </tbody>
         </table>
 
-        <div v-else class="card">
+        <div v-else class="empty-state">
+          <div class="empty-state-icon">📝</div>
           <p>{{ t('manage.noWords') }}</p>
+        </div>
+      </div>
+
+      <div v-else-if="filteredLists.length > 0" class="card">
+        <div class="empty-state">
+          <div class="empty-state-icon">👆</div>
+          <p>{{ t('home.selectList') }}</p>
         </div>
       </div>
     </div>
@@ -258,19 +280,19 @@ function importList(event) {
         <h3 class="modal-title">{{ t('manage.addWord') }}</h3>
         <div class="input-group">
           <label>{{ t('manage.word') }}</label>
-          <input v-model="newWord.word" class="input" />
+          <input v-model="newWord.word" class="input" :placeholder="selectedLang === 'en' ? 'apple' : '苹果'" />
         </div>
         <div class="input-group">
           <label>{{ t('manage.meaning') }}</label>
-          <input v-model="newWord.meaning" class="input" />
+          <input v-model="newWord.meaning" class="input" :placeholder="selectedLang === 'en' ? '苹果' : 'apple'" />
         </div>
         <div class="input-group">
           <label>{{ selectedLang === 'en' ? t('manage.phonetic') : t('manage.pinyin') }}</label>
-          <input v-model="phoneticField" class="input" />
+          <input v-model="phoneticField" class="input" :placeholder="selectedLang === 'en' ? '/ˈæp.əl/' : 'píng guǒ'" />
         </div>
         <div class="modal-actions">
           <button class="btn btn-outline" @click="showAddModal = false">{{ t('manage.cancel') }}</button>
-          <button class="btn btn-primary" @click="addWord">{{ t('manage.save') }}</button>
+          <button class="btn btn-primary" @click="addWord" :disabled="!newWord.word.trim()">{{ t('manage.save') }}</button>
         </div>
       </div>
     </div>
@@ -304,7 +326,7 @@ function importList(event) {
         <h3 class="modal-title">{{ t('manage.addNewList') }}</h3>
         <div class="input-group">
           <label>{{ t('manage.listName') }}</label>
-          <input v-model="newListName" class="input" />
+          <input v-model="newListName" class="input" :placeholder="selectedLang === 'en' ? 'My Word List' : '我的词库'" />
         </div>
         <div class="modal-actions">
           <button class="btn btn-outline" @click="showAddListModal = false">{{ t('manage.cancel') }}</button>
@@ -329,7 +351,7 @@ function importList(event) {
 
 .list-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1rem;
 }
 
@@ -338,28 +360,36 @@ function importList(event) {
 }
 
 .list-card.active {
-  border-color: var(--primary-color);
-  background: rgba(74, 144, 226, 0.05);
+  border-color: var(--primary);
+  background: var(--primary-light);
 }
 
 .list-card .btn-danger {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.75rem;
+  right: 0.75rem;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.list-card:hover .btn-danger {
+  opacity: 1;
 }
 
 .add-card {
-  border: 2px dashed var(--border-color);
+  border: 2px dashed var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100px;
-  color: var(--text-light);
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .add-card:hover {
-  border-color: var(--primary-color);
-  color: var(--primary-color);
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
 }
 
 .actions {

@@ -37,7 +37,7 @@ function startPractice(listId) {
       <p>{{ t('home.description') }}</p>
     </div>
 
-    <div class="card">
+    <div class="card home-card">
       <h2 class="card-title">{{ t('home.selectLanguage') }}</h2>
       <div class="lang-switch">
         <button
@@ -45,43 +45,55 @@ function startPractice(listId) {
           :class="selectedLang === 'zh' ? 'btn-primary' : 'btn-outline'"
           @click="switchLanguage('zh')"
         >
-          {{ t('language.zh') }}
+          🇨🇳 {{ t('language.zh') }}
         </button>
         <button
           class="btn"
           :class="selectedLang === 'en' ? 'btn-primary' : 'btn-outline'"
           @click="switchLanguage('en')"
         >
-          {{ t('language.en') }}
+          🇺🇸 {{ t('language.en') }}
         </button>
       </div>
     </div>
 
     <h2 class="section-title">{{ t('home.selectList') }}</h2>
 
-    <div v-if="wordStore.isLoading" class="card">
-      <p>{{ t('common.loading') }}</p>
+    <div v-if="wordStore.isLoading" class="card home-card">
+      <div class="empty-state">
+        <div class="empty-state-icon">⏳</div>
+        <p>{{ t('common.loading') }}</p>
+      </div>
     </div>
 
-    <div v-else-if="wordStore.error" class="card">
-      <p>{{ t('common.error') }}: {{ wordStore.error }}</p>
+    <div v-else-if="wordStore.error" class="card home-card">
+      <div class="empty-state">
+        <div class="empty-state-icon">❌</div>
+        <p>{{ t('common.error') }}: {{ wordStore.error }}</p>
+      </div>
     </div>
 
     <div v-else class="grid grid-2">
       <div
         v-for="(list, index) in wordStore.availableLists"
         :key="index"
-        class="list-card"
+        class="list-card home-list-card"
         @click="startPractice(list.category)"
       >
         <div class="list-card-title">{{ list.name }}</div>
         <div class="list-card-info">
           {{ list.words.length }} {{ t('practice.total') }}
         </div>
+        <div class="list-card-action">
+          <span class="btn btn-primary btn-sm">{{ t('home.startPractice') }} →</span>
+        </div>
       </div>
 
-      <div v-if="wordStore.availableLists.length === 0" class="card">
-        <p>{{ t('common.noData') }}</p>
+      <div v-if="wordStore.availableLists.length === 0" class="card home-card">
+        <div class="empty-state">
+          <div class="empty-state-icon">📭</div>
+          <p>{{ t('common.noData') }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -96,5 +108,17 @@ function startPractice(listId) {
 .lang-switch {
   display: flex;
   gap: 1rem;
+}
+
+.list-card-action {
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--transition);
+}
+
+.list-card:hover .list-card-action {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
