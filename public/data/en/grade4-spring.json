@@ -3,144 +3,671 @@
   "language": "en",
   "category": "grade4-spring",
   "words": [
-    {"word": "doctor", "meaning": "医生;博士", "phonetic": "/ˈdɒktə(r)/"},
-    {"word": "fireman", "meaning": "消防队员", "phonetic": "/ˈfaɪəmən/"},
-    {"word": "farmer", "meaning": "农民;农场主", "phonetic": "/ˈfɑːmə(r)/"},
-    {"word": "cook", "meaning": "炊事员,厨师;烹饪", "phonetic": "/kʊk/"},
-    {"word": "police", "meaning": "警察", "phonetic": "/pəˈliːs/"},
-    {"word": "police officer", "meaning": "警官,警察,警务人员", "phonetic": "/pəˈliːs ˈɒfɪsə(r)/"},
-    {"word": "station", "meaning": "局;所;站", "phonetic": "/ˈsteɪʃn/"},
-    {"word": "police station", "meaning": "警察局,派出所", "phonetic": "/pəˈliːs ˈsteɪʃn/"},
-    {"word": "fire", "meaning": "火;火灾;射击;解雇;激发", "phonetic": "/faɪə(r)/"},
-    {"word": "fire station", "meaning": "消防站", "phonetic": "/ˈfaɪə ˈsteɪʃn/"},
-    {"word": "restaurant", "meaning": "餐馆", "phonetic": "/ˈrestərɒnt/"},
-    {"word": "father", "meaning": "父亲;祖先", "phonetic": "/ˈfɑːðə(r)/"},
-    {"word": "field", "meaning": "田,地;领域;学科;运动场", "phonetic": "/fiːld/"},
-    {"word": "painter", "meaning": "画家;油漆匠", "phonetic": "/ˈpeɪntə(r)/"},
-    {"word": "use", "meaning": "使用", "phonetic": "/juːz/"},
-    {"word": "brush", "meaning": "刷子;轻擦;灌木丛;刷;轻擦;掠过", "phonetic": "/brʌʃ/"},
-    {"word": "scientist", "meaning": "科学家", "phonetic": "/ˈsaɪəntɪst/"},
-    {"word": "writer", "meaning": "作家,作者", "phonetic": "/ˈraɪtə(r)/"},
-    {"word": "worker", "meaning": "工人", "phonetic": "/ˈwɜːkə(r)/"},
-    {"word": "aunt", "meaning": "阿姨;伯母;舅母;婶;姑;姨", "phonetic": "/ɑːnt/"},
-    {"word": "night", "meaning": "夜;夜间", "phonetic": "/naɪt/"},
-    {"word": "owl", "meaning": "猫头鹰;夜猫子", "phonetic": "/aʊl/"},
-    {"word": "night owl", "meaning": "夜猫子,喜欢熬夜的人", "phonetic": "/naɪt aʊl/"},
-    {"word": "driver", "meaning": "司机;驱动因素", "phonetic": "/ˈdraɪvə(r)/"},
-    {"word": "taxi", "meaning": "出租车", "phonetic": "/ˈtæksi/"},
-    {"word": "safe", "meaning": "安全的;保险柜", "phonetic": "/seɪf/"},
-    {"word": "nurse", "meaning": "护士", "phonetic": "/nɜːs/"},
-    {"word": "brighten", "meaning": "照亮;变亮;(使)快活起来", "phonetic": "/ˈbraɪtn/"},
-    {"word": "uncle", "meaning": "叔;伯;舅;姑父;姨父", "phonetic": "/ˈʌŋkl/"},
-    {"word": "bake", "meaning": "烤,烘焙", "phonetic": "/beɪk/"},
-    {"word": "bee", "meaning": "蜜蜂", "phonetic": "/biː/"},
-    {"word": "postman", "meaning": "邮递员", "phonetic": "/ˈpəʊstmən/"},
-    {"word": "poor", "meaning": "贫穷的;可怜的;差的", "phonetic": "/pʊə(r)/"},
-    {"word": "bring", "meaning": "带来;提供;导致", "phonetic": "/brɪŋ/"},
-    {"word": "letter", "meaning": "信;字母", "phonetic": "/ˈletə(r)/"},
-    {"word": "mountain", "meaning": "山;山脉;山区", "phonetic": "/ˈmaʊntən/"},
-    {"word": "laugh", "meaning": "笑", "phonetic": "/lɑːf/"},
-    {"word": "sad", "meaning": "悲哀的;让人难过的", "phonetic": "/sæd/"},
-    {"word": "cry", "meaning": "哭;喊叫", "phonetic": "/kraɪ/"},
-    {"word": "angry", "meaning": "生气的,愤怒的", "phonetic": "/ˈæŋɡri/"},
-    {"word": "frown", "meaning": "皱眉;对…表示不满", "phonetic": "/fraʊn/"},
-    {"word": "scared", "meaning": "害怕的,恐惧的", "phonetic": "/skeəd/"},
-    {"word": "shake", "meaning": "摇动;握手;摇头;颤抖", "phonetic": "/ʃeɪk/"},
-    {"word": "excited", "meaning": "激动的,兴奋的", "phonetic": "/ɪkˈsaɪtɪd/"},
-    {"word": "opera", "meaning": "歌剧", "phonetic": "/ˈɒprə/"},
-    {"word": "next", "meaning": "下一个的;紧接着;下次", "phonetic": "/nekst/"},
-    {"word": "cough", "meaning": "咳嗽", "phonetic": "/kɒf/"},
-    {"word": "better", "meaning": "更好的;痊愈;更好地", "phonetic": "/ˈbetə(r)/"},
-    {"word": "practise", "meaning": "练习,操练", "phonetic": "/ˈpræktɪs/"},
-    {"word": "gift", "meaning": "礼物;天赋", "phonetic": "/ɡɪft/"},
-    {"word": "surprised", "meaning": "惊奇的,惊讶的", "phonetic": "/səˈpraɪzd/"},
-    {"word": "model", "meaning": "模型;模范;模特儿;做榜样", "phonetic": "/ˈmɒdl/"},
-    {"word": "bang", "meaning": "砰,啪;猛击;猛摔", "phonetic": "/bæŋ/"},
-    {"word": "shout", "meaning": "呼喊,喊叫", "phonetic": "/ʃaʊt/"},
-    {"word": "should", "meaning": "应该;将会;必须", "phonetic": "/ʃʊd/"},
-    {"word": "break", "meaning": "休息;打破;损坏;中断", "phonetic": "/breɪk/"},
-    {"word": "feeling", "meaning": "感觉;感情", "phonetic": "/ˈfiːlɪŋ/"},
-    {"word": "huge", "meaning": "极大的,巨大的", "phonetic": "/hjuːdʒ/"},
-    {"word": "worried", "meaning": "担忧的", "phonetic": "/ˈwʌrid/"},
-    {"word": "street", "meaning": "街,街道", "phonetic": "/striːt/"},
-    {"word": "hit", "meaning": "击中;打;撞;成功", "phonetic": "/hɪt/"},
-    {"word": "talent", "meaning": "才能,禀赋;天才", "phonetic": "/ˈtælənt/"},
-    {"word": "act", "meaning": "行为;表演;行动;举止", "phonetic": "/ækt/"},
-    {"word": "magic", "meaning": "魔术;戏法;有魔力的", "phonetic": "/ˈmædʒɪk/"},
-    {"word": "shine", "meaning": "光亮;光泽;发光;照射", "phonetic": "/ʃaɪn/"},
-    {"word": "puzzle", "meaning": "谜;难题;使困惑", "phonetic": "/ˈpʌzl/"},
-    {"word": "dancer", "meaning": "舞蹈演员,跳舞者", "phonetic": "/ˈdɑːnsə(r)/"},
-    {"word": "win", "meaning": "赢得;获胜", "phonetic": "/wɪn/"},
-    {"word": "just", "meaning": "正义的;公正的;只是;恰好", "phonetic": "/dʒʌst/"},
-    {"word": "duck", "meaning": "鸭子;鸭肉", "phonetic": "/dʌk/"},
-    {"word": "boy", "meaning": "男孩", "phonetic": "/bɔɪ/"},
-    {"word": "anything", "meaning": "任何事物", "phonetic": "/ˈeniθɪŋ/"},
-    {"word": "cock-a-doodle-doo", "meaning": "公鸡的啼叫声;公鸡啼叫", "phonetic": "/ˌkɒk ə ˈduːdl duː/"},
-    {"word": "enough", "meaning": "足够的;充分的;足够", "phonetic": "/ɪˈnʌf/"},
-    {"word": "slowly", "meaning": "缓慢地,迟缓地", "phonetic": "/ˈsləʊli/"},
-    {"word": "life", "meaning": "生命;寿命;生物;生活经历", "phonetic": "/laɪf/"},
-    {"word": "seed", "meaning": "种子", "phonetic": "/siːd/"},
-    {"word": "earth", "meaning": "地球;陆地;土壤", "phonetic": "/ɜːθ/"},
-    {"word": "root", "meaning": "根部;起源", "phonetic": "/ruːt/"},
-    {"word": "stem", "meaning": "茎,干,梗;堵住;起源于", "phonetic": "/stem/"},
-    {"word": "thin", "meaning": "瘦的;薄的;变少", "phonetic": "/θɪn/"},
-    {"word": "leaf", "meaning": "叶子;书页;匆匆翻阅", "phonetic": "/liːf/"},
-    {"word": "dig", "meaning": "掘,凿,挖", "phonetic": "/dɪɡ/"},
-    {"word": "sunflower", "meaning": "向日葵,葵花", "phonetic": "/ˈsʌnflaʊə(r)/"},
-    {"word": "wheat", "meaning": "小麦", "phonetic": "/wiːt/"},
-    {"word": "cotton", "meaning": "棉;棉布;棉花", "phonetic": "/ˈkɒtn/"},
-    {"word": "sleep", "meaning": "睡觉", "phonetic": "/sliːp/"},
-    {"word": "mouse", "meaning": "老鼠;鼠标", "phonetic": "/maʊs/"},
-    {"word": "grain", "meaning": "谷物", "phonetic": "/ɡreɪn/"},
-    {"word": "miss", "meaning": "女士,小姐;想念;错过", "phonetic": "/mɪs/"},
-    {"word": "will", "meaning": "将;愿意;意志;遗嘱", "phonetic": "/wɪl/"},
-    {"word": "everything", "meaning": "每件事,每样事物,一切", "phonetic": "/ˈevriθɪŋ/"},
-    {"word": "cabbage", "meaning": "卷心菜", "phonetic": "/ˈkæbɪdʒ/"},
-    {"word": "paper", "meaning": "纸;论文;纸质的", "phonetic": "/ˈpeɪpə(r)/"},
-    {"word": "event", "meaning": "事件;活动;比赛项目", "phonetic": "/ɪˈvent/"},
-    {"word": "drama", "meaning": "戏剧,话剧;戏剧性情节", "phonetic": "/ˈdrɑːmə/"},
-    {"word": "trip", "meaning": "旅行;旅程", "phonetic": "/trɪp/"},
-    {"word": "fair", "meaning": "合理的;公平的;集市;展览会", "phonetic": "/feə(r)/"},
-    {"word": "festival", "meaning": "节日;纪念活动日", "phonetic": "/ˈfestɪvl/"},
-    {"word": "horn", "meaning": "(牛､羊等的)角;(车)喇叭;(乐器)号", "phonetic": "/hɔːn/"},
-    {"word": "dot", "meaning": "点,小圆点", "phonetic": "/dɒt/"},
-    {"word": "raindrop", "meaning": "雨滴,雨点", "phonetic": "/ˈreɪndrɒp/"},
-    {"word": "more", "meaning": "更加;更多的", "phonetic": "/mɔː(r)/"},
-    {"word": "write", "meaning": "写", "phonetic": "/raɪt/"},
-    {"word": "those", "meaning": "那些", "phonetic": "/ðəʊz/"},
-    {"word": "forest", "meaning": "森林", "phonetic": "/ˈfɒrɪst/"},
-    {"word": "nature", "meaning": "自然;本质;天性", "phonetic": "/ˈneɪtʃə(r)/"},
-    {"word": "hunt", "meaning": "打猎;搜寻;追捕", "phonetic": "/hʌnt/"},
-    {"word": "keeper", "meaning": "看守人;饲养员;守门员", "phonetic": "/ˈkiːpə(r)/"},
-    {"word": "lovely", "meaning": "可爱的;令人愉快的", "phonetic": "/ˈlʌvli/"},
-    {"word": "student", "meaning": "学生", "phonetic": "/ˈstjuːdnt/"},
-    {"word": "fall", "meaning": "落下;摔倒;秋天;跌落", "phonetic": "/fɔːl/"},
-    {"word": "off", "meaning": "离开;脱离;下班", "phonetic": "/ɒf/"},
-    {"word": "fall off", "meaning": "跌落,下降", "phonetic": "/fɔːl ɒf/"},
-    {"word": "hour", "meaning": "小时", "phonetic": "/ˈaʊə(r)/"},
-    {"word": "culture", "meaning": "文化;态度", "phonetic": "/ˈkʌltʃə(r)/"},
-    {"word": "note", "meaning": "笔记;便签;音符;注意;记录", "phonetic": "/nəʊt/"},
-    {"word": "vote", "meaning": "选举;投票", "phonetic": "/vəʊt/"},
-    {"word": "T-shirt", "meaning": "T恤衫", "phonetic": "/ˈtiː ʃɜːt/"},
-    {"word": "skirt", "meaning": "裙子;衬裙", "phonetic": "/skɜːt/"},
-    {"word": "shorts", "meaning": "短裤,短运动裤", "phonetic": "/ʃɔːts/"},
-    {"word": "shirt", "meaning": "衬衫", "phonetic": "/ʃɜːt/"},
-    {"word": "trousers", "meaning": "裤子,长裤", "phonetic": "/ˈtraʊzəz/"},
-    {"word": "scarf", "meaning": "围巾,头巾", "phonetic": "/skɑːf/"},
-    {"word": "sweater", "meaning": "厚运动衫;毛衣", "phonetic": "/ˈswetə(r)/"},
-    {"word": "party", "meaning": "派对;政党;一方", "phonetic": "/ˈpɑːti/"},
-    {"word": "dress", "meaning": "连衣裙;服装;给…穿衣服", "phonetic": "/dres/"},
-    {"word": "end", "meaning": "结尾;末端;结束", "phonetic": "/end/"},
-    {"word": "dressmaker", "meaning": "(女装)裁缝", "phonetic": "/ˈdresmeɪkə(r)/"},
-    {"word": "Christmas", "meaning": "圣诞节", "phonetic": "/ˈkrɪsməs/"},
-    {"word": "same", "meaning": "同样的,相同的;同样的事", "phonetic": "/seɪm/"},
-    {"word": "the same", "meaning": "同一事物,该人", "phonetic": "/ðə seɪm/"},
-    {"word": "wrong", "meaning": "错误的;不正常的;错误地", "phonetic": "/rɒŋ/"},
-    {"word": "clever", "meaning": "聪明的,伶俐的", "phonetic": "/ˈklevə(r)/"},
-    {"word": "Mr", "meaning": "先生", "phonetic": "/ˈmɪstə(r)/"},
-    {"word": "present", "meaning": "礼物;现在;在场的;目前的", "phonetic": "/ˈpreznt/"},
-    {"word": "whale", "meaning": "鲸", "phonetic": "/weɪl/"},
-    {"word": "uniform", "meaning": "制服", "phonetic": "/ˈjuːnɪfɔːm/"},
-    {"word": "robe", "meaning": "睡袍,长袍,礼袍;穿礼袍", "phonetic": "/rəʊb/"}
+    {
+      "word": "doctor",
+      "meaning": "医生，大夫",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "fireman",
+      "meaning": "消防队员",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "farmer",
+      "meaning": "农民；农场主；养殖场主",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "cook",
+      "meaning": "厨师，炊事员",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "police",
+      "meaning": "警察",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "police officer",
+      "meaning": "警察，警官",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "station",
+      "meaning": "所；站；台；局",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "police station",
+      "meaning": "警察（分）局，派出所",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "often",
+      "meaning": "经常，时常，多次",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "field",
+      "meaning": "田地，田野",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "painter",
+      "meaning": "画家",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "use",
+      "meaning": "用，使用",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "brush",
+      "meaning": "刷子；毛刷",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "scientist",
+      "meaning": "科学家",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "writer",
+      "meaning": "作家；作者",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "worker",
+      "meaning": "工人",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "aunt",
+      "meaning": "姑母；姨母",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "night",
+      "meaning": "夜晚，夜间",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "owl",
+      "meaning": "猫头鹰",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "night owl",
+      "meaning": "夜猫子，喜欢熬夜的人",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "driver",
+      "meaning": "司机，驾驶员",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "taxi",
+      "meaning": "出租车，计程车",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "safe",
+      "meaning": "安全的，没有危险的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "nurse",
+      "meaning": "护士",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "light",
+      "meaning": "照亮",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "uncle",
+      "meaning": "叔叔，伯伯",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "bake",
+      "meaning": "烘，烤，焙",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "bee",
+      "meaning": "蜜蜂",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "same",
+      "meaning": "相同的，完全相同的，一模一样的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "sound",
+      "meaning": "声，声音",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "postman",
+      "meaning": "邮递员",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "life",
+      "meaning": "生活",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "mountain",
+      "meaning": "高山",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "laugh",
+      "meaning": "发出笑声，（大）笑",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "sad",
+      "meaning": "不愉快的，伤心的，难过的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "scared",
+      "meaning": "害怕的，恐惧的；紧张的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "angry",
+      "meaning": "发怒的，生气的，气愤的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "excited",
+      "meaning": "兴奋的，激动的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "opera",
+      "meaning": "歌剧",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "next",
+      "meaning": "（时间）紧接着的；下次的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "cough",
+      "meaning": "咳嗽，咳",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "better",
+      "meaning": "（健康状况）好转的；（疼痛、伤势等）减轻的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "gift",
+      "meaning": "礼物",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "model",
+      "meaning": "（尤指可拼装的）模型",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "shout",
+      "meaning": "大声说，喊叫，呼喊",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "should",
+      "meaning": "应当，应该",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "feeling",
+      "meaning": "感觉，感触",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "huge",
+      "meaning": "巨大的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "worried",
+      "meaning": "担心的，焦虑的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "street",
+      "meaning": "大街，街道",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "hit",
+      "meaning": "撞击，碰撞",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "talent",
+      "meaning": "天资，天赋，才能",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "act",
+      "meaning": "演出；扮演",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "magic",
+      "meaning": "魔术，戏法",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "shine",
+      "meaning": "表现突出，出众",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "puzzle",
+      "meaning": "拼图游戏",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "dancer",
+      "meaning": "舞蹈演员",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "win",
+      "meaning": "获胜，赢",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "just",
+      "meaning": "就，只是",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "boy",
+      "meaning": "男孩；儿子",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "slowly",
+      "meaning": "缓慢地，慢慢地",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "seed",
+      "meaning": "种子，籽",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "earth",
+      "meaning": "泥土，土壤",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "root",
+      "meaning": "根",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "stem",
+      "meaning": "（植物的）茎，梗，柄",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "thin",
+      "meaning": "细的",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "leaf",
+      "meaning": "叶，叶子",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "dig",
+      "meaning": "挖，掘",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "sunflower",
+      "meaning": "向日葵",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "plant",
+      "meaning": "种植，栽种；播（种）",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "dream",
+      "meaning": "梦想，愿望，理想",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "sleep",
+      "meaning": "睡，睡觉",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "will",
+      "meaning": "将，会，要",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "true",
+      "meaning": "真的，真实的",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "come true",
+      "meaning": "实现",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "paper",
+      "meaning": "纸",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "drama",
+      "meaning": "戏剧",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "trip",
+      "meaning": "旅游；旅行，出行",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "fair",
+      "meaning": "集市；义卖会；户外游艺会",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "festival",
+      "meaning": "节，节庆，汇演",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "horn",
+      "meaning": "角",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "dot",
+      "meaning": "点，小圆点",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "raindrop",
+      "meaning": "雨点，雨滴",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "more",
+      "meaning": "更多的",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "special",
+      "meaning": "特殊的，特别的",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "keeper",
+      "meaning": "看守人，保管人",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "hey",
+      "meaning": "嘿，喂",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "lovely",
+      "meaning": "美好的；令人愉快的；可爱的",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "student",
+      "meaning": "学生",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "culture",
+      "meaning": "文化",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "hour",
+      "meaning": "小时",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "note",
+      "meaning": "笔记，记录",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "vote",
+      "meaning": "选票",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "design",
+      "meaning": "设计",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "hometown",
+      "meaning": "家乡，故乡",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "T-shirt",
+      "meaning": "T恤（衫）",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "skirt",
+      "meaning": "半身裙，裙子",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "shorts",
+      "meaning": "短裤",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "shirt",
+      "meaning": "衬衫",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "trousers",
+      "meaning": "裤子",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "scarf",
+      "meaning": "围巾",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "sweater",
+      "meaning": "毛线衣，羊毛衫，针织衫",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "dress",
+      "meaning": "连衣裙",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "party",
+      "meaning": "聚会，宴会",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "dressmaker",
+      "meaning": "裁缝",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "wrong",
+      "meaning": "不正确的，错误的",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "clever",
+      "meaning": "聪明的",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "whale",
+      "meaning": "鲸",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "Mr",
+      "meaning": "先生",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "uniform",
+      "meaning": "制服",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "robe",
+      "meaning": "长袍",
+      "phonetic": "",
+      "unit": "Unit 6"
+    }
   ]
 }

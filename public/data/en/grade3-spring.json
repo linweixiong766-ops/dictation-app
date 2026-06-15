@@ -3,102 +3,1205 @@
   "language": "en",
   "category": "grade3-spring",
   "words": [
-    { "word": "he", "meaning": "他", "phonetic": "/hiː/" },
-    { "word": "she", "meaning": "她", "phonetic": "/ʃiː/" },
-    { "word": "we", "meaning": "我们", "phonetic": "/wiː/" },
-    { "word": "they", "meaning": "他们", "phonetic": "/ðeɪ/" },
-    { "word": "teacher", "meaning": "老师", "phonetic": "/ˈtiːtʃər/" },
-    { "word": "student", "meaning": "学生", "phonetic": "/ˈstjuːdənt/" },
-    { "word": "pupil", "meaning": "小学生", "phonetic": "/ˈpjuːpl/" },
-    { "word": "boy", "meaning": "男孩", "phonetic": "/bɔɪ/" },
-    { "word": "girl", "meaning": "女孩", "phonetic": "/ɡɜːl/" },
-    { "word": "man", "meaning": "男人", "phonetic": "/mæn/" },
-    { "word": "woman", "meaning": "女人", "phonetic": "/ˈwʊmən/" },
-    { "word": "father", "meaning": "父亲", "phonetic": "/ˈfɑːðər/" },
-    { "word": "mother", "meaning": "母亲", "phonetic": "/ˈmʌðər/" },
-    { "word": "brother", "meaning": "兄弟", "phonetic": "/ˈbrʌðər/" },
-    { "word": "sister", "meaning": "姐妹", "phonetic": "/ˈsɪstər/" },
-    { "word": "grandpa", "meaning": "爷爷", "phonetic": "/ˈɡrænpɑː/" },
-    { "word": "grandma", "meaning": "奶奶", "phonetic": "/ˈɡrænmɑː/" },
-    { "word": "family", "meaning": "家庭", "phonetic": "/ˈfæməli/" },
-    { "word": "friend", "meaning": "朋友", "phonetic": "/frend/" },
-    { "word": "who", "meaning": "谁", "phonetic": "/huː/" },
-    { "word": "eleven", "meaning": "十一", "phonetic": "/ɪˈlevən/" },
-    { "word": "twelve", "meaning": "十二", "phonetic": "/twelv/" },
-    { "word": "thirteen", "meaning": "十三", "phonetic": "/ˌθɜːˈtiːn/" },
-    { "word": "fourteen", "meaning": "十四", "phonetic": "/ˌfɔːˈtiːn/" },
-    { "word": "fifteen", "meaning": "十五", "phonetic": "/ˌfɪfˈtiːn/" },
-    { "word": "sixteen", "meaning": "十六", "phonetic": "/ˌsɪksˈtiːn/" },
-    { "word": "seventeen", "meaning": "十七", "phonetic": "/ˌsevənˈtiːn/" },
-    { "word": "eighteen", "meaning": "十八", "phonetic": "/ˌeɪˈtiːn/" },
-    { "word": "nineteen", "meaning": "十九", "phonetic": "/ˌnaɪnˈtiːn/" },
-    { "word": "twenty", "meaning": "二十", "phonetic": "/ˈtwenti/" },
-    { "word": "number", "meaning": "数字", "phonetic": "/ˈnʌmbər/" },
-    { "word": "count", "meaning": "数", "phonetic": "/kaʊnt/" },
-    { "word": "classroom", "meaning": "教室", "phonetic": "/ˈklɑːsruːm/" },
-    { "word": "school", "meaning": "学校", "phonetic": "/skuːl/" },
-    { "word": "bag", "meaning": "书包", "phonetic": "/bæɡ/" },
-    { "word": "pencil", "meaning": "铅笔", "phonetic": "/ˈpensəl/" },
-    { "word": "pen", "meaning": "钢笔", "phonetic": "/pen/" },
-    { "word": "ruler", "meaning": "尺子", "phonetic": "/ˈruːlər/" },
-    { "word": "eraser", "meaning": "橡皮", "phonetic": "/ɪˈreɪzər/" },
-    { "word": "book", "meaning": "书", "phonetic": "/bʊk/" },
-    { "word": "pencil-box", "meaning": "铅笔盒", "phonetic": "/ˈpensəl bɒks/" },
-    { "word": "crayon", "meaning": "蜡笔", "phonetic": "/ˈkreɪən/" },
-    { "word": "schoolbag", "meaning": "书包", "phonetic": "/ˈskuːlbæɡ/" },
-    { "word": "where", "meaning": "哪里", "phonetic": "/weər/" },
-    { "word": "in", "meaning": "在...里", "phonetic": "/ɪn/" },
-    { "word": "on", "meaning": "在...上", "phonetic": "/ɒn/" },
-    { "word": "under", "meaning": "在...下", "phonetic": "/ˈʌndər/" },
-    { "word": "cap", "meaning": "帽子", "phonetic": "/kæp/" },
-    { "word": "hat", "meaning": "帽子", "phonetic": "/hæt/" },
-    { "word": "coat", "meaning": "外套", "phonetic": "/kəʊt/" },
-    { "word": "jacket", "meaning": "夹克", "phonetic": "/ˈdʒækɪt/" },
-    { "word": "dress", "meaning": "连衣裙", "phonetic": "/dres/" },
-    { "word": "skirt", "meaning": "短裙", "phonetic": "/skɜːt/" },
-    { "word": "shirt", "meaning": "衬衫", "phonetic": "/ʃɜːt/" },
-    { "word": "T-shirt", "meaning": "T恤", "phonetic": "/ˈtiːʃɜːt/" },
-    { "word": "trousers", "meaning": "裤子", "phonetic": "/ˈtraʊzəz/" },
-    { "word": "shorts", "meaning": "短裤", "phonetic": "/ʃɔːts/" },
-    { "word": "shoe", "meaning": "鞋子", "phonetic": "/ʃuː/" },
-    { "word": "sock", "meaning": "袜子", "phonetic": "/sɒk/" },
-    { "word": "wear", "meaning": "穿", "phonetic": "/weər/" },
-    { "word": "like", "meaning": "喜欢", "phonetic": "/laɪk/" },
-    { "word": "don't", "meaning": "不", "phonetic": "/dəʊnt/" },
-    { "word": "play", "meaning": "玩", "phonetic": "/pleɪ/" },
-    { "word": "football", "meaning": "足球", "phonetic": "/ˈfʊtbɔːl/" },
-    { "word": "basketball", "meaning": "篮球", "phonetic": "/ˈbɑːskɪtbɔːl/" },
-    { "word": "table tennis", "meaning": "乒乓球", "phonetic": "/ˈteɪbl tenɪs/" },
-    { "word": "swimming", "meaning": "游泳", "phonetic": "/ˈswɪmɪŋ/" },
-    { "word": "skip", "meaning": "跳绳", "phonetic": "/skɪp/" },
-    { "word": "ride", "meaning": "骑", "phonetic": "/raɪd/" },
-    { "word": "bike", "meaning": "自行车", "phonetic": "/baɪk/" },
-    { "word": "run", "meaning": "跑", "phonetic": "/rʌn/" },
-    { "word": "jump", "meaning": "跳", "phonetic": "/dʒʌmp/" },
-    { "word": "sing", "meaning": "唱歌", "phonetic": "/sɪŋ/" },
-    { "word": "dance", "meaning": "跳舞", "phonetic": "/dɑːns/" },
-    { "word": "draw", "meaning": "画画", "phonetic": "/drɔː/" },
-    { "word": "read", "meaning": "读", "phonetic": "/riːd/" },
-    { "word": "write", "meaning": "写", "phonetic": "/raɪt/" },
-    { "word": "talk", "meaning": "说话", "phonetic": "/tɔːk/" },
-    { "word": "help", "meaning": "帮助", "phonetic": "/help/" },
-    { "word": "cake", "meaning": "蛋糕", "phonetic": "/keɪk/" },
-    { "word": "egg", "meaning": "鸡蛋", "phonetic": "/eɡ/" },
-    { "word": "meat", "meaning": "肉", "phonetic": "/miːt/" },
-    { "word": "fish", "meaning": "鱼", "phonetic": "/fɪʃ/" },
-    { "word": "vegetable", "meaning": "蔬菜", "phonetic": "/ˈvedʒtəbl/" },
-    { "word": "rice", "meaning": "米饭", "phonetic": "/raɪs/" },
-    { "word": "noodles", "meaning": "面条", "phonetic": "/ˈnuːdlz/" },
-    { "word": "soup", "meaning": "汤", "phonetic": "/suːp/" },
-    { "word": "breakfast", "meaning": "早餐", "phonetic": "/ˈbrekfəst/" },
-    { "word": "lunch", "meaning": "午餐", "phonetic": "/lʌntʃ/" },
-    { "word": "dinner", "meaning": "晚餐", "phonetic": "/ˈdɪnər/" },
-    { "word": "hungry", "meaning": "饿的", "phonetic": "/ˈhʌŋɡri/" },
-    { "word": "thirsty", "meaning": "渴的", "phonetic": "/ˈθɜːsti/" },
-    { "word": "nice", "meaning": "好的", "phonetic": "/naɪs/" },
-    { "word": "sweet", "meaning": "甜的", "phonetic": "/swiːt/" },
-    { "word": "sour", "meaning": "酸的", "phonetic": "/ˈsaʊər/" },
-    { "word": "hot", "meaning": "辣的/热的", "phonetic": "/hɒt/" },
-    { "word": "cold", "meaning": "冷的", "phonetic": "/kəʊld/" }
+    {
+      "word": "animal",
+      "meaning": "动物",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "panda",
+      "meaning": "大熊猫",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "elephant",
+      "meaning": "象",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "bear",
+      "meaning": "熊",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "giraffe",
+      "meaning": "长颈鹿",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "monkey",
+      "meaning": "猴",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "them",
+      "meaning": "他们；她们；它们",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "draw",
+      "meaning": "画，绘画",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "tiger",
+      "meaning": "老虎，虎",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "strong",
+      "meaning": "强壮的，力气大的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "short",
+      "meaning": "个子矮的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "white",
+      "meaning": "白的，白色的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "brown",
+      "meaning": "棕色的；褐色的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "tall",
+      "meaning": "高的，高大的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "him",
+      "meaning": "他；它（指雄性动物）",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "ostrich",
+      "meaning": "鸵鸟",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "fast",
+      "meaning": "快的，快速的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "chameleon",
+      "meaning": "变色龙",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "small",
+      "meaning": "小的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "lion",
+      "meaning": "狮子",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "cute",
+      "meaning": "可爱的，漂亮的，逗人喜爱的",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "out",
+      "meaning": "往外，向外，出来",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "zoo",
+      "meaning": "动物园",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "go",
+      "meaning": "走，去",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "zebra",
+      "meaning": "斑马",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "move",
+      "meaning": "移动",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "road",
+      "meaning": "路，道路",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "dance",
+      "meaning": "跳舞",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "along",
+      "meaning": "一起",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "which",
+      "meaning": "哪一个；哪些",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "word",
+      "meaning": "字，词，单词",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "stone",
+      "meaning": "石头",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "hat",
+      "meaning": "帽子",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "shoe",
+      "meaning": "鞋",
+      "phonetic": "",
+      "unit": "Unit 1"
+    },
+    {
+      "word": "body",
+      "meaning": "身体",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "head",
+      "meaning": "头，头部",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "eye",
+      "meaning": "眼睛",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "ear",
+      "meaning": "耳朵",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "mouth",
+      "meaning": "嘴，口",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "nose",
+      "meaning": "鼻子",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "touch",
+      "meaning": "触摸，碰",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "hand",
+      "meaning": "手",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "arm",
+      "meaning": "手臂，上肢",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "leg",
+      "meaning": "腿",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "foot",
+      "meaning": "（复数feet）脚",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "toe",
+      "meaning": "脚趾",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "get",
+      "meaning": "获得，得到",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "snowy",
+      "meaning": "多雪的，积雪的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "child",
+      "meaning": "（复数children）儿童，小孩",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "work",
+      "meaning": "事情，工作",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "snowman",
+      "meaning": "雪人",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "long",
+      "meaning": "长的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "rock",
+      "meaning": "石头，石子",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "cool",
+      "meaning": "时髦的，酷的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "best",
+      "meaning": "最好的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "part",
+      "meaning": "器官；部位；组成部分",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "well",
+      "meaning": "嗯，这个；健康的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "hear",
+      "meaning": "听见",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "smell",
+      "meaning": "闻到，嗅到",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "talk",
+      "meaning": "说话",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "eat",
+      "meaning": "吃",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "hey",
+      "meaning": "嘿，喂",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "stop",
+      "meaning": "停止，终止",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "important",
+      "meaning": "重要的，重大的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "team",
+      "meaning": "队",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "dream",
+      "meaning": "梦",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "ask",
+      "meaning": "问，提问",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "answer",
+      "meaning": "回答，答复",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "hair",
+      "meaning": "头发",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "different",
+      "meaning": "不同的，不一样的，有差异的",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "face",
+      "meaning": "脸",
+      "phonetic": "",
+      "unit": "Unit 2"
+    },
+    {
+      "word": "yummy",
+      "meaning": "美味的，很好吃的",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "food",
+      "meaning": "食物",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "strawberry",
+      "meaning": "草莓",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "tomato",
+      "meaning": "番茄，西红柿",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "noodles",
+      "meaning": "（一般用复数）面条",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "carrot",
+      "meaning": "胡萝卜",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "chicken",
+      "meaning": "鸡肉；鸡",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "fish",
+      "meaning": "鱼肉；鱼",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "rice",
+      "meaning": "米；米饭",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "meat",
+      "meaning": "肉",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "fruit",
+      "meaning": "水果",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "vegetable",
+      "meaning": "蔬菜",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "salad",
+      "meaning": "沙拉",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "banana",
+      "meaning": "香蕉",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "bean",
+      "meaning": "豆子",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "cucumber",
+      "meaning": "黄瓜",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "then",
+      "meaning": "那么；然后，接下来",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "about",
+      "meaning": "关于",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "what about...",
+      "meaning": "……怎么样",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "grape",
+      "meaning": "葡萄",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "juice",
+      "meaning": "汁",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "why",
+      "meaning": "为什么",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "early",
+      "meaning": "提早，提前；早的",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "breakfast",
+      "meaning": "早餐，早饭",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "time",
+      "meaning": "时间",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "still",
+      "meaning": "还，仍然",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "ready",
+      "meaning": "准备好的",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "corn",
+      "meaning": "玉米",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "lunch",
+      "meaning": "午餐",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "very",
+      "meaning": "很，非常",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "much",
+      "meaning": "非常",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "very much",
+      "meaning": "非常",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "afternoon",
+      "meaning": "下午，午后",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "tea",
+      "meaning": "茶；茶叶",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "afternoon tea",
+      "meaning": "下午茶",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "every",
+      "meaning": "每，每逢，每隔",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "week",
+      "meaning": "星期，周",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "tree",
+      "meaning": "树",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "milk",
+      "meaning": "奶，牛奶",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "cupcake",
+      "meaning": "杯形蛋糕",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "sandwich",
+      "meaning": "三明治，夹心面包",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "beef",
+      "meaning": "牛肉",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "dumpling",
+      "meaning": "水饺",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "hot",
+      "meaning": "热的",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "hot dog",
+      "meaning": "热狗",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "sushi",
+      "meaning": "寿司",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "cake",
+      "meaning": "蛋糕",
+      "phonetic": "",
+      "unit": "Unit 3"
+    },
+    {
+      "word": "hobby",
+      "meaning": "业余爱好，嗜好",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "free",
+      "meaning": "空闲的，有空的",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "after",
+      "meaning": "在……后",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "swim",
+      "meaning": "游泳",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "lot",
+      "meaning": "许多",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "a lot",
+      "meaning": "大量，许多",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "these",
+      "meaning": "这些（this的复数形式）",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "tai chi",
+      "meaning": "太极",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "his",
+      "meaning": "他的",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "insect",
+      "meaning": "昆虫",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "man",
+      "meaning": "成年男子，男人",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "learn",
+      "meaning": "学习",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "plant",
+      "meaning": "植物",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "when",
+      "meaning": "什么时候",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "question",
+      "meaning": "问题，疑问",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "watch",
+      "meaning": "观察",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "study",
+      "meaning": "研究；仔细察看",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "mantis",
+      "meaning": "螳螂",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "stay",
+      "meaning": "停留，逗留，留下",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "interesting",
+      "meaning": "有趣的，吸引人的",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "grow",
+      "meaning": "成长，长大",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "grow up",
+      "meaning": "长大",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "country",
+      "meaning": "国家",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "robot",
+      "meaning": "机器人",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "kite",
+      "meaning": "风筝",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "skate",
+      "meaning": "滑冰，溜冰",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "ice",
+      "meaning": "冰",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "ski",
+      "meaning": "滑雪",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "garden",
+      "meaning": "做园艺工作；花园",
+      "phonetic": "",
+      "unit": "Unit 4"
+    },
+    {
+      "word": "tick-tock",
+      "meaning": "嘀嗒声",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "tell",
+      "meaning": "告诉，告知",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "clock",
+      "meaning": "时钟",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "o’clock",
+      "meaning": "点钟",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "fifteen",
+      "meaning": "十五",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "thirty",
+      "meaning": "三十",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "forty-five",
+      "meaning": "四十五",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "dinner",
+      "meaning": "正餐，主餐",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "half",
+      "meaning": "一半，半",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "past",
+      "meaning": "晚于；在……之后",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "half past one / two...",
+      "meaning": "1点半/2点半等",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "urgh",
+      "meaning": "呃，呸",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "homework",
+      "meaning": "家庭作业，功课",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "need",
+      "meaning": "需要",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "activity",
+      "meaning": "活动",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "her",
+      "meaning": "她的",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "class",
+      "meaning": "课；班级",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "evening",
+      "meaning": "傍晚；晚上",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "call",
+      "meaning": "（给……）打电话",
+      "phonetic": "",
+      "unit": "Unit 5"
+    },
+    {
+      "word": "Monday",
+      "meaning": "星期一",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "Tuesday",
+      "meaning": "星期二",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "Wednesday",
+      "meaning": "星期三",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "Thursday",
+      "meaning": "星期四",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "Friday",
+      "meaning": "星期五",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "Saturday",
+      "meaning": "星期六",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "Sunday",
+      "meaning": "星期日",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "park",
+      "meaning": "公园",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "visit",
+      "meaning": "看望，拜访",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "lesson",
+      "meaning": "课，课程",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "football",
+      "meaning": "足球",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "art",
+      "meaning": "美术，艺术",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "subject",
+      "meaning": "学科",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "maths",
+      "meaning": "数学",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "science",
+      "meaning": "科学",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "something",
+      "meaning": "某物；某事",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "idea",
+      "meaning": "想法，主意",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "soon",
+      "meaning": "不久，即刻，很快",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "teach",
+      "meaning": "教，教授",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "English",
+      "meaning": "英语",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "card",
+      "meaning": "卡片",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "busy",
+      "meaning": "忙的，忙碌的",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "old",
+      "meaning": "年老的；相识很久的",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "some",
+      "meaning": "一些，若干",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "bookmark",
+      "meaning": "书签",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "stick",
+      "meaning": "木棍，拐杖",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "sure",
+      "meaning": "当然，好的",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "flower",
+      "meaning": "花，花朵",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "afterschool",
+      "meaning": "课外的",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "club",
+      "meaning": "俱乐部",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "piano",
+      "meaning": "钢琴",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "basketball",
+      "meaning": "篮球",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "computer",
+      "meaning": "计算机；电脑",
+      "phonetic": "",
+      "unit": "Unit 6"
+    },
+    {
+      "word": "music",
+      "meaning": "音乐",
+      "phonetic": "",
+      "unit": "Unit 6"
+    }
   ]
 }
