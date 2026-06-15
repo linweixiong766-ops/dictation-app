@@ -30,7 +30,7 @@ const totalMisses = ref(0)
 const gameArea = ref(null)
 
 // Current word state
-const collectedLetters = ref([]) // Array of collected letters
+const nextLetterIndex = ref(0) // Index of the next letter needed
 const activeTargets = ref([])
 const popEffects = ref([])
 const spawnTimer = ref(null)
@@ -39,38 +39,24 @@ const targetIdCounter = ref(0)
 const wordStartTime = ref(null) // Track time per word
 const wordMisses = ref(0) // Track misses per word
 
-// Computed: letters still needed for the word
-const neededLetters = computed(() => {
-  if (!currentWord.value) return {}
+// Computed: the next letter we need to click
+const nextNeededLetter = computed(() => {
+  if (!currentWord.value) return null
   const word = currentWord.value.word.toUpperCase()
-  const needed = {}
-  // Count each letter in the word
-  for (const letter of word) {
-    needed[letter] = (needed[letter] || 0) + 1
-  }
-  // Subtract collected letters
-  for (const letter of collectedLetters.value) {
-    if (needed[letter] > 0) {
-      needed[letter]--
-      if (needed[letter] === 0) delete needed[letter]
-    }
-  }
-  return needed
+  if (nextLetterIndex.value >= word.length) return null
+  return word[nextLetterIndex.value]
 })
 
-// Computed: display word showing collected letters
+// Computed: display word showing progress
 const displayWord = computed(() => {
   if (!currentWord.value) return ''
   const word = currentWord.value.word.toUpperCase()
-  const collected = [...collectedLetters.value]
   let display = ''
-  for (const letter of word) {
-    const idx = collected.indexOf(letter)
-    if (idx !== -1) {
-      display += letter
-      collected.splice(idx, 1)
+  for (let i = 0; i < word.length; i++) {
+    if (i < nextLetterIndex.value) {
+      display += word[i] // Already collected
     } else {
-      display += '_'
+      display += '_' // Not yet collected
     }
   }
   return display
@@ -78,7 +64,9 @@ const displayWord = computed(() => {
 
 // Check if word is complete
 const isWordComplete = computed(() => {
-  return Object.keys(neededLetters.value).length === 0
+  if (!currentWord.value) return false
+  const word = currentWord.value.word.toUpperCase()
+  return nextLetterIndex.value >= word.length
 })
 
 // Colors for bubbles
@@ -271,12 +259,12 @@ function restartGame() {
   totalMisses.value = 0
   activeTargets.value = []
   popEffects.value = []
-  collectedLetters.value = []
+  nextLetterIndex.value = 0
 }
 
 function loadWord() {
   currentWord.value = practiceWords.value[currentWordIndex.value]
-  collectedLetters.value = []
+  nextLetterIndex.value = 0
   activeTargets.value = []
   popEffects.value = []
   wordStartTime.value = Date.now()
@@ -335,20 +323,18 @@ function spawnOneTarget() {
   const areaHeight = gameArea.value?.offsetHeight || 500
   const padding = 60
 
-  // Get letters still needed
-  const needed = neededLetters.value
-  const neededKeys = Object.keys(needed)
+  // Get the next letter we need
+  const nextLetter = nextNeededLetter.value
 
-  // 60% chance to spawn a needed letter, 40% decoy
-  const spawnNeeded = Math.random() < 0.6 && neededKeys.length > 0
+  // 60% chance to spawn the next needed letter, 40% other
+  const spawnNext = Math.random() < 0.6 && nextLetter
   let letterData
 
-  if (spawnNeeded) {
-    // Pick a random needed letter
-    const letter = neededKeys[Math.floor(Math.random() * neededKeys.length)]
-    letterData = { letter, isCorrect: true }
+  if (spawnNext) {
+    // Spawn the exact next letter needed
+    letterData = { letter: nextLetter, isCorrect: true }
   } else {
-    // Spawn a decoy (letter NOT in the word)
+    // Spawn a decoy (letter NOT in the word, or a letter from the word but not the next one)
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     let decoyLetter
     do {
@@ -467,16 +453,20 @@ function handleHit(target) {
   removeTarget(target.id)
   totalHits.value++
 
-  if (target.isCorrect) {
-    // This letter is needed! Add to collected
-    collectedLetters.value.push(target.letter)
+  // Check if this is the correct NEXT letter in order
+  const word = currentWord.value.word.toUpperCase()
+  const expectedLetter = word[nextLetterIndex.value]
+
+  if (target.letter === expectedLetter) {
+    // Correct next letter! Move to next position
+    nextLetterIndex.value++
 
     // Check if word is now complete
     if (isWordComplete.value) {
       wordComplete()
     }
   } else {
-    // Wrong letter - miss!
+    // Wrong letter or wrong order - miss!
     totalMisses.value++
     wordMisses.value++
     playMissSound()
