@@ -82,7 +82,14 @@
     "wrongAttempts": "Wrong Attempts",
     "score": "Total Score",
     "wordDetails": "Word Details",
-    "playAgain": "Play Again"
+    "playAgain": "Play Again",
+    "settings": "Difficulty Settings",
+    "easy": "Easy",
+    "normal": "Normal",
+    "hard": "Hard",
+    "nextLetterChance": "Next Letter Chance",
+    "wordLetterChance": "Word Letter Chance",
+    "decoyChance": "Decoy Letter Chance"
   },
   "manage": {
     "title": "Word List Management",

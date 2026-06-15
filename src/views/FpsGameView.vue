@@ -29,6 +29,14 @@ const totalHits = ref(0)
 const totalMisses = ref(0)
 const gameArea = ref(null)
 
+// Difficulty settings
+const showSettings = ref(false)
+const difficulty = ref({
+  nextLetter: 30,      // % chance to spawn the next needed letter
+  wordLetters: 30,     // % chance to spawn other letters from the word
+  decoyLetters: 40     // % chance to spawn decoy letters (not in word)
+})
+
 // Current word state
 const nextLetterIndex = ref(0) // Index of the next letter needed
 const activeTargets = ref([])
@@ -118,6 +126,29 @@ const totalScore = computed(() => {
   const maxPossible = wordTimes.value.reduce((s, w) => s + w.letterCount * 200, 0)
   return Math.round((score / maxPossible) * 100)
 })
+
+// Difficulty presets
+const difficultyPresets = {
+  easy: { nextLetter: 45, wordLetters: 30, decoyLetters: 25 },
+  normal: { nextLetter: 30, wordLetters: 30, decoyLetters: 40 },
+  hard: { nextLetter: 20, wordLetters: 25, decoyLetters: 55 }
+}
+
+function setDifficultyPreset(preset) {
+  if (difficultyPresets[preset]) {
+    difficulty.value = { ...difficultyPresets[preset] }
+  }
+}
+
+function updateDifficulty() {
+  // Normalize to 100%
+  const total = difficulty.value.nextLetter + difficulty.value.wordLetters + difficulty.value.decoyLetters
+  if (total > 0) {
+    difficulty.value.nextLetter = Math.round((difficulty.value.nextLetter / total) * 100)
+    difficulty.value.wordLetters = Math.round((difficulty.value.wordLetters / total) * 100)
+    difficulty.value.decoyLetters = 100 - difficulty.value.nextLetter - difficulty.value.wordLetters
+  }
+}
 
 const rank = computed(() => {
   const score = totalScore.value
@@ -326,18 +357,18 @@ function spawnOneTarget() {
   // Get the next letter we need
   const nextLetter = nextNeededLetter.value
 
-  // More balanced distribution:
-  // 30% chance to spawn the next needed letter
-  // 30% chance to spawn a letter from the word (but not the next one)
-  // 40% chance to spawn a decoy (letter NOT in the word)
-  const rand = Math.random()
+  // Use difficulty settings for distribution
+  const rand = Math.random() * 100
+  const nextThreshold = difficulty.value.nextLetter
+  const wordThreshold = nextThreshold + difficulty.value.wordLetters
+
   let letterData
 
-  if (rand < 0.3 && nextLetter) {
-    // 30% - Spawn the exact next letter needed
+  if (rand < nextThreshold && nextLetter) {
+    // Spawn the exact next letter needed
     letterData = { letter: nextLetter, isCorrect: true }
-  } else if (rand < 0.6) {
-    // 30% - Spawn a letter from the word, but NOT the next one needed
+  } else if (rand < wordThreshold) {
+    // Spawn a letter from the word, but NOT the next one needed
     const otherLetters = letters.filter((l, i) => i !== nextLetterIndex.value)
     if (otherLetters.length > 0) {
       const letter = otherLetters[Math.floor(Math.random() * otherLetters.length)]
@@ -352,7 +383,7 @@ function spawnOneTarget() {
       letterData = { letter: decoyLetter, isCorrect: false }
     }
   } else {
-    // 40% - Spawn a decoy (letter NOT in the word)
+    // Spawn a decoy (letter NOT in the word)
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     let decoyLetter
     do {
@@ -604,6 +635,43 @@ onUnmounted(() => {
         <div class="word-preview">
           <p>{{ t('game.wordCount') }}: <strong>{{ practiceWords.length }}</strong></p>
         </div>
+
+        <!-- Difficulty Settings -->
+        <div class="settings-section">
+          <button class="btn btn-outline btn-sm" @click="showSettings = !showSettings">
+            ⚙️ {{ t('game.settings') }} {{ showSettings ? '▲' : '▼' }}
+          </button>
+
+          <div v-if="showSettings" class="settings-panel">
+            <div class="preset-buttons">
+              <button class="btn btn-sm" @click="setDifficultyPreset('easy')">
+                {{ t('game.easy') }}
+              </button>
+              <button class="btn btn-sm" @click="setDifficultyPreset('normal')">
+                {{ t('game.normal') }}
+              </button>
+              <button class="btn btn-sm" @click="setDifficultyPreset('hard')">
+                {{ t('game.hard') }}
+              </button>
+            </div>
+
+            <div class="slider-group">
+              <label>{{ t('game.nextLetterChance') }}: {{ difficulty.nextLetter }}%</label>
+              <input type="range" v-model.number="difficulty.nextLetter" min="5" max="60" @input="updateDifficulty">
+            </div>
+
+            <div class="slider-group">
+              <label>{{ t('game.wordLetterChance') }}: {{ difficulty.wordLetters }}%</label>
+              <input type="range" v-model.number="difficulty.wordLetters" min="5" max="60" @input="updateDifficulty">
+            </div>
+
+            <div class="slider-group">
+              <label>{{ t('game.decoyChance') }}: {{ difficulty.decoyLetters }}%</label>
+              <input type="range" v-model.number="difficulty.decoyLetters" min="5" max="60" @input="updateDifficulty">
+            </div>
+          </div>
+        </div>
+
         <button class="btn btn-primary btn-xl" @click="startGame">
           {{ t('game.start') }} 🚀
         </button>
@@ -785,6 +853,75 @@ onUnmounted(() => {
   padding: 1rem;
   border-radius: var(--radius-md);
   margin-bottom: 2rem;
+}
+
+.settings-section {
+  margin-bottom: 2rem;
+}
+
+.settings-panel {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.preset-buttons .btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.preset-buttons .btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.slider-group {
+  margin-bottom: 1rem;
+}
+
+.slider-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.slider-group input[type="range"] {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  outline: none;
+}
+
+.slider-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #6366f1;
+  cursor: pointer;
+}
+
+.slider-group input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #6366f1;
+  cursor: pointer;
+  border: none;
 }
 
 .btn-xl {

@@ -82,7 +82,14 @@
     "wrongAttempts": "错误次数",
     "score": "总分",
     "wordDetails": "单词详情",
-    "playAgain": "再玩一次"
+    "playAgain": "再玩一次",
+    "settings": "难度设置",
+    "easy": "简单",
+    "normal": "普通",
+    "hard": "困难",
+    "nextLetterChance": "下一个字母出现概率",
+    "wordLetterChance": "单词中其他字母出现概率",
+    "decoyChance": "干扰字母出现概率"
   },
   "manage": {
     "title": "词库管理",
