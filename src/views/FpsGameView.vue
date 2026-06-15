@@ -326,15 +326,33 @@ function spawnOneTarget() {
   // Get the next letter we need
   const nextLetter = nextNeededLetter.value
 
-  // 60% chance to spawn the next needed letter, 40% other
-  const spawnNext = Math.random() < 0.6 && nextLetter
+  // More balanced distribution:
+  // 30% chance to spawn the next needed letter
+  // 30% chance to spawn a letter from the word (but not the next one)
+  // 40% chance to spawn a decoy (letter NOT in the word)
+  const rand = Math.random()
   let letterData
 
-  if (spawnNext) {
-    // Spawn the exact next letter needed
+  if (rand < 0.3 && nextLetter) {
+    // 30% - Spawn the exact next letter needed
     letterData = { letter: nextLetter, isCorrect: true }
+  } else if (rand < 0.6) {
+    // 30% - Spawn a letter from the word, but NOT the next one needed
+    const otherLetters = letters.filter((l, i) => i !== nextLetterIndex.value)
+    if (otherLetters.length > 0) {
+      const letter = otherLetters[Math.floor(Math.random() * otherLetters.length)]
+      letterData = { letter, isCorrect: false }
+    } else {
+      // Fallback to decoy
+      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      let decoyLetter
+      do {
+        decoyLetter = alphabet[Math.floor(Math.random() * 26)]
+      } while (letters.includes(decoyLetter))
+      letterData = { letter: decoyLetter, isCorrect: false }
+    }
   } else {
-    // Spawn a decoy (letter NOT in the word, or a letter from the word but not the next one)
+    // 40% - Spawn a decoy (letter NOT in the word)
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     let decoyLetter
     do {
