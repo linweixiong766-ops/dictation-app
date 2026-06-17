@@ -6,55 +6,55 @@
     {
       "word": "animal",
       "meaning": "动物",
-      "phonetic": "",
+      "phonetic": "/ˈænɪml/",
       "unit": "Unit 1"
     },
     {
       "word": "panda",
       "meaning": "大熊猫",
-      "phonetic": "",
+      "phonetic": "/ˈpændə/",
       "unit": "Unit 1"
     },
     {
       "word": "elephant",
       "meaning": "象",
-      "phonetic": "",
+      "phonetic": "/ˈelɪfənt/",
       "unit": "Unit 1"
     },
     {
       "word": "bear",
       "meaning": "熊",
-      "phonetic": "",
+      "phonetic": "/beə(r)/",
       "unit": "Unit 1"
     },
     {
       "word": "giraffe",
       "meaning": "长颈鹿",
-      "phonetic": "",
+      "phonetic": "/dʒɪˈrɑːf/",
       "unit": "Unit 1"
     },
     {
       "word": "monkey",
       "meaning": "猴",
-      "phonetic": "",
+      "phonetic": "/ˈmʌŋki/",
       "unit": "Unit 1"
     },
     {
       "word": "them",
       "meaning": "他们；她们；它们",
-      "phonetic": "",
+      "phonetic": "/ðem/",
       "unit": "Unit 1"
     },
     {
       "word": "draw",
       "meaning": "画，绘画",
-      "phonetic": "",
+      "phonetic": "/drɔː/",
       "unit": "Unit 1"
     },
     {
       "word": "tiger",
       "meaning": "老虎，虎",
-      "phonetic": "",
+      "phonetic": "/ˈtaɪɡə(r)/",
       "unit": "Unit 1"
     },
     {
@@ -72,13 +72,13 @@
     {
       "word": "white",
       "meaning": "白的，白色的",
-      "phonetic": "",
+      "phonetic": "/waɪt/",
       "unit": "Unit 1"
     },
     {
       "word": "brown",
       "meaning": "棕色的；褐色的",
-      "phonetic": "",
+      "phonetic": "/braʊn/",
       "unit": "Unit 1"
     },
     {
@@ -90,7 +90,7 @@
     {
       "word": "him",
       "meaning": "他；它（指雄性动物）",
-      "phonetic": "",
+      "phonetic": "/hɪm/",
       "unit": "Unit 1"
     },
     {
@@ -126,25 +126,25 @@
     {
       "word": "cute",
       "meaning": "可爱的，漂亮的，逗人喜爱的",
-      "phonetic": "",
+      "phonetic": "/kjuːt/",
       "unit": "Unit 1"
     },
     {
       "word": "out",
       "meaning": "往外，向外，出来",
-      "phonetic": "",
+      "phonetic": "/aʊt/",
       "unit": "Unit 1"
     },
     {
       "word": "zoo",
       "meaning": "动物园",
-      "phonetic": "",
+      "phonetic": "/zuː/",
       "unit": "Unit 1"
     },
     {
       "word": "go",
       "meaning": "走，去",
-      "phonetic": "",
+      "phonetic": "/ɡəʊ/",
       "unit": "Unit 1"
     },
     {
@@ -156,7 +156,7 @@
     {
       "word": "move",
       "meaning": "移动",
-      "phonetic": "",
+      "phonetic": "/muːv/",
       "unit": "Unit 1"
     },
     {
@@ -168,7 +168,7 @@
     {
       "word": "dance",
       "meaning": "跳舞",
-      "phonetic": "",
+      "phonetic": "/dɑːns/",
       "unit": "Unit 1"
     },
     {
@@ -180,13 +180,13 @@
     {
       "word": "which",
       "meaning": "哪一个；哪些",
-      "phonetic": "",
+      "phonetic": "/wɪtʃ/",
       "unit": "Unit 1"
     },
     {
       "word": "word",
       "meaning": "字，词，单词",
-      "phonetic": "",
+      "phonetic": "/wɜːd/",
       "unit": "Unit 1"
     },
     {
@@ -210,37 +210,37 @@
     {
       "word": "body",
       "meaning": "身体",
-      "phonetic": "",
+      "phonetic": "/ˈbɒdi/",
       "unit": "Unit 2"
     },
     {
       "word": "head",
       "meaning": "头，头部",
-      "phonetic": "",
+      "phonetic": "/hed/",
       "unit": "Unit 2"
     },
     {
       "word": "eye",
       "meaning": "眼睛",
-      "phonetic": "",
+      "phonetic": "/aɪ/",
       "unit": "Unit 2"
     },
     {
       "word": "ear",
       "meaning": "耳朵",
-      "phonetic": "",
+      "phonetic": "/ɪə(r)/",
       "unit": "Unit 2"
     },
     {
       "word": "mouth",
       "meaning": "嘴，口",
-      "phonetic": "",
+      "phonetic": "/maʊθ/",
       "unit": "Unit 2"
     },
     {
       "word": "nose",
       "meaning": "鼻子",
-      "phonetic": "",
+      "phonetic": "/nəʊz/",
       "unit": "Unit 2"
     },
     {
@@ -252,25 +252,25 @@
     {
       "word": "hand",
       "meaning": "手",
-      "phonetic": "",
+      "phonetic": "/hænd/",
       "unit": "Unit 2"
     },
     {
       "word": "arm",
       "meaning": "手臂，上肢",
-      "phonetic": "",
+      "phonetic": "/ɑːm/",
       "unit": "Unit 2"
     },
     {
       "word": "leg",
       "meaning": "腿",
-      "phonetic": "",
+      "phonetic": "/leɡ/",
       "unit": "Unit 2"
     },
     {
       "word": "foot",
       "meaning": "（复数feet）脚",
-      "phonetic": "",
+      "phonetic": "/fʊt/",
       "unit": "Unit 2"
     },
     {
@@ -282,7 +282,7 @@
     {
       "word": "get",
       "meaning": "获得，得到",
-      "phonetic": "",
+      "phonetic": "/ɡet/",
       "unit": "Unit 2"
     },
     {
@@ -294,13 +294,13 @@
     {
       "word": "child",
       "meaning": "（复数children）儿童，小孩",
-      "phonetic": "",
+      "phonetic": "/tʃaɪld/",
       "unit": "Unit 2"
     },
     {
       "word": "work",
       "meaning": "事情，工作",
-      "phonetic": "",
+      "phonetic": "/wɜːk/",
       "unit": "Unit 2"
     },
     {
@@ -342,13 +342,13 @@
     {
       "word": "well",
       "meaning": "嗯，这个；健康的",
-      "phonetic": "",
+      "phonetic": "/wel/",
       "unit": "Unit 2"
     },
     {
       "word": "hear",
       "meaning": "听见",
-      "phonetic": "",
+      "phonetic": "/hɪə(r)/",
       "unit": "Unit 2"
     },
     {
@@ -360,13 +360,13 @@
     {
       "word": "talk",
       "meaning": "说话",
-      "phonetic": "",
+      "phonetic": "/tɔːk/",
       "unit": "Unit 2"
     },
     {
       "word": "eat",
       "meaning": "吃",
-      "phonetic": "",
+      "phonetic": "/iːt/",
       "unit": "Unit 2"
     },
     {
@@ -378,7 +378,7 @@
     {
       "word": "stop",
       "meaning": "停止，终止",
-      "phonetic": "",
+      "phonetic": "/stɒp/",
       "unit": "Unit 2"
     },
     {
@@ -402,19 +402,19 @@
     {
       "word": "ask",
       "meaning": "问，提问",
-      "phonetic": "",
+      "phonetic": "/ɑːsk/",
       "unit": "Unit 2"
     },
     {
       "word": "answer",
       "meaning": "回答，答复",
-      "phonetic": "",
+      "phonetic": "/ˈɑːnsə(r)/",
       "unit": "Unit 2"
     },
     {
       "word": "hair",
       "meaning": "头发",
-      "phonetic": "",
+      "phonetic": "/heə(r)/",
       "unit": "Unit 2"
     },
     {
@@ -426,7 +426,7 @@
     {
       "word": "face",
       "meaning": "脸",
-      "phonetic": "",
+      "phonetic": "/feɪs/",
       "unit": "Unit 2"
     },
     {
@@ -438,7 +438,7 @@
     {
       "word": "food",
       "meaning": "食物",
-      "phonetic": "",
+      "phonetic": "/fuːd/",
       "unit": "Unit 3"
     },
     {
@@ -468,31 +468,31 @@
     {
       "word": "chicken",
       "meaning": "鸡肉；鸡",
-      "phonetic": "",
+      "phonetic": "/ˈtʃɪkɪn/",
       "unit": "Unit 3"
     },
     {
       "word": "fish",
       "meaning": "鱼肉；鱼",
-      "phonetic": "",
+      "phonetic": "/fɪʃ/",
       "unit": "Unit 3"
     },
     {
       "word": "rice",
       "meaning": "米；米饭",
-      "phonetic": "",
+      "phonetic": "/raɪs/",
       "unit": "Unit 3"
     },
     {
       "word": "meat",
       "meaning": "肉",
-      "phonetic": "",
+      "phonetic": "/miːt/",
       "unit": "Unit 3"
     },
     {
       "word": "fruit",
       "meaning": "水果",
-      "phonetic": "",
+      "phonetic": "/fruːt/",
       "unit": "Unit 3"
     },
     {
@@ -510,7 +510,7 @@
     {
       "word": "banana",
       "meaning": "香蕉",
-      "phonetic": "",
+      "phonetic": "/bəˈnɑːnə/",
       "unit": "Unit 3"
     },
     {
@@ -528,13 +528,13 @@
     {
       "word": "then",
       "meaning": "那么；然后，接下来",
-      "phonetic": "",
+      "phonetic": "/ðen/",
       "unit": "Unit 3"
     },
     {
       "word": "about",
       "meaning": "关于",
-      "phonetic": "",
+      "phonetic": "/əˈbaʊt/",
       "unit": "Unit 3"
     },
     {
@@ -552,13 +552,13 @@
     {
       "word": "juice",
       "meaning": "汁",
-      "phonetic": "",
+      "phonetic": "/dʒuːs/",
       "unit": "Unit 3"
     },
     {
       "word": "why",
       "meaning": "为什么",
-      "phonetic": "",
+      "phonetic": "/waɪ/",
       "unit": "Unit 3"
     },
     {
@@ -570,19 +570,19 @@
     {
       "word": "breakfast",
       "meaning": "早餐，早饭",
-      "phonetic": "",
+      "phonetic": "/ˈbrekfəst/",
       "unit": "Unit 3"
     },
     {
       "word": "time",
       "meaning": "时间",
-      "phonetic": "",
+      "phonetic": "/taɪm/",
       "unit": "Unit 3"
     },
     {
       "word": "still",
       "meaning": "还，仍然",
-      "phonetic": "",
+      "phonetic": "/stɪl/",
       "unit": "Unit 3"
     },
     {
@@ -600,19 +600,19 @@
     {
       "word": "lunch",
       "meaning": "午餐",
-      "phonetic": "",
+      "phonetic": "/lʌntʃ/",
       "unit": "Unit 3"
     },
     {
       "word": "very",
       "meaning": "很，非常",
-      "phonetic": "",
+      "phonetic": "/ˈveri/",
       "unit": "Unit 3"
     },
     {
       "word": "much",
       "meaning": "非常",
-      "phonetic": "",
+      "phonetic": "/mʌtʃ/",
       "unit": "Unit 3"
     },
     {
@@ -624,13 +624,13 @@
     {
       "word": "afternoon",
       "meaning": "下午，午后",
-      "phonetic": "",
+      "phonetic": "/ˌɑːftəˈnuːn/",
       "unit": "Unit 3"
     },
     {
       "word": "tea",
       "meaning": "茶；茶叶",
-      "phonetic": "",
+      "phonetic": "/tiː/",
       "unit": "Unit 3"
     },
     {
@@ -642,25 +642,25 @@
     {
       "word": "every",
       "meaning": "每，每逢，每隔",
-      "phonetic": "",
+      "phonetic": "/ˈevri/",
       "unit": "Unit 3"
     },
     {
       "word": "week",
       "meaning": "星期，周",
-      "phonetic": "",
+      "phonetic": "/wiːk/",
       "unit": "Unit 3"
     },
     {
       "word": "tree",
       "meaning": "树",
-      "phonetic": "",
+      "phonetic": "/triː/",
       "unit": "Unit 3"
     },
     {
       "word": "milk",
       "meaning": "奶，牛奶",
-      "phonetic": "",
+      "phonetic": "/mɪlk/",
       "unit": "Unit 3"
     },
     {
@@ -708,7 +708,7 @@
     {
       "word": "cake",
       "meaning": "蛋糕",
-      "phonetic": "",
+      "phonetic": "/keɪk/",
       "unit": "Unit 3"
     },
     {
@@ -726,13 +726,13 @@
     {
       "word": "after",
       "meaning": "在……后",
-      "phonetic": "",
+      "phonetic": "/ˈɑːftə(r)/",
       "unit": "Unit 4"
     },
     {
       "word": "swim",
       "meaning": "游泳",
-      "phonetic": "",
+      "phonetic": "/swɪm/",
       "unit": "Unit 4"
     },
     {
@@ -750,7 +750,7 @@
     {
       "word": "these",
       "meaning": "这些（this的复数形式）",
-      "phonetic": "",
+      "phonetic": "/ðiːz/",
       "unit": "Unit 4"
     },
     {
@@ -762,7 +762,7 @@
     {
       "word": "his",
       "meaning": "他的",
-      "phonetic": "",
+      "phonetic": "/hɪz/",
       "unit": "Unit 4"
     },
     {
@@ -774,13 +774,13 @@
     {
       "word": "man",
       "meaning": "成年男子，男人",
-      "phonetic": "",
+      "phonetic": "/mæn/",
       "unit": "Unit 4"
     },
     {
       "word": "learn",
       "meaning": "学习",
-      "phonetic": "",
+      "phonetic": "/lɜːn/",
       "unit": "Unit 4"
     },
     {
@@ -792,19 +792,19 @@
     {
       "word": "when",
       "meaning": "什么时候",
-      "phonetic": "",
+      "phonetic": "/wen/",
       "unit": "Unit 4"
     },
     {
       "word": "question",
       "meaning": "问题，疑问",
-      "phonetic": "",
+      "phonetic": "/ˈkwestʃən/",
       "unit": "Unit 4"
     },
     {
       "word": "watch",
       "meaning": "观察",
-      "phonetic": "",
+      "phonetic": "/wɒtʃ/",
       "unit": "Unit 4"
     },
     {
@@ -834,7 +834,7 @@
     {
       "word": "grow",
       "meaning": "成长，长大",
-      "phonetic": "",
+      "phonetic": "/ɡrəʊ/",
       "unit": "Unit 4"
     },
     {
@@ -846,7 +846,7 @@
     {
       "word": "country",
       "meaning": "国家",
-      "phonetic": "",
+      "phonetic": "/ˈkʌntri/",
       "unit": "Unit 4"
     },
     {
@@ -894,13 +894,13 @@
     {
       "word": "tell",
       "meaning": "告诉，告知",
-      "phonetic": "",
+      "phonetic": "/tel/",
       "unit": "Unit 5"
     },
     {
       "word": "clock",
       "meaning": "时钟",
-      "phonetic": "",
+      "phonetic": "/klɒk/",
       "unit": "Unit 5"
     },
     {
@@ -912,13 +912,13 @@
     {
       "word": "fifteen",
       "meaning": "十五",
-      "phonetic": "",
+      "phonetic": "/ˌfɪfˈtiːn/",
       "unit": "Unit 5"
     },
     {
       "word": "thirty",
       "meaning": "三十",
-      "phonetic": "",
+      "phonetic": "/ˈθɜːti/",
       "unit": "Unit 5"
     },
     {
@@ -930,7 +930,7 @@
     {
       "word": "dinner",
       "meaning": "正餐，主餐",
-      "phonetic": "",
+      "phonetic": "/ˈdɪnə(r)/",
       "unit": "Unit 5"
     },
     {
@@ -966,7 +966,7 @@
     {
       "word": "need",
       "meaning": "需要",
-      "phonetic": "",
+      "phonetic": "/niːd/",
       "unit": "Unit 5"
     },
     {
@@ -978,25 +978,25 @@
     {
       "word": "her",
       "meaning": "她的",
-      "phonetic": "",
+      "phonetic": "/hɜː(r)/",
       "unit": "Unit 5"
     },
     {
       "word": "class",
       "meaning": "课；班级",
-      "phonetic": "",
+      "phonetic": "/klɑːs/",
       "unit": "Unit 5"
     },
     {
       "word": "evening",
       "meaning": "傍晚；晚上",
-      "phonetic": "",
+      "phonetic": "/ˈiːvnɪŋ/",
       "unit": "Unit 5"
     },
     {
       "word": "call",
       "meaning": "（给……）打电话",
-      "phonetic": "",
+      "phonetic": "/kɔːl/",
       "unit": "Unit 5"
     },
     {
@@ -1044,7 +1044,7 @@
     {
       "word": "park",
       "meaning": "公园",
-      "phonetic": "",
+      "phonetic": "/pɑːk/",
       "unit": "Unit 6"
     },
     {
@@ -1068,7 +1068,7 @@
     {
       "word": "art",
       "meaning": "美术，艺术",
-      "phonetic": "",
+      "phonetic": "/ɑːt/",
       "unit": "Unit 6"
     },
     {
@@ -1098,7 +1098,7 @@
     {
       "word": "idea",
       "meaning": "想法，主意",
-      "phonetic": "",
+      "phonetic": "/aɪˈdɪə/",
       "unit": "Unit 6"
     },
     {
@@ -1122,7 +1122,7 @@
     {
       "word": "card",
       "meaning": "卡片",
-      "phonetic": "",
+      "phonetic": "/kɑːd/",
       "unit": "Unit 6"
     },
     {
@@ -1140,7 +1140,7 @@
     {
       "word": "some",
       "meaning": "一些，若干",
-      "phonetic": "",
+      "phonetic": "/sʌm/",
       "unit": "Unit 6"
     },
     {
@@ -1164,7 +1164,7 @@
     {
       "word": "flower",
       "meaning": "花，花朵",
-      "phonetic": "",
+      "phonetic": "/ˈflaʊə(r)/",
       "unit": "Unit 6"
     },
     {
@@ -1194,13 +1194,13 @@
     {
       "word": "computer",
       "meaning": "计算机；电脑",
-      "phonetic": "",
+      "phonetic": "/kəmˈpjuːtə(r)/",
       "unit": "Unit 6"
     },
     {
       "word": "music",
       "meaning": "音乐",
-      "phonetic": "",
+      "phonetic": "/ˈmjuːzɪk/",
       "unit": "Unit 6"
     }
   ]

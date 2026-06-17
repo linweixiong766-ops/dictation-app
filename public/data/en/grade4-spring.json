@@ -24,7 +24,7 @@
     {
       "word": "cook",
       "meaning": "厨师，炊事员",
-      "phonetic": "",
+      "phonetic": "/kʊk/",
       "unit": "Unit 1"
     },
     {
@@ -54,7 +54,7 @@
     {
       "word": "often",
       "meaning": "经常，时常，多次",
-      "phonetic": "",
+      "phonetic": "/ˈɒfn/",
       "unit": "Unit 1"
     },
     {
@@ -72,7 +72,7 @@
     {
       "word": "use",
       "meaning": "用，使用",
-      "phonetic": "",
+      "phonetic": "/juːz/",
       "unit": "Unit 1"
     },
     {
@@ -108,7 +108,7 @@
     {
       "word": "night",
       "meaning": "夜晚，夜间",
-      "phonetic": "",
+      "phonetic": "/naɪt/",
       "unit": "Unit 1"
     },
     {
@@ -150,7 +150,7 @@
     {
       "word": "light",
       "meaning": "照亮",
-      "phonetic": "",
+      "phonetic": "/laɪt/",
       "unit": "Unit 1"
     },
     {
@@ -192,13 +192,13 @@
     {
       "word": "life",
       "meaning": "生活",
-      "phonetic": "",
+      "phonetic": "/laɪf/",
       "unit": "Unit 1"
     },
     {
       "word": "mountain",
       "meaning": "高山",
-      "phonetic": "",
+      "phonetic": "/ˈmaʊntən/",
       "unit": "Unit 1"
     },
     {
@@ -276,7 +276,7 @@
     {
       "word": "should",
       "meaning": "应当，应该",
-      "phonetic": "",
+      "phonetic": "/ʃʊd/",
       "unit": "Unit 2"
     },
     {
@@ -300,7 +300,7 @@
     {
       "word": "street",
       "meaning": "大街，街道",
-      "phonetic": "",
+      "phonetic": "/striːt/",
       "unit": "Unit 2"
     },
     {
@@ -354,13 +354,13 @@
     {
       "word": "just",
       "meaning": "就，只是",
-      "phonetic": "",
+      "phonetic": "/dʒʌst/",
       "unit": "Unit 3"
     },
     {
       "word": "boy",
       "meaning": "男孩；儿子",
-      "phonetic": "",
+      "phonetic": "/bɔɪ/",
       "unit": "Unit 3"
     },
     {
@@ -402,7 +402,7 @@
     {
       "word": "leaf",
       "meaning": "叶，叶子",
-      "phonetic": "",
+      "phonetic": "/liːf/",
       "unit": "Unit 4"
     },
     {
@@ -432,13 +432,13 @@
     {
       "word": "sleep",
       "meaning": "睡，睡觉",
-      "phonetic": "",
+      "phonetic": "/sliːp/",
       "unit": "Unit 4"
     },
     {
       "word": "will",
       "meaning": "将，会，要",
-      "phonetic": "",
+      "phonetic": "/wɪl/",
       "unit": "Unit 4"
     },
     {
@@ -456,7 +456,7 @@
     {
       "word": "paper",
       "meaning": "纸",
-      "phonetic": "",
+      "phonetic": "/ˈpeɪpə(r)/",
       "unit": "Unit 4"
     },
     {
@@ -504,7 +504,7 @@
     {
       "word": "more",
       "meaning": "更多的",
-      "phonetic": "",
+      "phonetic": "/mɔː(r)/",
       "unit": "Unit 5"
     },
     {
@@ -546,7 +546,7 @@
     {
       "word": "hour",
       "meaning": "小时",
-      "phonetic": "",
+      "phonetic": "/ˈaʊə(r)/",
       "unit": "Unit 5"
     },
     {

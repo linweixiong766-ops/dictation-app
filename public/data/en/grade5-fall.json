@@ -24,7 +24,7 @@
     {
       "word": "fruit",
       "meaning": "水果",
-      "phonetic": "",
+      "phonetic": "/fruːt/",
       "unit": "Unit 1"
     },
     {
@@ -72,13 +72,13 @@
     {
       "word": "meat",
       "meaning": "肉",
-      "phonetic": "",
+      "phonetic": "/miːt/",
       "unit": "Unit 1"
     },
     {
       "word": "letter",
       "meaning": "信，函",
-      "phonetic": "",
+      "phonetic": "/ˈletə(r)/",
       "unit": "Unit 1"
     },
     {
@@ -108,7 +108,7 @@
     {
       "word": "bread",
       "meaning": "面包",
-      "phonetic": "",
+      "phonetic": "/bred/",
       "unit": "Unit 1"
     },
     {
@@ -138,13 +138,13 @@
     {
       "word": "always",
       "meaning": "总是，一直",
-      "phonetic": "",
+      "phonetic": "/ˈɔːlweɪz/",
       "unit": "Unit 1"
     },
     {
       "word": "change",
       "meaning": "变化，改变",
-      "phonetic": "",
+      "phonetic": "/tʃeɪndʒ/",
       "unit": "Unit 1"
     },
     {
@@ -156,7 +156,7 @@
     {
       "word": "problem",
       "meaning": "问题，难题；困难",
-      "phonetic": "",
+      "phonetic": "/ˈprɒbləm/",
       "unit": "Unit 1"
     },
     {
@@ -198,7 +198,7 @@
     {
       "word": "sugar",
       "meaning": "糖",
-      "phonetic": "",
+      "phonetic": "/ˈʃʊɡə(r)/",
       "unit": "Unit 1"
     },
     {
@@ -258,13 +258,13 @@
     {
       "word": "each",
       "meaning": "每个，各",
-      "phonetic": "",
+      "phonetic": "/iːtʃ/",
       "unit": "Unit 2"
     },
     {
       "word": "over",
       "meaning": "大于，高于，超出",
-      "phonetic": "",
+      "phonetic": "/ˈəʊvə(r)/",
       "unit": "Unit 2"
     },
     {
@@ -276,7 +276,7 @@
     {
       "word": "into",
       "meaning": "（表示状态的改变）",
-      "phonetic": "",
+      "phonetic": "/ˈɪntə/",
       "unit": "Unit 2"
     },
     {
@@ -306,7 +306,7 @@
     {
       "word": "off",
       "meaning": "从（某物）上移开",
-      "phonetic": "",
+      "phonetic": "/ɒf/",
       "unit": "Unit 2"
     },
     {
@@ -330,7 +330,7 @@
     {
       "word": "shop",
       "meaning": "商店",
-      "phonetic": "",
+      "phonetic": "/ʃɒp/",
       "unit": "Unit 2"
     },
     {
@@ -348,7 +348,7 @@
     {
       "word": "both",
       "meaning": "两个都",
-      "phonetic": "",
+      "phonetic": "/bəʊθ/",
       "unit": "Unit 3"
     },
     {
@@ -378,13 +378,13 @@
     {
       "word": "rabbit",
       "meaning": "兔",
-      "phonetic": "",
+      "phonetic": "/ˈræbɪt/",
       "unit": "Unit 3"
     },
     {
       "word": "key",
       "meaning": "关键",
-      "phonetic": "",
+      "phonetic": "/kiː/",
       "unit": "Unit 3"
     },
     {
@@ -426,7 +426,7 @@
     {
       "word": "drink",
       "meaning": "喝",
-      "phonetic": "",
+      "phonetic": "/drɪŋk/",
       "unit": "Unit 4"
     },
     {
@@ -504,19 +504,19 @@
     {
       "word": "before",
       "meaning": "在……以前",
-      "phonetic": "",
+      "phonetic": "/bɪˈfɔː(r)/",
       "unit": "Unit 4"
     },
     {
       "word": "sell",
       "meaning": "卖，出售",
-      "phonetic": "",
+      "phonetic": "/sel/",
       "unit": "Unit 4"
     },
     {
       "word": "buy",
       "meaning": "买，购买",
-      "phonetic": "",
+      "phonetic": "/baɪ/",
       "unit": "Unit 4"
     },
     {
@@ -570,7 +570,7 @@
     {
       "word": "drive",
       "meaning": "开车，驾驶",
-      "phonetic": "",
+      "phonetic": "/draɪv/",
       "unit": "Unit 5"
     },
     {
@@ -606,7 +606,7 @@
     {
       "word": "hundred",
       "meaning": "一百",
-      "phonetic": "",
+      "phonetic": "/ˈhʌndrəd/",
       "unit": "Unit 5"
     },
     {
