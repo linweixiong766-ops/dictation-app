@@ -229,9 +229,14 @@ function startLearning() {
         </div>
         <div class="word-content">
           <div class="word-text">{{ word.word }}</div>
-          <div class="word-meaning">{{ word.meaning }}</div>
-          <div v-if="word.phonetic || word.pinyin" class="word-phonetic">
-            {{ word.phonetic || word.pinyin }}
+          <!-- Chinese mode: only show pinyin -->
+          <div v-if="lang === 'zh' && word.pinyin" class="word-phonetic">
+            {{ word.pinyin }}
+          </div>
+          <!-- English mode: show meaning and phonetic -->
+          <div v-if="lang === 'en'" class="word-meaning">{{ word.meaning }}</div>
+          <div v-if="lang === 'en' && word.phonetic" class="word-phonetic">
+            {{ word.phonetic }}
           </div>
         </div>
       </div>

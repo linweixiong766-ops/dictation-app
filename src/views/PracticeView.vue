@@ -200,12 +200,17 @@ function handleKeydown(event) {
           🔊
         </button>
 
-        <!-- Meaning -->
-        <div v-if="showMeaningFlag && currentWord" class="word-meaning">
+        <!-- Chinese mode: show pinyin as hint -->
+        <div v-if="lang === 'zh' && showMeaningFlag && currentWord && currentWord.pinyin" class="word-phonetic">
+          {{ currentWord.pinyin }}
+        </div>
+
+        <!-- English mode: show meaning as hint -->
+        <div v-if="lang === 'en' && showMeaningFlag && currentWord" class="word-meaning">
           {{ currentWord.meaning }}
         </div>
 
-        <!-- Phonetic/Pinyin -->
+        <!-- Answer: show phonetic/pinyin -->
         <div v-if="showAnswerFlag && currentWord" class="word-phonetic">
           {{ currentWord.phonetic || currentWord.pinyin }}
         </div>
