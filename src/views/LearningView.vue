@@ -496,18 +496,25 @@ onUnmounted(() => {
 }
 
 .btn-play {
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
   font-size: 1.1rem;
-  padding: 0.75rem 2rem;
-  border-radius: 50px;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
   cursor: pointer;
   transition: var(--transition);
+  min-width: 140px;
 }
 
 .btn-play:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .btn-play:disabled {
