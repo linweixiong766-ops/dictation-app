@@ -66,11 +66,18 @@
   "learning": {
     "title": "学习模式",
     "interval": "播放间隔",
+    "loopCount": "循环次数",
+    "times": "次",
+    "infinite": "无限循环",
+    "loopProgress": "循环进度",
     "showPhonetic": "显示音标",
     "showPinyin": "显示拼音",
     "showMeaning": "显示释义",
     "playAudio": "播放语音",
-    "autoPlay": "自动播放"
+    "autoPlay": "自动播放",
+    "completed": "学习完成！",
+    "completedMessage": "你已经学完了所有单词，现在开始练习吧！",
+    "restart": "重新学习"
   },
   "game": {
     "title": "单词射击游戏",

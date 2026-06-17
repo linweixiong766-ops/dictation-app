@@ -23,6 +23,9 @@ const autoPlayTimer = ref(null)
 const playInterval = ref(3000) // 3秒间隔
 const showPhonetic = ref(true)
 const showMeaning = ref(true)
+const loopCount = ref(1) // 循环次数 (1-10, 或 0 表示无限循环)
+const currentLoop = ref(0) // 当前循环次数
+const completed = ref(false) // 是否完成所有循环
 
 const currentWord = computed(() => {
   if (!practiceWords.value.length) return null
@@ -80,6 +83,8 @@ function startAutoPlay() {
   if (!practiceWords.value.length) return
 
   isPlaying.value = true
+  completed.value = false
+  currentLoop.value = 1
   playCurrentWord()
 
   autoPlayTimer.value = setInterval(() => {
@@ -87,8 +92,20 @@ function startAutoPlay() {
     if (currentIndex.value < practiceWords.value.length - 1) {
       currentIndex.value++
     } else {
-      // Loop back to start
-      currentIndex.value = 0
+      // Completed one loop
+      if (loopCount.value === 0) {
+        // Infinite loop - restart
+        currentIndex.value = 0
+      } else if (currentLoop.value < loopCount.value) {
+        // More loops to go
+        currentLoop.value++
+        currentIndex.value = 0
+      } else {
+        // All loops completed
+        stopAutoPlay()
+        completed.value = true
+        return
+      }
     }
 
     // Play the word
@@ -134,6 +151,36 @@ function nextWord() {
   } else {
     currentIndex.value = 0
   }
+}
+
+function restartLearning() {
+  currentIndex.value = 0
+  currentLoop.value = 0
+  completed.value = false
+  isPlaying.value = false
+  stopAutoPlay()
+}
+
+function getWordIndices() {
+  // Get the original indices of the practice words in the word list
+  const list = wordStore.getListById(props.lang, props.listId)
+  if (!list) return ''
+  return practiceWords.value.map(w => list.words.findIndex(wl => wl.word === w.word)).join(',')
+}
+
+function goToPractice() {
+  const wordIndices = getWordIndices()
+  router.push(`/practice/${props.lang}/${props.listId}?words=${wordIndices}`)
+}
+
+function goToGroupPractice() {
+  const wordIndices = getWordIndices()
+  router.push(`/group/${props.lang}/${props.listId}?words=${wordIndices}`)
+}
+
+function goToGame() {
+  const wordIndices = getWordIndices()
+  router.push(`/game/${props.lang}/${props.listId}?words=${wordIndices}`)
 }
 
 function handleKeydown(event) {
@@ -196,6 +243,22 @@ onUnmounted(() => {
             <option :value="5000">5 {{ t('practice.seconds') }}</option>
             <option :value="8000">8 {{ t('practice.seconds') }}</option>
           </select>
+        </div>
+        <div class="setting-item">
+          <label>{{ t('learning.loopCount') }}</label>
+          <select v-model="loopCount" class="input-select" :disabled="isPlaying">
+            <option :value="1">1 {{ t('learning.times') }}</option>
+            <option :value="2">2 {{ t('learning.times') }}</option>
+            <option :value="3">3 {{ t('learning.times') }}</option>
+            <option :value="5">5 {{ t('learning.times') }}</option>
+            <option :value="0">{{ t('learning.infinite') }}</option>
+          </select>
+        </div>
+        <!-- Loop progress -->
+        <div class="setting-item" v-if="isPlaying && loopCount > 0">
+          <span class="loop-progress">
+            {{ t('learning.loopProgress') }}: {{ currentLoop }} / {{ loopCount }}
+          </span>
         </div>
         <!-- Chinese mode: show pinyin toggle -->
         <div class="setting-item" v-if="lang === 'zh'">
@@ -284,6 +347,26 @@ onUnmounted(() => {
 
       <div class="shortcuts-hint">
         <p>{{ t('practice.shortcuts') }}: <kbd>Space</kbd> {{ t('learning.autoPlay') }} | <kbd>←</kbd> {{ t('practice.previous') }} | <kbd>→</kbd> {{ t('practice.next') }} | <kbd>P</kbd> {{ t('learning.playAudio') }}</p>
+      </div>
+    </div>
+
+    <!-- Completed Screen -->
+    <div v-if="completed" class="completed-card card">
+      <h2>🎉 {{ t('learning.completed') }}</h2>
+      <p>{{ t('learning.completedMessage') }}</p>
+      <div class="completed-actions">
+        <button class="btn btn-learn" @click="restartLearning">
+          🔄 {{ t('learning.restart') }}
+        </button>
+        <button class="btn btn-primary" @click="goToPractice">
+          ✏️ {{ t('practice.singlePractice') }}
+        </button>
+        <button class="btn btn-secondary" @click="goToGroupPractice">
+          👥 {{ t('practice.groupPractice') }}
+        </button>
+        <button class="btn btn-game" @click="goToGame">
+          🎯 {{ t('practice.playGame') }}
+        </button>
       </div>
     </div>
   </div>
@@ -484,6 +567,66 @@ onUnmounted(() => {
   border: 1px solid var(--gray-300);
   font-family: monospace;
   font-size: 0.85rem;
+}
+
+.loop-progress {
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+}
+
+.completed-card {
+  text-align: center;
+  padding: 3rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  margin-top: 2rem;
+}
+
+.completed-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.completed-card p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.completed-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.completed-actions .btn {
+  min-width: 140px;
+}
+
+.btn-learn {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: white;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.4);
+}
+
+.btn-learn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.5);
+}
+
+.btn-game {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+}
+
+.btn-game:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
 }
 
 @media (max-width: 640px) {

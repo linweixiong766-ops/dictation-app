@@ -66,11 +66,18 @@
   "learning": {
     "title": "Learning Mode",
     "interval": "Play Interval",
+    "loopCount": "Loop Count",
+    "times": "times",
+    "infinite": "Infinite",
+    "loopProgress": "Loop Progress",
     "showPhonetic": "Show Phonetic",
     "showPinyin": "Show Pinyin",
     "showMeaning": "Show Meaning",
     "playAudio": "Play Audio",
-    "autoPlay": "Auto Play"
+    "autoPlay": "Auto Play",
+    "completed": "Learning Complete!",
+    "completedMessage": "You've learned all the words! Now start practicing!",
+    "restart": "Learn Again"
   },
   "game": {
     "title": "Word Shooter Game",
