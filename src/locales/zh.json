@@ -75,6 +75,7 @@
     "showMeaning": "显示释义",
     "playAudio": "播放语音",
     "autoPlay": "自动播放",
+    "finishLearning": "学习完成",
     "completed": "学习完成！",
     "completedMessage": "你已经学完了所有单词，现在开始练习吧！",
     "restart": "重新学习"

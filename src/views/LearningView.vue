@@ -161,6 +161,11 @@ function restartLearning() {
   stopAutoPlay()
 }
 
+function finishLearning() {
+  stopAutoPlay()
+  completed.value = true
+}
+
 function getWordIndices() {
   // Get the original indices of the practice words in the word list
   const list = wordStore.getListById(props.lang, props.listId)
@@ -342,6 +347,10 @@ onUnmounted(() => {
 
         <button class="btn btn-control" @click="nextWord" :title="t('practice.next') + ' (→)'">
           {{ t('practice.next') }} ⏭
+        </button>
+
+        <button class="btn btn-complete" @click="finishLearning">
+          ✅ {{ t('learning.finishLearning') }}
         </button>
       </div>
 
@@ -627,6 +636,22 @@ onUnmounted(() => {
 .btn-game:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
+}
+
+.btn-complete {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+  min-width: 120px;
+}
+
+.btn-complete:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.5);
+}
+
+.btn-complete:active {
+  transform: translateY(0);
 }
 
 @media (max-width: 640px) {
