@@ -6,19 +6,19 @@
     {
       "word": "doctor",
       "meaning": "医生，大夫",
-      "phonetic": "",
+      "phonetic": "/ˈdɒktə(r)/",
       "unit": "Unit 1"
     },
     {
       "word": "fireman",
       "meaning": "消防队员",
-      "phonetic": "",
+      "phonetic": "/ˈfaɪəmən/",
       "unit": "Unit 1"
     },
     {
       "word": "farmer",
       "meaning": "农民；农场主；养殖场主",
-      "phonetic": "",
+      "phonetic": "/ˈfɑːmə(r)/",
       "unit": "Unit 1"
     },
     {
@@ -30,7 +30,7 @@
     {
       "word": "police",
       "meaning": "警察",
-      "phonetic": "",
+      "phonetic": "/pəˈliːs/",
       "unit": "Unit 1"
     },
     {
@@ -42,7 +42,7 @@
     {
       "word": "station",
       "meaning": "所；站；台；局",
-      "phonetic": "",
+      "phonetic": "/ˈsteɪʃn/",
       "unit": "Unit 1"
     },
     {
@@ -60,13 +60,13 @@
     {
       "word": "field",
       "meaning": "田地，田野",
-      "phonetic": "",
+      "phonetic": "/fiːld/",
       "unit": "Unit 1"
     },
     {
       "word": "painter",
       "meaning": "画家",
-      "phonetic": "",
+      "phonetic": "/ˈpeɪntə(r)/",
       "unit": "Unit 1"
     },
     {
@@ -78,7 +78,7 @@
     {
       "word": "brush",
       "meaning": "刷子；毛刷",
-      "phonetic": "",
+      "phonetic": "/brʌʃ/",
       "unit": "Unit 1"
     },
     {
@@ -96,13 +96,13 @@
     {
       "word": "worker",
       "meaning": "工人",
-      "phonetic": "",
+      "phonetic": "/ˈwɜːkə(r)/",
       "unit": "Unit 1"
     },
     {
       "word": "aunt",
       "meaning": "姑母；姨母",
-      "phonetic": "",
+      "phonetic": "/ɑːnt/",
       "unit": "Unit 1"
     },
     {
@@ -114,7 +114,7 @@
     {
       "word": "owl",
       "meaning": "猫头鹰",
-      "phonetic": "",
+      "phonetic": "/aʊl/",
       "unit": "Unit 1"
     },
     {
@@ -126,7 +126,7 @@
     {
       "word": "driver",
       "meaning": "司机，驾驶员",
-      "phonetic": "",
+      "phonetic": "/ˈdraɪvə(r)/",
       "unit": "Unit 1"
     },
     {
@@ -138,13 +138,13 @@
     {
       "word": "safe",
       "meaning": "安全的，没有危险的",
-      "phonetic": "",
+      "phonetic": "/seɪf/",
       "unit": "Unit 1"
     },
     {
       "word": "nurse",
       "meaning": "护士",
-      "phonetic": "",
+      "phonetic": "/nɜːs/",
       "unit": "Unit 1"
     },
     {
@@ -156,7 +156,7 @@
     {
       "word": "uncle",
       "meaning": "叔叔，伯伯",
-      "phonetic": "",
+      "phonetic": "/ˈʌŋkl/",
       "unit": "Unit 1"
     },
     {
@@ -168,7 +168,7 @@
     {
       "word": "bee",
       "meaning": "蜜蜂",
-      "phonetic": "",
+      "phonetic": "/biː/",
       "unit": "Unit 1"
     },
     {
@@ -246,7 +246,7 @@
     {
       "word": "cough",
       "meaning": "咳嗽，咳",
-      "phonetic": "",
+      "phonetic": "/kɒf/",
       "unit": "Unit 2"
     },
     {
@@ -258,7 +258,7 @@
     {
       "word": "gift",
       "meaning": "礼物",
-      "phonetic": "",
+      "phonetic": "/ɡɪft/",
       "unit": "Unit 2"
     },
     {
@@ -366,7 +366,7 @@
     {
       "word": "slowly",
       "meaning": "缓慢地，慢慢地",
-      "phonetic": "",
+      "phonetic": "/ˈsləʊli/",
       "unit": "Unit 3"
     },
     {
@@ -384,7 +384,7 @@
     {
       "word": "root",
       "meaning": "根",
-      "phonetic": "",
+      "phonetic": "/ruːt/",
       "unit": "Unit 4"
     },
     {
@@ -396,7 +396,7 @@
     {
       "word": "thin",
       "meaning": "细的",
-      "phonetic": "",
+      "phonetic": "/θɪn/",
       "unit": "Unit 4"
     },
     {
@@ -468,7 +468,7 @@
     {
       "word": "trip",
       "meaning": "旅游；旅行，出行",
-      "phonetic": "",
+      "phonetic": "/trɪp/",
       "unit": "Unit 5"
     },
     {
@@ -480,7 +480,7 @@
     {
       "word": "festival",
       "meaning": "节，节庆，汇演",
-      "phonetic": "",
+      "phonetic": "/ˈfestɪvl/",
       "unit": "Unit 5"
     },
     {
@@ -522,25 +522,25 @@
     {
       "word": "hey",
       "meaning": "嘿，喂",
-      "phonetic": "",
+      "phonetic": "/heɪ/",
       "unit": "Unit 5"
     },
     {
       "word": "lovely",
       "meaning": "美好的；令人愉快的；可爱的",
-      "phonetic": "",
+      "phonetic": "/ˈlʌvli/",
       "unit": "Unit 5"
     },
     {
       "word": "student",
       "meaning": "学生",
-      "phonetic": "",
+      "phonetic": "/ˈstjuːdnt/",
       "unit": "Unit 5"
     },
     {
       "word": "culture",
       "meaning": "文化",
-      "phonetic": "",
+      "phonetic": "/ˈkʌltʃə(r)/",
       "unit": "Unit 5"
     },
     {
@@ -576,55 +576,55 @@
     {
       "word": "T-shirt",
       "meaning": "T恤（衫）",
-      "phonetic": "",
+      "phonetic": "/ˈtiːʃɜːt/",
       "unit": "Unit 6"
     },
     {
       "word": "skirt",
       "meaning": "半身裙，裙子",
-      "phonetic": "",
+      "phonetic": "/skɜːt/",
       "unit": "Unit 6"
     },
     {
       "word": "shorts",
       "meaning": "短裤",
-      "phonetic": "",
+      "phonetic": "/ʃɔːts/",
       "unit": "Unit 6"
     },
     {
       "word": "shirt",
       "meaning": "衬衫",
-      "phonetic": "",
+      "phonetic": "/ʃɜːt/",
       "unit": "Unit 6"
     },
     {
       "word": "trousers",
       "meaning": "裤子",
-      "phonetic": "",
+      "phonetic": "/ˈtraʊzəz/",
       "unit": "Unit 6"
     },
     {
       "word": "scarf",
       "meaning": "围巾",
-      "phonetic": "",
+      "phonetic": "/skɑːf/",
       "unit": "Unit 6"
     },
     {
       "word": "sweater",
       "meaning": "毛线衣，羊毛衫，针织衫",
-      "phonetic": "",
+      "phonetic": "/ˈswetə(r)/",
       "unit": "Unit 6"
     },
     {
       "word": "dress",
       "meaning": "连衣裙",
-      "phonetic": "",
+      "phonetic": "/dres/",
       "unit": "Unit 6"
     },
     {
       "word": "party",
       "meaning": "聚会，宴会",
-      "phonetic": "",
+      "phonetic": "/ˈpɑːti/",
       "unit": "Unit 6"
     },
     {
@@ -648,7 +648,7 @@
     {
       "word": "whale",
       "meaning": "鲸",
-      "phonetic": "",
+      "phonetic": "/weɪl/",
       "unit": "Unit 6"
     },
     {

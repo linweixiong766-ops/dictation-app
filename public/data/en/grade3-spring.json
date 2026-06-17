@@ -60,13 +60,13 @@
     {
       "word": "strong",
       "meaning": "强壮的，力气大的",
-      "phonetic": "",
+      "phonetic": "/strɒŋ/",
       "unit": "Unit 1"
     },
     {
       "word": "short",
       "meaning": "个子矮的",
-      "phonetic": "",
+      "phonetic": "/ʃɔːt/",
       "unit": "Unit 1"
     },
     {
@@ -84,7 +84,7 @@
     {
       "word": "tall",
       "meaning": "高的，高大的",
-      "phonetic": "",
+      "phonetic": "/tɔːl/",
       "unit": "Unit 1"
     },
     {
@@ -96,31 +96,31 @@
     {
       "word": "ostrich",
       "meaning": "鸵鸟",
-      "phonetic": "",
+      "phonetic": "/ˈɒstrɪtʃ/",
       "unit": "Unit 1"
     },
     {
       "word": "fast",
       "meaning": "快的，快速的",
-      "phonetic": "",
+      "phonetic": "/fɑːst/",
       "unit": "Unit 1"
     },
     {
       "word": "chameleon",
       "meaning": "变色龙",
-      "phonetic": "",
+      "phonetic": "/kəˈmiːliən/",
       "unit": "Unit 1"
     },
     {
       "word": "small",
       "meaning": "小的",
-      "phonetic": "",
+      "phonetic": "/smɔːl/",
       "unit": "Unit 1"
     },
     {
       "word": "lion",
       "meaning": "狮子",
-      "phonetic": "",
+      "phonetic": "/ˈlaɪən/",
       "unit": "Unit 1"
     },
     {
@@ -150,7 +150,7 @@
     {
       "word": "zebra",
       "meaning": "斑马",
-      "phonetic": "",
+      "phonetic": "/ˈzebrə/",
       "unit": "Unit 1"
     },
     {
@@ -162,7 +162,7 @@
     {
       "word": "road",
       "meaning": "路，道路",
-      "phonetic": "",
+      "phonetic": "/rəʊd/",
       "unit": "Unit 1"
     },
     {
@@ -174,7 +174,7 @@
     {
       "word": "along",
       "meaning": "一起",
-      "phonetic": "",
+      "phonetic": "/əˈlɒŋ/",
       "unit": "Unit 1"
     },
     {
@@ -192,19 +192,19 @@
     {
       "word": "stone",
       "meaning": "石头",
-      "phonetic": "",
+      "phonetic": "/stəʊn/",
       "unit": "Unit 1"
     },
     {
       "word": "hat",
       "meaning": "帽子",
-      "phonetic": "",
+      "phonetic": "/hæt/",
       "unit": "Unit 1"
     },
     {
       "word": "shoe",
       "meaning": "鞋",
-      "phonetic": "",
+      "phonetic": "/ʃuː/",
       "unit": "Unit 1"
     },
     {
@@ -246,7 +246,7 @@
     {
       "word": "touch",
       "meaning": "触摸，碰",
-      "phonetic": "",
+      "phonetic": "/tʌtʃ/",
       "unit": "Unit 2"
     },
     {
@@ -276,7 +276,7 @@
     {
       "word": "toe",
       "meaning": "脚趾",
-      "phonetic": "",
+      "phonetic": "/təʊ/",
       "unit": "Unit 2"
     },
     {
@@ -288,7 +288,7 @@
     {
       "word": "snowy",
       "meaning": "多雪的，积雪的",
-      "phonetic": "",
+      "phonetic": "/ˈsnəʊi/",
       "unit": "Unit 2"
     },
     {
@@ -306,37 +306,37 @@
     {
       "word": "snowman",
       "meaning": "雪人",
-      "phonetic": "",
+      "phonetic": "/ˈsnəʊmæn/",
       "unit": "Unit 2"
     },
     {
       "word": "long",
       "meaning": "长的",
-      "phonetic": "",
+      "phonetic": "/lɒŋ/",
       "unit": "Unit 2"
     },
     {
       "word": "rock",
       "meaning": "石头，石子",
-      "phonetic": "",
+      "phonetic": "/rɒk/",
       "unit": "Unit 2"
     },
     {
       "word": "cool",
       "meaning": "时髦的，酷的",
-      "phonetic": "",
+      "phonetic": "/kuːl/",
       "unit": "Unit 2"
     },
     {
       "word": "best",
       "meaning": "最好的",
-      "phonetic": "",
+      "phonetic": "/best/",
       "unit": "Unit 2"
     },
     {
       "word": "part",
       "meaning": "器官；部位；组成部分",
-      "phonetic": "",
+      "phonetic": "/pɑːt/",
       "unit": "Unit 2"
     },
     {
@@ -354,7 +354,7 @@
     {
       "word": "smell",
       "meaning": "闻到，嗅到",
-      "phonetic": "",
+      "phonetic": "/smel/",
       "unit": "Unit 2"
     },
     {
@@ -372,7 +372,7 @@
     {
       "word": "hey",
       "meaning": "嘿，喂",
-      "phonetic": "",
+      "phonetic": "/heɪ/",
       "unit": "Unit 2"
     },
     {
@@ -384,7 +384,7 @@
     {
       "word": "important",
       "meaning": "重要的，重大的",
-      "phonetic": "",
+      "phonetic": "/ɪmˈpɔːtnt/",
       "unit": "Unit 2"
     },
     {
@@ -432,7 +432,7 @@
     {
       "word": "yummy",
       "meaning": "美味的，很好吃的",
-      "phonetic": "",
+      "phonetic": "/ˈjʌmi/",
       "unit": "Unit 3"
     },
     {
@@ -444,13 +444,13 @@
     {
       "word": "strawberry",
       "meaning": "草莓",
-      "phonetic": "",
+      "phonetic": "/ˈstrɔːbəri/",
       "unit": "Unit 3"
     },
     {
       "word": "tomato",
       "meaning": "番茄，西红柿",
-      "phonetic": "",
+      "phonetic": "/təˈmɑːtəʊ/",
       "unit": "Unit 3"
     },
     {
@@ -462,7 +462,7 @@
     {
       "word": "carrot",
       "meaning": "胡萝卜",
-      "phonetic": "",
+      "phonetic": "/ˈkærət/",
       "unit": "Unit 3"
     },
     {
@@ -498,13 +498,13 @@
     {
       "word": "vegetable",
       "meaning": "蔬菜",
-      "phonetic": "",
+      "phonetic": "/ˈvedʒtəbl/",
       "unit": "Unit 3"
     },
     {
       "word": "salad",
       "meaning": "沙拉",
-      "phonetic": "",
+      "phonetic": "/ˈsæləd/",
       "unit": "Unit 3"
     },
     {
@@ -516,13 +516,13 @@
     {
       "word": "bean",
       "meaning": "豆子",
-      "phonetic": "",
+      "phonetic": "/biːn/",
       "unit": "Unit 3"
     },
     {
       "word": "cucumber",
       "meaning": "黄瓜",
-      "phonetic": "",
+      "phonetic": "/ˈkjuːkʌmbə(r)/",
       "unit": "Unit 3"
     },
     {
@@ -546,7 +546,7 @@
     {
       "word": "grape",
       "meaning": "葡萄",
-      "phonetic": "",
+      "phonetic": "/ɡreɪp/",
       "unit": "Unit 3"
     },
     {
@@ -564,7 +564,7 @@
     {
       "word": "early",
       "meaning": "提早，提前；早的",
-      "phonetic": "",
+      "phonetic": "/ˈɜːli/",
       "unit": "Unit 3"
     },
     {
@@ -594,7 +594,7 @@
     {
       "word": "corn",
       "meaning": "玉米",
-      "phonetic": "",
+      "phonetic": "/kɔːn/",
       "unit": "Unit 3"
     },
     {
@@ -672,13 +672,13 @@
     {
       "word": "sandwich",
       "meaning": "三明治，夹心面包",
-      "phonetic": "",
+      "phonetic": "/ˈsænwɪtʃ/",
       "unit": "Unit 3"
     },
     {
       "word": "beef",
       "meaning": "牛肉",
-      "phonetic": "",
+      "phonetic": "/biːf/",
       "unit": "Unit 3"
     },
     {
@@ -690,7 +690,7 @@
     {
       "word": "hot",
       "meaning": "热的",
-      "phonetic": "",
+      "phonetic": "/hɒt/",
       "unit": "Unit 3"
     },
     {
@@ -720,7 +720,7 @@
     {
       "word": "free",
       "meaning": "空闲的，有空的",
-      "phonetic": "",
+      "phonetic": "/friː/",
       "unit": "Unit 4"
     },
     {
@@ -810,7 +810,7 @@
     {
       "word": "study",
       "meaning": "研究；仔细察看",
-      "phonetic": "",
+      "phonetic": "/ˈstʌdi/",
       "unit": "Unit 4"
     },
     {
@@ -828,7 +828,7 @@
     {
       "word": "interesting",
       "meaning": "有趣的，吸引人的",
-      "phonetic": "",
+      "phonetic": "/ˈɪntrəstɪŋ/",
       "unit": "Unit 4"
     },
     {
@@ -942,7 +942,7 @@
     {
       "word": "past",
       "meaning": "晚于；在……之后",
-      "phonetic": "",
+      "phonetic": "/pɑːst/",
       "unit": "Unit 5"
     },
     {
@@ -960,7 +960,7 @@
     {
       "word": "homework",
       "meaning": "家庭作业，功课",
-      "phonetic": "",
+      "phonetic": "/ˈhəʊmwɜːk/",
       "unit": "Unit 5"
     },
     {
@@ -1050,13 +1050,13 @@
     {
       "word": "visit",
       "meaning": "看望，拜访",
-      "phonetic": "",
+      "phonetic": "/ˈvɪzɪt/",
       "unit": "Unit 6"
     },
     {
       "word": "lesson",
       "meaning": "课，课程",
-      "phonetic": "",
+      "phonetic": "/ˈlesn/",
       "unit": "Unit 6"
     },
     {
@@ -1074,7 +1074,7 @@
     {
       "word": "subject",
       "meaning": "学科",
-      "phonetic": "",
+      "phonetic": "/ˈsʌbdʒɪkt/",
       "unit": "Unit 6"
     },
     {
@@ -1086,7 +1086,7 @@
     {
       "word": "science",
       "meaning": "科学",
-      "phonetic": "",
+      "phonetic": "/ˈsaɪəns/",
       "unit": "Unit 6"
     },
     {
@@ -1104,7 +1104,7 @@
     {
       "word": "soon",
       "meaning": "不久，即刻，很快",
-      "phonetic": "",
+      "phonetic": "/suːn/",
       "unit": "Unit 6"
     },
     {
@@ -1116,7 +1116,7 @@
     {
       "word": "English",
       "meaning": "英语",
-      "phonetic": "",
+      "phonetic": "/ˈɪŋɡlɪʃ/",
       "unit": "Unit 6"
     },
     {
@@ -1134,7 +1134,7 @@
     {
       "word": "old",
       "meaning": "年老的；相识很久的",
-      "phonetic": "",
+      "phonetic": "/əʊld/",
       "unit": "Unit 6"
     },
     {

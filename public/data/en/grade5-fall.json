@@ -6,13 +6,13 @@
     {
       "word": "plate",
       "meaning": "盘，碟",
-      "phonetic": "",
+      "phonetic": "/pleɪt/",
       "unit": "Unit 1"
     },
     {
       "word": "group",
       "meaning": "群体",
-      "phonetic": "",
+      "phonetic": "/ɡruːp/",
       "unit": "Unit 1"
     },
     {
@@ -30,43 +30,43 @@
     {
       "word": "candy",
       "meaning": "糖果",
-      "phonetic": "",
+      "phonetic": "/ˈkændi/",
       "unit": "Unit 1"
     },
     {
       "word": "chocolate",
       "meaning": "巧克力，朱古力",
-      "phonetic": "",
+      "phonetic": "/ˈtʃɒklət/",
       "unit": "Unit 1"
     },
     {
       "word": "cola",
       "meaning": "可乐",
-      "phonetic": "",
+      "phonetic": "/ˈkəʊlə/",
       "unit": "Unit 1"
     },
     {
       "word": "chips",
       "meaning": "炸薯条；炸薯片",
-      "phonetic": "",
+      "phonetic": "/tʃɪps/",
       "unit": "Unit 1"
     },
     {
       "word": "soup",
       "meaning": "汤",
-      "phonetic": "",
+      "phonetic": "/suːp/",
       "unit": "Unit 1"
     },
     {
       "word": "potato",
       "meaning": "马铃薯，土豆",
-      "phonetic": "",
+      "phonetic": "/pəˈteɪtəʊ/",
       "unit": "Unit 1"
     },
     {
       "word": "choose",
       "meaning": "挑选，选择",
-      "phonetic": "",
+      "phonetic": "/tʃuːz/",
       "unit": "Unit 1"
     },
     {
@@ -84,13 +84,13 @@
     {
       "word": "stomach",
       "meaning": "胃",
-      "phonetic": "",
+      "phonetic": "/ˈstʌmək/",
       "unit": "Unit 1"
     },
     {
       "word": "enough",
       "meaning": "足够",
-      "phonetic": "",
+      "phonetic": "/ɪˈnʌf/",
       "unit": "Unit 1"
     },
     {
@@ -102,7 +102,7 @@
     {
       "word": "bad",
       "meaning": "不好的，糟糕的，坏的",
-      "phonetic": "",
+      "phonetic": "/bæd/",
       "unit": "Unit 1"
     },
     {
@@ -120,13 +120,13 @@
     {
       "word": "biscuit",
       "meaning": "饼干",
-      "phonetic": "",
+      "phonetic": "/ˈbɪskɪt/",
       "unit": "Unit 1"
     },
     {
       "word": "heavy",
       "meaning": "沉重的",
-      "phonetic": "",
+      "phonetic": "/ˈhevi/",
       "unit": "Unit 1"
     },
     {
@@ -150,7 +150,7 @@
     {
       "word": "healthy",
       "meaning": "健康的；有益健康的",
-      "phonetic": "",
+      "phonetic": "/ˈhelθi/",
       "unit": "Unit 1"
     },
     {
@@ -162,7 +162,7 @@
     {
       "word": "slow",
       "meaning": "慢下来；缓慢的",
-      "phonetic": "",
+      "phonetic": "/sləʊ/",
       "unit": "Unit 1"
     },
     {
@@ -204,19 +204,19 @@
     {
       "word": "bottle",
       "meaning": "瓶子；一瓶之量",
-      "phonetic": "",
+      "phonetic": "/ˈbɒtl/",
       "unit": "Unit 1"
     },
     {
       "word": "oil",
       "meaning": "植物油，动物油",
-      "phonetic": "",
+      "phonetic": "/ɔɪl/",
       "unit": "Unit 1"
     },
     {
       "word": "snack",
       "meaning": "小吃，点心",
-      "phonetic": "",
+      "phonetic": "/snæk/",
       "unit": "Unit 1"
     },
     {
@@ -294,7 +294,7 @@
     {
       "word": "flat",
       "meaning": "平的",
-      "phonetic": "",
+      "phonetic": "/flæt/",
       "unit": "Unit 2"
     },
     {
@@ -336,7 +336,7 @@
     {
       "word": "friendship",
       "meaning": "友谊，朋友关系",
-      "phonetic": "",
+      "phonetic": "/ˈfrendʃɪp/",
       "unit": "Unit 3"
     },
     {
@@ -366,7 +366,7 @@
     {
       "word": "difference",
       "meaning": "差别，差异",
-      "phonetic": "",
+      "phonetic": "/ˈdɪfrəns/",
       "unit": "Unit 3"
     },
     {
@@ -390,7 +390,7 @@
     {
       "word": "parent",
       "meaning": "父，母",
-      "phonetic": "",
+      "phonetic": "/ˈpeərənt/",
       "unit": "Unit 3"
     },
     {
@@ -408,7 +408,7 @@
     {
       "word": "plan",
       "meaning": "计划",
-      "phonetic": "",
+      "phonetic": "/plæn/",
       "unit": "Unit 3"
     },
     {
@@ -438,13 +438,13 @@
     {
       "word": "exercise",
       "meaning": "运动，锻炼",
-      "phonetic": "",
+      "phonetic": "/ˈeksəsaɪz/",
       "unit": "Unit 4"
     },
     {
       "word": "survey",
       "meaning": "调查",
-      "phonetic": "",
+      "phonetic": "/ˈsɜːveɪ/",
       "unit": "Unit 4"
     },
     {
@@ -456,7 +456,7 @@
     {
       "word": "test",
       "meaning": "测验，测试",
-      "phonetic": "",
+      "phonetic": "/test/",
       "unit": "Unit 4"
     },
     {
@@ -492,7 +492,7 @@
     {
       "word": "late",
       "meaning": "迟到的",
-      "phonetic": "",
+      "phonetic": "/leɪt/",
       "unit": "Unit 4"
     },
     {
@@ -564,7 +564,7 @@
     {
       "word": "future",
       "meaning": "将来，未来",
-      "phonetic": "",
+      "phonetic": "/ˈfjuːtʃə(r)/",
       "unit": "Unit 5"
     },
     {
@@ -588,13 +588,13 @@
     {
       "word": "danger",
       "meaning": "危险",
-      "phonetic": "",
+      "phonetic": "/ˈdeɪndʒə(r)/",
       "unit": "Unit 5"
     },
     {
       "word": "glass",
       "meaning": "玻璃",
-      "phonetic": "",
+      "phonetic": "/ɡlɑːs/",
       "unit": "Unit 5"
     },
     {
@@ -612,7 +612,7 @@
     {
       "word": "pie",
       "meaning": "馅饼，派",
-      "phonetic": "",
+      "phonetic": "/paɪ/",
       "unit": "Unit 5"
     },
     {
@@ -624,7 +624,7 @@
     {
       "word": "bright",
       "meaning": "（前途）光明的；明亮的",
-      "phonetic": "",
+      "phonetic": "/braɪt/",
       "unit": "Unit 5"
     },
     {
@@ -660,7 +660,7 @@
     {
       "word": "candle",
       "meaning": "蜡烛",
-      "phonetic": "",
+      "phonetic": "/ˈkændl/",
       "unit": "Unit 6"
     },
     {
@@ -678,13 +678,13 @@
     {
       "word": "celebration",
       "meaning": "庆祝；庆祝活动",
-      "phonetic": "",
+      "phonetic": "/ˌselɪˈbreɪʃn/",
       "unit": "Unit 6"
     },
     {
       "word": "bell",
       "meaning": "钟；铃",
-      "phonetic": "",
+      "phonetic": "/bel/",
       "unit": "Unit 6"
     }
   ]
