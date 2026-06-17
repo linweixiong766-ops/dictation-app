@@ -67,6 +67,7 @@
     "title": "Learning Mode",
     "interval": "Play Interval",
     "showPhonetic": "Show Phonetic",
+    "showPinyin": "Show Pinyin",
     "showMeaning": "Show Meaning",
     "playAudio": "Play Audio",
     "autoPlay": "Auto Play"

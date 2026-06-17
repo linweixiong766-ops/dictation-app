@@ -67,6 +67,7 @@
     "title": "学习模式",
     "interval": "播放间隔",
     "showPhonetic": "显示音标",
+    "showPinyin": "显示拼音",
     "showMeaning": "显示释义",
     "playAudio": "播放语音",
     "autoPlay": "自动播放"

@@ -197,13 +197,22 @@ onUnmounted(() => {
             <option :value="8000">8 {{ t('practice.seconds') }}</option>
           </select>
         </div>
-        <div class="setting-item">
+        <!-- Chinese mode: show pinyin toggle -->
+        <div class="setting-item" v-if="lang === 'zh'">
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="showPhonetic">
+            {{ t('learning.showPinyin') }}
+          </label>
+        </div>
+        <!-- English mode: show phonetic toggle -->
+        <div class="setting-item" v-if="lang === 'en'">
           <label class="checkbox-label">
             <input type="checkbox" v-model="showPhonetic">
             {{ t('learning.showPhonetic') }}
           </label>
         </div>
-        <div class="setting-item">
+        <!-- English mode: show meaning toggle -->
+        <div class="setting-item" v-if="lang === 'en'">
           <label class="checkbox-label">
             <input type="checkbox" v-model="showMeaning">
             {{ t('learning.showMeaning') }}
@@ -212,19 +221,37 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- Word Display -->
-    <div class="word-display-card card">
-      <!-- Word -->
+    <!-- Word Display - Chinese Mode -->
+    <div v-if="lang === 'zh'" class="word-display-card card">
+      <!-- Chinese Word -->
       <div class="word-main" v-if="currentWord">
         <div class="word-text">{{ currentWord.word }}</div>
       </div>
 
-      <!-- Phonetic/Pinyin -->
-      <div v-if="showPhonetic && currentWord && (currentWord.phonetic || currentWord.pinyin)" class="phonetic-display">
-        {{ currentWord.phonetic || currentWord.pinyin }}
+      <!-- Pinyin -->
+      <div v-if="showPhonetic && currentWord && currentWord.pinyin" class="phonetic-display">
+        {{ currentWord.pinyin }}
       </div>
 
-      <!-- Meaning -->
+      <!-- Play Button -->
+      <button class="btn btn-play" @click="playCurrentWord" :disabled="!isSpeechSupported()">
+        🔊 {{ t('learning.playAudio') }}
+      </button>
+    </div>
+
+    <!-- Word Display - English Mode -->
+    <div v-else class="word-display-card card">
+      <!-- English Word -->
+      <div class="word-main" v-if="currentWord">
+        <div class="word-text">{{ currentWord.word }}</div>
+      </div>
+
+      <!-- Phonetic -->
+      <div v-if="showPhonetic && currentWord && currentWord.phonetic" class="phonetic-display">
+        {{ currentWord.phonetic }}
+      </div>
+
+      <!-- Chinese Meaning -->
       <div v-if="showMeaning && currentWord" class="meaning-display">
         {{ currentWord.meaning }}
       </div>
