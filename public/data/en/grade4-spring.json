@@ -36,7 +36,7 @@
     {
       "word": "police officer",
       "meaning": "警察，警官",
-      "phonetic": "",
+      "phonetic": "/pəˈliːs ˈɒfɪsə(r)/",
       "unit": "Unit 1"
     },
     {
@@ -48,7 +48,7 @@
     {
       "word": "police station",
       "meaning": "警察（分）局，派出所",
-      "phonetic": "",
+      "phonetic": "/pəˈliːs ˈsteɪʃn/",
       "unit": "Unit 1"
     },
     {
@@ -84,13 +84,13 @@
     {
       "word": "scientist",
       "meaning": "科学家",
-      "phonetic": "",
+      "phonetic": "/ˈsaɪəntɪst/",
       "unit": "Unit 1"
     },
     {
       "word": "writer",
       "meaning": "作家；作者",
-      "phonetic": "",
+      "phonetic": "/ˈraɪtə(r)/",
       "unit": "Unit 1"
     },
     {
@@ -120,7 +120,7 @@
     {
       "word": "night owl",
       "meaning": "夜猫子，喜欢熬夜的人",
-      "phonetic": "",
+      "phonetic": "/naɪt aʊl/",
       "unit": "Unit 1"
     },
     {
@@ -132,7 +132,7 @@
     {
       "word": "taxi",
       "meaning": "出租车，计程车",
-      "phonetic": "",
+      "phonetic": "/ˈtæksi/",
       "unit": "Unit 1"
     },
     {
@@ -162,7 +162,7 @@
     {
       "word": "bake",
       "meaning": "烘，烤，焙",
-      "phonetic": "",
+      "phonetic": "/beɪk/",
       "unit": "Unit 1"
     },
     {
@@ -174,19 +174,19 @@
     {
       "word": "same",
       "meaning": "相同的，完全相同的，一模一样的",
-      "phonetic": "",
+      "phonetic": "/seɪm/",
       "unit": "Unit 1"
     },
     {
       "word": "sound",
       "meaning": "声，声音",
-      "phonetic": "",
+      "phonetic": "/saʊnd/",
       "unit": "Unit 1"
     },
     {
       "word": "postman",
       "meaning": "邮递员",
-      "phonetic": "",
+      "phonetic": "/ˈpəʊstmən/",
       "unit": "Unit 1"
     },
     {
@@ -204,43 +204,43 @@
     {
       "word": "laugh",
       "meaning": "发出笑声，（大）笑",
-      "phonetic": "",
+      "phonetic": "/lɑːf/",
       "unit": "Unit 2"
     },
     {
       "word": "sad",
       "meaning": "不愉快的，伤心的，难过的",
-      "phonetic": "",
+      "phonetic": "/sæd/",
       "unit": "Unit 2"
     },
     {
       "word": "scared",
       "meaning": "害怕的，恐惧的；紧张的",
-      "phonetic": "",
+      "phonetic": "/skeəd/",
       "unit": "Unit 2"
     },
     {
       "word": "angry",
       "meaning": "发怒的，生气的，气愤的",
-      "phonetic": "",
+      "phonetic": "/ˈæŋɡri/",
       "unit": "Unit 2"
     },
     {
       "word": "excited",
       "meaning": "兴奋的，激动的",
-      "phonetic": "",
+      "phonetic": "/ɪkˈsaɪtɪd/",
       "unit": "Unit 2"
     },
     {
       "word": "opera",
       "meaning": "歌剧",
-      "phonetic": "",
+      "phonetic": "/ˈɒprə/",
       "unit": "Unit 2"
     },
     {
       "word": "next",
       "meaning": "（时间）紧接着的；下次的",
-      "phonetic": "",
+      "phonetic": "/nekst/",
       "unit": "Unit 2"
     },
     {
@@ -252,7 +252,7 @@
     {
       "word": "better",
       "meaning": "（健康状况）好转的；（疼痛、伤势等）减轻的",
-      "phonetic": "",
+      "phonetic": "/ˈbetə(r)/",
       "unit": "Unit 2"
     },
     {
@@ -264,13 +264,13 @@
     {
       "word": "model",
       "meaning": "（尤指可拼装的）模型",
-      "phonetic": "",
+      "phonetic": "/ˈmɒdl/",
       "unit": "Unit 2"
     },
     {
       "word": "shout",
       "meaning": "大声说，喊叫，呼喊",
-      "phonetic": "",
+      "phonetic": "/ʃaʊt/",
       "unit": "Unit 2"
     },
     {
@@ -282,19 +282,19 @@
     {
       "word": "feeling",
       "meaning": "感觉，感触",
-      "phonetic": "",
+      "phonetic": "/ˈfiːlɪŋ/",
       "unit": "Unit 2"
     },
     {
       "word": "huge",
       "meaning": "巨大的",
-      "phonetic": "",
+      "phonetic": "/hjuːdʒ/",
       "unit": "Unit 2"
     },
     {
       "word": "worried",
       "meaning": "担心的，焦虑的",
-      "phonetic": "",
+      "phonetic": "/ˈwʌrid/",
       "unit": "Unit 2"
     },
     {
@@ -306,49 +306,49 @@
     {
       "word": "hit",
       "meaning": "撞击，碰撞",
-      "phonetic": "",
+      "phonetic": "/hɪt/",
       "unit": "Unit 2"
     },
     {
       "word": "talent",
       "meaning": "天资，天赋，才能",
-      "phonetic": "",
+      "phonetic": "/ˈtælənt/",
       "unit": "Unit 3"
     },
     {
       "word": "act",
       "meaning": "演出；扮演",
-      "phonetic": "",
+      "phonetic": "/ækt/",
       "unit": "Unit 3"
     },
     {
       "word": "magic",
       "meaning": "魔术，戏法",
-      "phonetic": "",
+      "phonetic": "/ˈmædʒɪk/",
       "unit": "Unit 3"
     },
     {
       "word": "shine",
       "meaning": "表现突出，出众",
-      "phonetic": "",
+      "phonetic": "/ʃaɪn/",
       "unit": "Unit 3"
     },
     {
       "word": "puzzle",
       "meaning": "拼图游戏",
-      "phonetic": "",
+      "phonetic": "/ˈpʌzl/",
       "unit": "Unit 3"
     },
     {
       "word": "dancer",
       "meaning": "舞蹈演员",
-      "phonetic": "",
+      "phonetic": "/ˈdɑːnsə(r)/",
       "unit": "Unit 3"
     },
     {
       "word": "win",
       "meaning": "获胜，赢",
-      "phonetic": "",
+      "phonetic": "/wɪn/",
       "unit": "Unit 3"
     },
     {
@@ -372,13 +372,13 @@
     {
       "word": "seed",
       "meaning": "种子，籽",
-      "phonetic": "",
+      "phonetic": "/siːd/",
       "unit": "Unit 4"
     },
     {
       "word": "earth",
       "meaning": "泥土，土壤",
-      "phonetic": "",
+      "phonetic": "/ɜːθ/",
       "unit": "Unit 4"
     },
     {
@@ -390,7 +390,7 @@
     {
       "word": "stem",
       "meaning": "（植物的）茎，梗，柄",
-      "phonetic": "",
+      "phonetic": "/stem/",
       "unit": "Unit 4"
     },
     {
@@ -408,25 +408,25 @@
     {
       "word": "dig",
       "meaning": "挖，掘",
-      "phonetic": "",
+      "phonetic": "/dɪɡ/",
       "unit": "Unit 4"
     },
     {
       "word": "sunflower",
       "meaning": "向日葵",
-      "phonetic": "",
+      "phonetic": "/ˈsʌnflaʊə(r)/",
       "unit": "Unit 4"
     },
     {
       "word": "plant",
       "meaning": "种植，栽种；播（种）",
-      "phonetic": "",
+      "phonetic": "/plɑːnt/",
       "unit": "Unit 4"
     },
     {
       "word": "dream",
       "meaning": "梦想，愿望，理想",
-      "phonetic": "",
+      "phonetic": "/driːm/",
       "unit": "Unit 4"
     },
     {
@@ -444,13 +444,13 @@
     {
       "word": "true",
       "meaning": "真的，真实的",
-      "phonetic": "",
+      "phonetic": "/truː/",
       "unit": "Unit 4"
     },
     {
       "word": "come true",
       "meaning": "实现",
-      "phonetic": "",
+      "phonetic": "/kʌm truː/",
       "unit": "Unit 4"
     },
     {
@@ -462,7 +462,7 @@
     {
       "word": "drama",
       "meaning": "戏剧",
-      "phonetic": "",
+      "phonetic": "/ˈdrɑːmə/",
       "unit": "Unit 5"
     },
     {
@@ -474,7 +474,7 @@
     {
       "word": "fair",
       "meaning": "集市；义卖会；户外游艺会",
-      "phonetic": "",
+      "phonetic": "/feə(r)/",
       "unit": "Unit 5"
     },
     {
@@ -486,19 +486,19 @@
     {
       "word": "horn",
       "meaning": "角",
-      "phonetic": "",
+      "phonetic": "/hɔːn/",
       "unit": "Unit 5"
     },
     {
       "word": "dot",
       "meaning": "点，小圆点",
-      "phonetic": "",
+      "phonetic": "/dɒt/",
       "unit": "Unit 5"
     },
     {
       "word": "raindrop",
       "meaning": "雨点，雨滴",
-      "phonetic": "",
+      "phonetic": "/ˈreɪndrɒp/",
       "unit": "Unit 5"
     },
     {
@@ -510,13 +510,13 @@
     {
       "word": "special",
       "meaning": "特殊的，特别的",
-      "phonetic": "",
+      "phonetic": "/ˈspeʃl/",
       "unit": "Unit 5"
     },
     {
       "word": "keeper",
       "meaning": "看守人，保管人",
-      "phonetic": "",
+      "phonetic": "/ˈkiːpə(r)/",
       "unit": "Unit 5"
     },
     {
@@ -552,25 +552,25 @@
     {
       "word": "note",
       "meaning": "笔记，记录",
-      "phonetic": "",
+      "phonetic": "/nəʊt/",
       "unit": "Unit 5"
     },
     {
       "word": "vote",
       "meaning": "选票",
-      "phonetic": "",
+      "phonetic": "/vəʊt/",
       "unit": "Unit 5"
     },
     {
       "word": "design",
       "meaning": "设计",
-      "phonetic": "",
+      "phonetic": "/dɪˈzaɪn/",
       "unit": "Unit 5"
     },
     {
       "word": "hometown",
       "meaning": "家乡，故乡",
-      "phonetic": "",
+      "phonetic": "/ˈhəʊmtaʊn/",
       "unit": "Unit 5"
     },
     {
@@ -630,19 +630,19 @@
     {
       "word": "dressmaker",
       "meaning": "裁缝",
-      "phonetic": "",
+      "phonetic": "/ˈdresmeɪkə(r)/",
       "unit": "Unit 6"
     },
     {
       "word": "wrong",
       "meaning": "不正确的，错误的",
-      "phonetic": "",
+      "phonetic": "/rɒŋ/",
       "unit": "Unit 6"
     },
     {
       "word": "clever",
       "meaning": "聪明的",
-      "phonetic": "",
+      "phonetic": "/ˈklevə(r)/",
       "unit": "Unit 6"
     },
     {
@@ -654,19 +654,19 @@
     {
       "word": "Mr",
       "meaning": "先生",
-      "phonetic": "",
+      "phonetic": "/ˈmɪstə(r)/",
       "unit": "Unit 6"
     },
     {
       "word": "uniform",
       "meaning": "制服",
-      "phonetic": "",
+      "phonetic": "/ˈjuːnɪfɔːm/",
       "unit": "Unit 6"
     },
     {
       "word": "robe",
       "meaning": "长袍",
-      "phonetic": "",
+      "phonetic": "/rəʊb/",
       "unit": "Unit 6"
     }
   ]
