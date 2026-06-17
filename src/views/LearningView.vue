@@ -23,9 +23,9 @@ const autoPlayTimer = ref(null)
 const playInterval = ref(3000) // 3秒间隔
 const showPhonetic = ref(true)
 const showMeaning = ref(true)
-const loopCount = ref(1) // 循环次数 (1-10, 或 0 表示无限循环)
-const currentLoop = ref(0) // 当前循环次数
-const completed = ref(false) // 是否完成所有循环
+const repeatCount = ref(1) // 每个单词重复次数 (1-5)
+const currentRepeat = ref(0) // 当前单词已重复次数
+const completed = ref(false) // 是否完成所有单词
 
 const currentWord = computed(() => {
   if (!practiceWords.value.length) return null
@@ -84,34 +84,30 @@ function startAutoPlay() {
 
   isPlaying.value = true
   completed.value = false
-  currentLoop.value = 1
+  currentRepeat.value = 1
   playCurrentWord()
 
   autoPlayTimer.value = setInterval(() => {
-    // Move to next word
-    if (currentIndex.value < practiceWords.value.length - 1) {
-      currentIndex.value++
+    // Check if we need to repeat the current word
+    if (currentRepeat.value < repeatCount.value) {
+      // Repeat the same word
+      currentRepeat.value++
+      playCurrentWord()
     } else {
-      // Completed one loop
-      if (loopCount.value === 0) {
-        // Infinite loop - restart
-        currentIndex.value = 0
-      } else if (currentLoop.value < loopCount.value) {
-        // More loops to go
-        currentLoop.value++
-        currentIndex.value = 0
+      // Move to next word
+      currentRepeat.value = 1
+      if (currentIndex.value < practiceWords.value.length - 1) {
+        currentIndex.value++
+        setTimeout(() => {
+          playCurrentWord()
+        }, 500)
       } else {
-        // All loops completed
+        // All words completed
         stopAutoPlay()
         completed.value = true
         return
       }
     }
-
-    // Play the word
-    setTimeout(() => {
-      playCurrentWord()
-    }, 500)
   }, playInterval.value)
 }
 
@@ -155,7 +151,7 @@ function nextWord() {
 
 function restartLearning() {
   currentIndex.value = 0
-  currentLoop.value = 0
+  currentRepeat.value = 0
   completed.value = false
   isPlaying.value = false
   stopAutoPlay()
@@ -250,20 +246,13 @@ onUnmounted(() => {
           </select>
         </div>
         <div class="setting-item">
-          <label>{{ t('learning.loopCount') }}</label>
-          <select v-model="loopCount" class="input-select" :disabled="isPlaying">
+          <label>{{ t('learning.repeatCount') }}</label>
+          <select v-model="repeatCount" class="input-select" :disabled="isPlaying">
             <option :value="1">1 {{ t('learning.times') }}</option>
             <option :value="2">2 {{ t('learning.times') }}</option>
             <option :value="3">3 {{ t('learning.times') }}</option>
             <option :value="5">5 {{ t('learning.times') }}</option>
-            <option :value="0">{{ t('learning.infinite') }}</option>
           </select>
-        </div>
-        <!-- Loop progress -->
-        <div class="setting-item" v-if="isPlaying && loopCount > 0">
-          <span class="loop-progress">
-            {{ t('learning.loopProgress') }}: {{ currentLoop }} / {{ loopCount }}
-          </span>
         </div>
         <!-- Chinese mode: show pinyin toggle -->
         <div class="setting-item" v-if="lang === 'zh'">
@@ -507,18 +496,18 @@ onUnmounted(() => {
 }
 
 .btn-play {
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
   color: white;
   font-size: 1.1rem;
   padding: 0.75rem 2rem;
-  border-radius: var(--radius-md);
+  border-radius: 50px;
   cursor: pointer;
   transition: var(--transition);
 }
 
 .btn-play:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .btn-play:disabled {

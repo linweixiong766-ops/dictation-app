@@ -66,10 +66,8 @@
   "learning": {
     "title": "Learning Mode",
     "interval": "Play Interval",
-    "loopCount": "Loop Count",
+    "repeatCount": "Repeat Each Word",
     "times": "times",
-    "infinite": "Infinite",
-    "loopProgress": "Loop Progress",
     "showPhonetic": "Show Phonetic",
     "showPinyin": "Show Pinyin",
     "showMeaning": "Show Meaning",
