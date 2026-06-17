@@ -289,11 +289,6 @@ onUnmounted(() => {
       <div v-if="showPhonetic && currentWord && currentWord.pinyin" class="phonetic-display">
         {{ currentWord.pinyin }}
       </div>
-
-      <!-- Play Button -->
-      <button class="btn btn-play" @click="playCurrentWord" :disabled="!isSpeechSupported()">
-        🔊 {{ t('learning.playAudio') }}
-      </button>
     </div>
 
     <!-- Word Display - English Mode -->
@@ -312,11 +307,6 @@ onUnmounted(() => {
       <div v-if="showMeaning && currentWord" class="meaning-display">
         {{ currentWord.meaning }}
       </div>
-
-      <!-- Play Button -->
-      <button class="btn btn-play" @click="playCurrentWord" :disabled="!isSpeechSupported()">
-        🔊 {{ t('learning.playAudio') }}
-      </button>
     </div>
 
     <!-- Controls -->
@@ -500,26 +490,6 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: var(--transition);
-  min-width: 140px;
-}
-
-.btn-play:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.btn-play:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .controls-card {
