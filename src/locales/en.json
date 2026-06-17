@@ -60,7 +60,16 @@
     "listenAndWrite": "Listen to the audio and write the word",
     "answerSheet": "Dictation Answer Sheet",
     "playGame": "Word Shooter",
-    "allUnits": "All Units"
+    "allUnits": "All Units",
+    "learningMode": "Learning Mode"
+  },
+  "learning": {
+    "title": "Learning Mode",
+    "interval": "Play Interval",
+    "showPhonetic": "Show Phonetic",
+    "showMeaning": "Show Meaning",
+    "playAudio": "Play Audio",
+    "autoPlay": "Auto Play"
   },
   "game": {
     "title": "Word Shooter Game",

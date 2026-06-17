@@ -13,6 +13,12 @@ const routes = [
     props: true
   },
   {
+    path: '/learn/:lang/:listId',
+    name: 'Learning',
+    component: () => import('../views/LearningView.vue'),
+    props: true
+  },
+  {
     path: '/practice/:lang/:listId',
     name: 'Practice',
     component: () => import('../views/PracticeView.vue'),

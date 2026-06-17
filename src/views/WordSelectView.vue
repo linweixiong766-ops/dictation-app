@@ -126,6 +126,14 @@ function startGame() {
   const wordIndices = selectedWords.value.join(',')
   router.push(`/game/${props.lang}/${props.listId}?words=${wordIndices}`)
 }
+
+function startLearning() {
+  if (selectedWords.value.length === 0) return
+
+  // 将选中的单词索引传递给学习页面
+  const wordIndices = selectedWords.value.join(',')
+  router.push(`/learn/${props.lang}/${props.listId}?words=${wordIndices}`)
+}
 </script>
 
 <template>
@@ -171,6 +179,13 @@ function startGame() {
           />
           {{ t('practice.selectAll') }}
         </label>
+        <button
+          class="btn btn-learn"
+          :disabled="selectedCount === 0"
+          @click="startLearning"
+        >
+          📖 {{ t('practice.learningMode') }} ({{ selectedCount }})
+        </button>
         <button
           class="btn btn-primary"
           :disabled="selectedCount === 0"
@@ -444,6 +459,21 @@ function startGame() {
 }
 
 .btn-game:active {
+  transform: translateY(0);
+}
+
+.btn-learn {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: white;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.4);
+}
+
+.btn-learn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.5);
+}
+
+.btn-learn:active {
   transform: translateY(0);
 }
 
