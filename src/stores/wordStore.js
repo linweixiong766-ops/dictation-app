@@ -24,7 +24,8 @@ export const useWordStore = defineStore('word', () => {
     ],
     zh: [
       'grade3.json',
-      'grade4.json'
+      'grade4.json',
+      'pinyin-preschool.json'
     ]
   }
 
