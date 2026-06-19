@@ -10,6 +10,11 @@ export const useWordStore = defineStore('word', () => {
   const isLoading = ref(false)
   const error = ref(null)
 
+  // 选择状态存储
+  const selectedWordIndices = ref([])
+  const selectedListId = ref(null)
+  const selectedLang = ref(null)
+
   // All available word list files
   const wordListFiles = {
     en: [
@@ -25,7 +30,8 @@ export const useWordStore = defineStore('word', () => {
     zh: [
       'grade3.json',
       'grade4.json',
-      'pinyin-preschool.json'
+      'pinyin-preschool.json',
+      'pinyin-reading.json'
     ]
   }
 
@@ -141,6 +147,65 @@ export const useWordStore = defineStore('word', () => {
     return allLists.find(l => l.language === lang && l.category === listId)
   }
 
+  // 保存选择状态
+  function saveSelection(lang, listId, indices) {
+    selectedLang.value = lang
+    selectedListId.value = listId
+    selectedWordIndices.value = [...indices]
+    // 同时保存到 localStorage 以便刷新后恢复
+    try {
+      localStorage.setItem('lastSelection', JSON.stringify({
+        lang,
+        listId,
+        indices,
+        timestamp: Date.now()
+      }))
+    } catch (err) {
+      console.error('Failed to save selection:', err)
+    }
+  }
+
+  // 恢复选择状态
+  function restoreSelection() {
+    // 首先从内存中恢复
+    if (selectedLang.value && selectedListId.value && selectedWordIndices.value.length > 0) {
+      return {
+        lang: selectedLang.value,
+        listId: selectedListId.value,
+        indices: selectedWordIndices.value
+      }
+    }
+    // 然后从 localStorage 恢复
+    try {
+      const saved = localStorage.getItem('lastSelection')
+      if (saved) {
+        const data = JSON.parse(saved)
+        // 检查是否在 24 小时内
+        if (Date.now() - data.timestamp < 24 * 60 * 60 * 1000) {
+          selectedLang.value = data.lang
+          selectedListId.value = data.listId
+          selectedWordIndices.value = data.indices
+          return data
+        }
+      }
+    } catch (err) {
+      console.error('Failed to restore selection:', err)
+    }
+    return null
+  }
+
+  // 清除选择状态
+  function clearSelection() {
+    selectedLang.value = null
+    selectedListId.value = null
+    selectedWordIndices.value = []
+    try {
+      localStorage.removeItem('lastSelection')
+    } catch (err) {
+      console.error('Failed to clear selection:', err)
+    }
+  }
+
   return {
     wordLists,
     customLists,
@@ -149,6 +214,9 @@ export const useWordStore = defineStore('word', () => {
     isLoading,
     error,
     availableLists,
+    selectedWordIndices,
+    selectedListId,
+    selectedLang,
     loadWordLists,
     loadCustomLists,
     saveCustomLists,
@@ -158,6 +226,9 @@ export const useWordStore = defineStore('word', () => {
     addWordToList,
     updateWordInList,
     deleteWordFromList,
-    getListById
+    getListById,
+    saveSelection,
+    restoreSelection,
+    clearSelection
   }
 })

@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { useWordStore } from '../stores/wordStore'
 import { speakEnglish, speakChinese, isSpeechSupported } from '../utils/audio'
+import { playPinyinAudio, playBlendAudio, stopCurrentPlayingAudio } from '../utils/audioResourceManager'
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -28,10 +29,34 @@ const score = ref(0)
 const completed = ref(false)
 const answers = ref([])
 
+// 用于取消当前音频播放
+let currentAudioController = null
+
 const currentWord = computed(() => {
   if (!practiceWords.value.length) return null
   return practiceWords.value[currentIndex.value]
 })
+
+// Check if current word is pinyin (has unit field)
+const isPinyinMode = computed(() => {
+  return props.lang === 'zh' && currentWord.value && currentWord.value.unit
+})
+
+// Check if current word is a vowel (韵母)
+const isVowel = computed(() => {
+  if (!currentWord.value) return false
+  return currentWord.value.meaning && (
+    currentWord.value.meaning.includes('韵母') ||
+    currentWord.value.meaning.includes('整体认读')
+  )
+})
+
+// Get a random toned version for vowels
+function getRandomTone(wordData) {
+  if (!wordData || !wordData.pinyin) return wordData.word
+  const tones = wordData.pinyin.split(' ')
+  return tones[Math.floor(Math.random() * tones.length)] || wordData.word
+}
 
 const progress = computed(() => {
   if (!practiceWords.value.length) return 0
@@ -74,17 +99,50 @@ async function loadList() {
   }
 }
 
+// 停止当前音频播放
+function stopCurrentAudio() {
+  if (currentAudioController) {
+    currentAudioController.abort()
+    currentAudioController = null
+  }
+  // 同时停止正在播放的音频对象
+  stopCurrentPlayingAudio()
+}
+
 async function playAudio() {
   if (!currentWord.value) return
+
+  // 先停止之前的音频
+  stopCurrentAudio()
+
+  // 创建新的 abort controller
+  const controller = new AbortController()
+  currentAudioController = controller
 
   try {
     if (props.lang === 'en') {
       await speakEnglish(currentWord.value.word)
+    } else if (isPinyinMode.value) {
+      // 检查是否有blendParts（拼读模式）
+      if (currentWord.value.blendParts && currentWord.value.blendParts.length > 1) {
+        // 拼读模式：按顺序播放各个部分
+        await playBlendAudio(currentWord.value.blendParts, { signal: controller.signal })
+      } else {
+        // 普通拼音模式
+        const pinyinText = isVowel.value ? getRandomTone(currentWord.value) : currentWord.value.word
+        await playPinyinAudio(pinyinText)
+      }
     } else {
       await speakChinese(currentWord.value.word)
     }
   } catch (err) {
-    console.error('Speech error:', err)
+    if (err.name !== 'AbortError') {
+      console.error('Speech error:', err)
+    }
+  } finally {
+    if (currentAudioController === controller) {
+      currentAudioController = null
+    }
   }
 }
 
@@ -108,6 +166,7 @@ function checkAnswer() {
 }
 
 function nextWord() {
+  stopCurrentAudio()
   if (currentIndex.value < practiceWords.value.length - 1) {
     currentIndex.value++
     userInput.value = ''
@@ -120,6 +179,7 @@ function nextWord() {
 }
 
 function previousWord() {
+  stopCurrentAudio()
   if (currentIndex.value > 0) {
     currentIndex.value--
     userInput.value = ''
@@ -157,15 +217,25 @@ function handleKeydown(event) {
     }
   }
 }
+
+function goBackToSelection() {
+  // 返回到选择页面，保留之前的选择状态
+  router.push(`/select/${props.lang}/${props.listId}`)
+}
 </script>
 
 <template>
   <div class="practice-view" v-if="currentList">
     <div class="practice-header">
       <h1>{{ t('practice.title') }}</h1>
-      <button class="btn btn-outline" @click="router.push('/')">
-        {{ t('practice.backToList') }}
-      </button>
+      <div class="header-actions">
+        <button class="btn btn-outline btn-sm" @click="goBackToSelection">
+          📋 返回选择
+        </button>
+        <button class="btn btn-outline btn-sm" @click="router.push('/')">
+          {{ t('practice.backToList') }}
+        </button>
+      </div>
     </div>
 
     <!-- Progress Bar -->
@@ -283,6 +353,18 @@ function handleKeydown(event) {
 .practice-card {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
+}
+
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .word-display {

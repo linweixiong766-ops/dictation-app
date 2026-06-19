@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { useWordStore } from '../stores/wordStore'
 import { speakEnglish, speakChinese, isSpeechSupported } from '../utils/audio'
+import { playPinyinAudio, playBlendAudio, stopCurrentPlayingAudio } from '../utils/audioResourceManager'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -25,10 +26,34 @@ const playInterval = ref(3000) // 3秒间隔
 const repeatCount = ref(1) // 重复次数
 const currentRepeat = ref(0)
 
+// 用于取消当前音频播放
+let currentAudioController = null
+
 const currentWord = computed(() => {
   if (!practiceWords.value.length) return null
   return practiceWords.value[currentIndex.value]
 })
+
+// Check if current word is pinyin (has unit field)
+const isPinyinMode = computed(() => {
+  return props.lang === 'zh' && currentWord.value && currentWord.value.unit
+})
+
+// Check if current word is a vowel (韵母)
+const isVowel = computed(() => {
+  if (!currentWord.value) return false
+  return currentWord.value.meaning && (
+    currentWord.value.meaning.includes('韵母') ||
+    currentWord.value.meaning.includes('整体认读')
+  )
+})
+
+// Get a random toned version for vowels
+function getRandomTone(wordData) {
+  if (!wordData || !wordData.pinyin) return wordData.word
+  const tones = wordData.pinyin.split(' ')
+  return tones[Math.floor(Math.random() * tones.length)] || wordData.word
+}
 
 const progress = computed(() => {
   if (!practiceWords.value.length) return 0
@@ -68,28 +93,75 @@ async function loadList() {
   }
 }
 
+// 停止当前音频播放
+function stopCurrentAudio() {
+  if (currentAudioController) {
+    currentAudioController.abort()
+    currentAudioController = null
+  }
+  // 同时停止正在播放的音频对象
+  stopCurrentPlayingAudio()
+}
+
 async function playCurrentWord() {
   if (!currentWord.value) return
+
+  // 先停止之前的音频
+  stopCurrentAudio()
+
+  // 创建新的 abort controller
+  const controller = new AbortController()
+  currentAudioController = controller
 
   try {
     if (props.lang === 'en') {
       await speakEnglish(currentWord.value.word)
+    } else if (isPinyinMode.value) {
+      // 检查是否有blendParts（拼读模式）
+      if (currentWord.value.blendParts && currentWord.value.blendParts.length > 1) {
+        // 拼读模式：按顺序播放各个部分
+        await playBlendAudio(currentWord.value.blendParts, { signal: controller.signal })
+      } else {
+        // 普通拼音模式
+        const pinyinText = isVowel.value ? getRandomTone(currentWord.value) : currentWord.value.word
+        await playPinyinAudio(pinyinText)
+      }
     } else {
       await speakChinese(currentWord.value.word)
     }
   } catch (err) {
-    console.error('Speech error:', err)
+    if (err.name !== 'AbortError') {
+      console.error('Speech error:', err)
+    }
+  } finally {
+    if (currentAudioController === controller) {
+      currentAudioController = null
+    }
   }
 }
 
-function startAutoPlay() {
+async function startAutoPlay() {
   if (!practiceWords.value.length) return
 
   isPlaying.value = true
   currentRepeat.value = 0
-  playCurrentWord()
 
-  autoPlayTimer.value = setInterval(() => {
+  // 使用递归方式，等音频播放完成后再开始计时
+  async function playNext() {
+    if (!isPlaying.value) return
+
+    // 播放当前单词并等待完成
+    await playCurrentWord()
+
+    // 如果停止了，直接返回
+    if (!isPlaying.value) return
+
+    // 等待间隔时间
+    await new Promise(r => setTimeout(r, playInterval.value))
+
+    // 如果停止了，直接返回
+    if (!isPlaying.value) return
+
     currentRepeat.value++
 
     if (currentRepeat.value >= repeatCount.value) {
@@ -105,8 +177,12 @@ function startAutoPlay() {
       }
     }
 
-    playCurrentWord()
-  }, playInterval.value)
+    // 继续播放下一个
+    playNext()
+  }
+
+  // 开始播放
+  playNext()
 }
 
 function stopAutoPlay() {
@@ -115,6 +191,8 @@ function stopAutoPlay() {
     clearInterval(autoPlayTimer.value)
     autoPlayTimer.value = null
   }
+  // 停止当前音频播放
+  stopCurrentAudio()
   // 停止语音
   if (window.speechSynthesis) {
     window.speechSynthesis.cancel()
@@ -189,6 +267,11 @@ function handleKeydown(event) {
   }
 }
 
+function goBackToSelection() {
+  // 返回到选择页面，保留之前的选择状态
+  router.push(`/select/${props.lang}/${props.listId}`)
+}
+
 // 监听键盘事件
 onMounted(() => {
   window.addEventListener('keydown', handleKeydown)
@@ -203,6 +286,9 @@ onUnmounted(() => {
   <div class="group-practice-view" v-if="practiceWords.length">
     <div class="practice-header">
       <div class="header-left">
+        <button class="btn btn-outline btn-sm" @click="goBackToSelection">
+          📋 返回选择
+        </button>
         <button class="btn btn-outline btn-sm" @click="router.push('/')">
           ← {{ t('practice.backToList') }}
         </button>

@@ -3,151 +3,1343 @@
   "language": "zh",
   "category": "幼小衔接",
   "words": [
-    { "word": "b", "meaning": "声母", "pinyin": "bō", "unit": "声母" },
-    { "word": "p", "meaning": "声母", "pinyin": "pō", "unit": "声母" },
-    { "word": "m", "meaning": "声母", "pinyin": "mō", "unit": "声母" },
-    { "word": "f", "meaning": "声母", "pinyin": "fó", "unit": "声母" },
-    { "word": "d", "meaning": "声母", "pinyin": "dé", "unit": "声母" },
-    { "word": "t", "meaning": "声母", "pinyin": "tè", "unit": "声母" },
-    { "word": "n", "meaning": "声母", "pinyin": "nè", "unit": "声母" },
-    { "word": "l", "meaning": "声母", "pinyin": "lè", "unit": "声母" },
-    { "word": "g", "meaning": "声母", "pinyin": "gē", "unit": "声母" },
-    { "word": "k", "meaning": "声母", "pinyin": "kē", "unit": "声母" },
-    { "word": "h", "meaning": "声母", "pinyin": "hē", "unit": "声母" },
-    { "word": "j", "meaning": "声母", "pinyin": "jī", "unit": "声母" },
-    { "word": "q", "meaning": "声母", "pinyin": "qī", "unit": "声母" },
-    { "word": "x", "meaning": "声母", "pinyin": "xī", "unit": "声母" },
-    { "word": "zh", "meaning": "声母", "pinyin": "zhī", "unit": "声母" },
-    { "word": "ch", "meaning": "声母", "pinyin": "chī", "unit": "声母" },
-    { "word": "sh", "meaning": "声母", "pinyin": "shī", "unit": "声母" },
-    { "word": "r", "meaning": "声母", "pinyin": "rì", "unit": "声母" },
-    { "word": "z", "meaning": "声母", "pinyin": "zī", "unit": "声母" },
-    { "word": "c", "meaning": "声母", "pinyin": "cī", "unit": "声母" },
-    { "word": "s", "meaning": "声母", "pinyin": "sī", "unit": "声母" },
-    { "word": "y", "meaning": "声母", "pinyin": "yī", "unit": "声母" },
-    { "word": "w", "meaning": "声母", "pinyin": "wū", "unit": "声母" },
-
-    { "word": "a", "meaning": "单韵母", "pinyin": "ā á ǎ à", "unit": "单韵母" },
-    { "word": "o", "meaning": "单韵母", "pinyin": "ō ó ǒ ò", "unit": "单韵母" },
-    { "word": "e", "meaning": "单韵母", "pinyin": "ē é ě è", "unit": "单韵母" },
-    { "word": "i", "meaning": "单韵母", "pinyin": "ī í ǐ ì", "unit": "单韵母" },
-    { "word": "u", "meaning": "单韵母", "pinyin": "ū ú ǔ ù", "unit": "单韵母" },
-    { "word": "ü", "meaning": "单韵母", "pinyin": "ǖ ǘ ǚ ǜ", "unit": "单韵母" },
-
-    { "word": "ai", "meaning": "复韵母", "pinyin": "āi ái ǎi ài", "unit": "复韵母" },
-    { "word": "ei", "meaning": "复韵母", "pinyin": "ēi éi ěi èi", "unit": "复韵母" },
-    { "word": "ui", "meaning": "复韵母", "pinyin": "uī uí uǐ uì", "unit": "复韵母" },
-    { "word": "ao", "meaning": "复韵母", "pinyin": "āo áo ǎo ào", "unit": "复韵母" },
-    { "word": "ou", "meaning": "复韵母", "pinyin": "ōu óu ǒu òu", "unit": "复韵母" },
-    { "word": "iu", "meaning": "复韵母", "pinyin": "iū iú iǔ iù", "unit": "复韵母" },
-    { "word": "ie", "meaning": "复韵母", "pinyin": "iē ié iě iè", "unit": "复韵母" },
-    { "word": "üe", "meaning": "复韵母", "pinyin": "üē üé üě üè", "unit": "复韵母" },
-    { "word": "er", "meaning": "复韵母", "pinyin": "ēr ér ěr èr", "unit": "复韵母" },
-
-    { "word": "an", "meaning": "前鼻韵母", "pinyin": "ān án ǎn àn", "unit": "前鼻韵母" },
-    { "word": "en", "meaning": "前鼻韵母", "pinyin": "ēn én ěn èn", "unit": "前鼻韵母" },
-    { "word": "in", "meaning": "前鼻韵母", "pinyin": "īn ín ǐn ìn", "unit": "前鼻韵母" },
-    { "word": "un", "meaning": "前鼻韵母", "pinyin": "ūn ún ǔn ùn", "unit": "前鼻韵母" },
-    { "word": "ün", "meaning": "前鼻韵母", "pinyin": "ǖn ǘn ǚn ǜn", "unit": "前鼻韵母" },
-
-    { "word": "ang", "meaning": "后鼻韵母", "pinyin": "āng áng ǎng àng", "unit": "后鼻韵母" },
-    { "word": "eng", "meaning": "后鼻韵母", "pinyin": "ēng éng ěng èng", "unit": "后鼻韵母" },
-    { "word": "ing", "meaning": "后鼻韵母", "pinyin": "īng íng ǐng ìng", "unit": "后鼻韵母" },
-    { "word": "ong", "meaning": "后鼻韵母", "pinyin": "ōng óng ǒng òng", "unit": "后鼻韵母" },
-
-    { "word": "zhi", "meaning": "整体认读", "pinyin": "zhī zhí zhǐ zhì", "unit": "整体认读" },
-    { "word": "chi", "meaning": "整体认读", "pinyin": "chī chí chǐ chì", "unit": "整体认读" },
-    { "word": "shi", "meaning": "整体认读", "pinyin": "shī shí shǐ shì", "unit": "整体认读" },
-    { "word": "ri", "meaning": "整体认读", "pinyin": "rī rí rǐ rì", "unit": "整体认读" },
-    { "word": "zi", "meaning": "整体认读", "pinyin": "zī zí zǐ zì", "unit": "整体认读" },
-    { "word": "ci", "meaning": "整体认读", "pinyin": "cī cí cǐ cì", "unit": "整体认读" },
-    { "word": "si", "meaning": "整体认读", "pinyin": "sī sí sǐ sì", "unit": "整体认读" },
-    { "word": "yi", "meaning": "整体认读", "pinyin": "yī yí yǐ yì", "unit": "整体认读" },
-    { "word": "wu", "meaning": "整体认读", "pinyin": "wū wú wǔ wù", "unit": "整体认读" },
-    { "word": "yu", "meaning": "整体认读", "pinyin": "yū yú yǔ yù", "unit": "整体认读" },
-    { "word": "ye", "meaning": "整体认读", "pinyin": "yē yé yě yè", "unit": "整体认读" },
-    { "word": "yue", "meaning": "整体认读", "pinyin": "yuē yué yuě yuè", "unit": "整体认读" },
-    { "word": "yuan", "meaning": "整体认读", "pinyin": "yuān yuán yuǎn yuàn", "unit": "整体认读" },
-    { "word": "yin", "meaning": "整体认读", "pinyin": "yīn yín yǐn yìn", "unit": "整体认读" },
-    { "word": "yun", "meaning": "整体认读", "pinyin": "yūn yún yǔn yùn", "unit": "整体认读" },
-    { "word": "ying", "meaning": "整体认读", "pinyin": "yīng yíng yǐng yìng", "unit": "整体认读" },
-
-    { "word": "jia", "meaning": "三拼音节(ia)", "pinyin": "jiā jiá jiǎ jià", "unit": "三拼音节" },
-    { "word": "qia", "meaning": "三拼音节(ia)", "pinyin": "qiā qiá qiǎ qià", "unit": "三拼音节" },
-    { "word": "xia", "meaning": "三拼音节(ia)", "pinyin": "xiā xiá xiǎ xià", "unit": "三拼音节" },
-    { "word": "jiao", "meaning": "三拼音节(iao)", "pinyin": "jiāo jiáo jiǎo jiào", "unit": "三拼音节" },
-    { "word": "qiao", "meaning": "三拼音节(iao)", "pinyin": "qiāo qiáo qiǎo qiào", "unit": "三拼音节" },
-    { "word": "xiao", "meaning": "三拼音节(iao)", "pinyin": "xiāo xiáo xiǎo xiào", "unit": "三拼音节" },
-    { "word": "jian", "meaning": "三拼音节(ian)", "pinyin": "jiān jián jiǎn jiàn", "unit": "三拼音节" },
-    { "word": "qian", "meaning": "三拼音节(ian)", "pinyin": "qiān qián qiǎn qiàn", "unit": "三拼音节" },
-    { "word": "xian", "meaning": "三拼音节(ian)", "pinyin": "xiān xián xiǎn xiàn", "unit": "三拼音节" },
-    { "word": "jiang", "meaning": "三拼音节(iang)", "pinyin": "jiāng jiáng jiǎng jiàng", "unit": "三拼音节" },
-    { "word": "qiang", "meaning": "三拼音节(iang)", "pinyin": "qiāng qiáng qiǎng qiàng", "unit": "三拼音节" },
-    { "word": "xiang", "meaning": "三拼音节(iang)", "pinyin": "xiāng xiáng xiǎng xiàng", "unit": "三拼音节" },
-    { "word": "jiong", "meaning": "三拼音节(iong)", "pinyin": "jiōng jióng jiǒng jiòng", "unit": "三拼音节" },
-    { "word": "qiong", "meaning": "三拼音节(iong)", "pinyin": "qiōng qióng qiǒng qiòng", "unit": "三拼音节" },
-    { "word": "xiong", "meaning": "三拼音节(iong)", "pinyin": "xiōng xióng xiǒng xiòng", "unit": "三拼音节" },
-    { "word": "diao", "meaning": "三拼音节(iao)", "pinyin": "diāo diáo diǎo diào", "unit": "三拼音节" },
-    { "word": "tiao", "meaning": "三拼音节(iao)", "pinyin": "tiāo tiáo tiǎo tiào", "unit": "三拼音节" },
-    { "word": "niao", "meaning": "三拼音节(iao)", "pinyin": "niāo niáo niǎo niào", "unit": "三拼音节" },
-    { "word": "liao", "meaning": "三拼音节(iao)", "pinyin": "liāo liáo liǎo liào", "unit": "三拼音节" },
-    { "word": "dian", "meaning": "三拼音节(ian)", "pinyin": "diān dián diǎn diàn", "unit": "三拼音节" },
-    { "word": "tian", "meaning": "三拼音节(ian)", "pinyin": "tiān tián tiǎn tiàn", "unit": "三拼音节" },
-    { "word": "nian", "meaning": "三拼音节(ian)", "pinyin": "niān nián niǎn niàn", "unit": "三拼音节" },
-    { "word": "lian", "meaning": "三拼音节(ian)", "pinyin": "liān lián liǎn liàn", "unit": "三拼音节" },
-    { "word": "liang", "meaning": "三拼音节(iang)", "pinyin": "liāng liáng liǎng liàng", "unit": "三拼音节" },
-    { "word": "niang", "meaning": "三拼音节(iang)", "pinyin": "niāng niáng niǎng niàng", "unit": "三拼音节" },
-    { "word": "gua", "meaning": "三拼音节(ua)", "pinyin": "guā guá guǎ guà", "unit": "三拼音节" },
-    { "word": "kua", "meaning": "三拼音节(ua)", "pinyin": "kuā kuá kuǎ kuà", "unit": "三拼音节" },
-    { "word": "hua", "meaning": "三拼音节(ua)", "pinyin": "huā huá huǎ huà", "unit": "三拼音节" },
-    { "word": "zhua", "meaning": "三拼音节(ua)", "pinyin": "zhuā zhuá zhuǎ zhuà", "unit": "三拼音节" },
-    { "word": "chua", "meaning": "三拼音节(ua)", "pinyin": "chuā chuá chuǎ chuà", "unit": "三拼音节" },
-    { "word": "shua", "meaning": "三拼音节(ua)", "pinyin": "shuā shuá shuǎ shuà", "unit": "三拼音节" },
-    { "word": "guo", "meaning": "三拼音节(uo)", "pinyin": "guō guó guǒ guò", "unit": "三拼音节" },
-    { "word": "kuo", "meaning": "三拼音节(uo)", "pinyin": "kuō kuó kuǒ kuò", "unit": "三拼音节" },
-    { "word": "huo", "meaning": "三拼音节(uo)", "pinyin": "huō huó huǒ huò", "unit": "三拼音节" },
-    { "word": "zhuo", "meaning": "三拼音节(uo)", "pinyin": "zhuō zhuó zhuǒ zhuò", "unit": "三拼音节" },
-    { "word": "chuo", "meaning": "三拼音节(uo)", "pinyin": "chuō chuó chuǒ chuò", "unit": "三拼音节" },
-    { "word": "shuo", "meaning": "三拼音节(uo)", "pinyin": "shuō shuó shuǒ shuò", "unit": "三拼音节" },
-    { "word": "ruo", "meaning": "三拼音节(uo)", "pinyin": "ruō ruó ruǒ ruò", "unit": "三拼音节" },
-    { "word": "zuo", "meaning": "三拼音节(uo)", "pinyin": "zuō zuó zuǒ zuò", "unit": "三拼音节" },
-    { "word": "cuo", "meaning": "三拼音节(uo)", "pinyin": "cuō cuó cuǒ cuò", "unit": "三拼音节" },
-    { "word": "suo", "meaning": "三拼音节(uo)", "pinyin": "suō suó suǒ suò", "unit": "三拼音节" },
-    { "word": "duo", "meaning": "三拼音节(uo)", "pinyin": "duō duó duǒ duò", "unit": "三拼音节" },
-    { "word": "tuo", "meaning": "三拼音节(uo)", "pinyin": "tuō tuó tuǒ tuò", "unit": "三拼音节" },
-    { "word": "nuo", "meaning": "三拼音节(uo)", "pinyin": "nuō nuó nuǒ nuò", "unit": "三拼音节" },
-    { "word": "luo", "meaning": "三拼音节(uo)", "pinyin": "luō luó luǒ luò", "unit": "三拼音节" },
-    { "word": "guai", "meaning": "三拼音节(uai)", "pinyin": "guāi guái guǎi guài", "unit": "三拼音节" },
-    { "word": "kuai", "meaning": "三拼音节(uai)", "pinyin": "kuāi kuái kuǎi kuài", "unit": "三拼音节" },
-    { "word": "huai", "meaning": "三拼音节(uai)", "pinyin": "huāi huái huǎi huài", "unit": "三拼音节" },
-    { "word": "zhuai", "meaning": "三拼音节(uai)", "pinyin": "zhuāi zhuái zhuǎi zhuài", "unit": "三拼音节" },
-    { "word": "chuai", "meaning": "三拼音节(uai)", "pinyin": "chuāi chuái chuǎi chuài", "unit": "三拼音节" },
-    { "word": "shuai", "meaning": "三拼音节(uai)", "pinyin": "shuāi shuái shuǎi shuài", "unit": "三拼音节" },
-    { "word": "guan", "meaning": "三拼音节(uan)", "pinyin": "guān guán guǎn guàn", "unit": "三拼音节" },
-    { "word": "kuan", "meaning": "三拼音节(uan)", "pinyin": "kuān kuán kuǎn kuàn", "unit": "三拼音节" },
-    { "word": "huan", "meaning": "三拼音节(uan)", "pinyin": "huān huán huǎn huàn", "unit": "三拼音节" },
-    { "word": "zhuan", "meaning": "三拼音节(uan)", "pinyin": "zhuān zhuán zhuǎn zhuàn", "unit": "三拼音节" },
-    { "word": "chuan", "meaning": "三拼音节(uan)", "pinyin": "chuān chuán chuǎn chuàn", "unit": "三拼音节" },
-    { "word": "shuan", "meaning": "三拼音节(uan)", "pinyin": "shuān shuán shuǎn shuàn", "unit": "三拼音节" },
-    { "word": "ruan", "meaning": "三拼音节(uan)", "pinyin": "ruān ruán ruǎn ruàn", "unit": "三拼音节" },
-    { "word": "zuan", "meaning": "三拼音节(uan)", "pinyin": "zuān zuán zuǎn zuàn", "unit": "三拼音节" },
-    { "word": "cuan", "meaning": "三拼音节(uan)", "pinyin": "cuān cuán cuǎn cuàn", "unit": "三拼音节" },
-    { "word": "suan", "meaning": "三拼音节(uan)", "pinyin": "suān suán suǎn suàn", "unit": "三拼音节" },
-    { "word": "duan", "meaning": "三拼音节(uan)", "pinyin": "duān duán duǎn duàn", "unit": "三拼音节" },
-    { "word": "tuan", "meaning": "三拼音节(uan)", "pinyin": "tuān tuán tuǎn tuàn", "unit": "三拼音节" },
-    { "word": "nuan", "meaning": "三拼音节(uan)", "pinyin": "nuān nuán nuǎn nuàn", "unit": "三拼音节" },
-    { "word": "luan", "meaning": "三拼音节(uan)", "pinyin": "luān luán luǎn luàn", "unit": "三拼音节" },
-    { "word": "guang", "meaning": "三拼音节(uang)", "pinyin": "guāng guáng guǎng guàng", "unit": "三拼音节" },
-    { "word": "kuang", "meaning": "三拼音节(uang)", "pinyin": "kuāng kuáng kuǎng kuàng", "unit": "三拼音节" },
-    { "word": "huang", "meaning": "三拼音节(uang)", "pinyin": "huāng huáng huǎng huàng", "unit": "三拼音节" },
-    { "word": "zhuang", "meaning": "三拼音节(uang)", "pinyin": "zhuāng zhuáng zhuǎng zhuàng", "unit": "三拼音节" },
-    { "word": "chuang", "meaning": "三拼音节(uang)", "pinyin": "chuāng chuáng chuǎng chuàng", "unit": "三拼音节" },
-    { "word": "shuang", "meaning": "三拼音节(uang)", "pinyin": "shuāng shuáng shuǎng shuàng", "unit": "三拼音节" },
-    { "word": "juan", "meaning": "三拼音节(üan)", "pinyin": "juān juán juǎn juàn", "unit": "三拼音节" },
-    { "word": "quan", "meaning": "三拼音节(üan)", "pinyin": "quān quán quǎn quàn", "unit": "三拼音节" },
-    { "word": "xuan", "meaning": "三拼音节(üan)", "pinyin": "xuān xuán xuǎn xuàn", "unit": "三拼音节" },
-    { "word": "yuan", "meaning": "三拼音节(üan)", "pinyin": "yuān yuán yuǎn yuàn", "unit": "三拼音节" },
-    { "word": "nüan", "meaning": "三拼音节(üan)", "pinyin": "nüān nüán nüǎn nüàn", "unit": "三拼音节" },
-    { "word": "lüan", "meaning": "三拼音节(üan)", "pinyin": "lüān lüán lüǎn lüàn", "unit": "三拼音节" }
+    {
+      "word": "b",
+      "meaning": "声母",
+      "pinyin": "b",
+      "unit": "声母"
+    },
+    {
+      "word": "p",
+      "meaning": "声母",
+      "pinyin": "p",
+      "unit": "声母"
+    },
+    {
+      "word": "m",
+      "meaning": "声母",
+      "pinyin": "m",
+      "unit": "声母"
+    },
+    {
+      "word": "f",
+      "meaning": "声母",
+      "pinyin": "f",
+      "unit": "声母"
+    },
+    {
+      "word": "d",
+      "meaning": "声母",
+      "pinyin": "d",
+      "unit": "声母"
+    },
+    {
+      "word": "t",
+      "meaning": "声母",
+      "pinyin": "t",
+      "unit": "声母"
+    },
+    {
+      "word": "n",
+      "meaning": "声母",
+      "pinyin": "n",
+      "unit": "声母"
+    },
+    {
+      "word": "l",
+      "meaning": "声母",
+      "pinyin": "l",
+      "unit": "声母"
+    },
+    {
+      "word": "g",
+      "meaning": "声母",
+      "pinyin": "g",
+      "unit": "声母"
+    },
+    {
+      "word": "k",
+      "meaning": "声母",
+      "pinyin": "k",
+      "unit": "声母"
+    },
+    {
+      "word": "h",
+      "meaning": "声母",
+      "pinyin": "h",
+      "unit": "声母"
+    },
+    {
+      "word": "j",
+      "meaning": "声母",
+      "pinyin": "j",
+      "unit": "声母"
+    },
+    {
+      "word": "q",
+      "meaning": "声母",
+      "pinyin": "q",
+      "unit": "声母"
+    },
+    {
+      "word": "x",
+      "meaning": "声母",
+      "pinyin": "x",
+      "unit": "声母"
+    },
+    {
+      "word": "zh",
+      "meaning": "声母",
+      "pinyin": "zh",
+      "unit": "声母"
+    },
+    {
+      "word": "ch",
+      "meaning": "声母",
+      "pinyin": "ch",
+      "unit": "声母"
+    },
+    {
+      "word": "sh",
+      "meaning": "声母",
+      "pinyin": "sh",
+      "unit": "声母"
+    },
+    {
+      "word": "r",
+      "meaning": "声母",
+      "pinyin": "r",
+      "unit": "声母"
+    },
+    {
+      "word": "z",
+      "meaning": "声母",
+      "pinyin": "z",
+      "unit": "声母"
+    },
+    {
+      "word": "c",
+      "meaning": "声母",
+      "pinyin": "c",
+      "unit": "声母"
+    },
+    {
+      "word": "s",
+      "meaning": "声母",
+      "pinyin": "s",
+      "unit": "声母"
+    },
+    {
+      "word": "y",
+      "meaning": "声母",
+      "pinyin": "y",
+      "unit": "声母"
+    },
+    {
+      "word": "w",
+      "meaning": "声母",
+      "pinyin": "w",
+      "unit": "声母"
+    },
+    {
+      "word": "a",
+      "meaning": "单韵母",
+      "pinyin": "a",
+      "unit": "单韵母-不带声调"
+    },
+    {
+      "word": "o",
+      "meaning": "单韵母",
+      "pinyin": "o",
+      "unit": "单韵母-不带声调"
+    },
+    {
+      "word": "e",
+      "meaning": "单韵母",
+      "pinyin": "e",
+      "unit": "单韵母-不带声调"
+    },
+    {
+      "word": "i",
+      "meaning": "单韵母",
+      "pinyin": "i",
+      "unit": "单韵母-不带声调"
+    },
+    {
+      "word": "u",
+      "meaning": "单韵母",
+      "pinyin": "u",
+      "unit": "单韵母-不带声调"
+    },
+    {
+      "word": "ü",
+      "meaning": "单韵母",
+      "pinyin": "ü",
+      "unit": "单韵母-不带声调"
+    },
+    {
+      "word": "ā",
+      "meaning": "单韵母(第一声)",
+      "pinyin": "ā",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ō",
+      "meaning": "单韵母(第一声)",
+      "pinyin": "ō",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ē",
+      "meaning": "单韵母(第一声)",
+      "pinyin": "ē",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ī",
+      "meaning": "单韵母(第一声)",
+      "pinyin": "ī",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ū",
+      "meaning": "单韵母(第一声)",
+      "pinyin": "ū",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ǖ",
+      "meaning": "单韵母(第一声)",
+      "pinyin": "ǖ",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "á",
+      "meaning": "单韵母(第二声)",
+      "pinyin": "á",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ó",
+      "meaning": "单韵母(第二声)",
+      "pinyin": "ó",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "é",
+      "meaning": "单韵母(第二声)",
+      "pinyin": "é",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "í",
+      "meaning": "单韵母(第二声)",
+      "pinyin": "í",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ú",
+      "meaning": "单韵母(第二声)",
+      "pinyin": "ú",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ǘ",
+      "meaning": "单韵母(第二声)",
+      "pinyin": "ǘ",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ǎ",
+      "meaning": "单韵母(第三声)",
+      "pinyin": "ǎ",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ǒ",
+      "meaning": "单韵母(第三声)",
+      "pinyin": "ǒ",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ě",
+      "meaning": "单韵母(第三声)",
+      "pinyin": "ě",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ǐ",
+      "meaning": "单韵母(第三声)",
+      "pinyin": "ǐ",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ǔ",
+      "meaning": "单韵母(第三声)",
+      "pinyin": "ǔ",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ǚ",
+      "meaning": "单韵母(第三声)",
+      "pinyin": "ǚ",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "à",
+      "meaning": "单韵母(第四声)",
+      "pinyin": "à",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ò",
+      "meaning": "单韵母(第四声)",
+      "pinyin": "ò",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "è",
+      "meaning": "单韵母(第四声)",
+      "pinyin": "è",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ì",
+      "meaning": "单韵母(第四声)",
+      "pinyin": "ì",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ù",
+      "meaning": "单韵母(第四声)",
+      "pinyin": "ù",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ǜ",
+      "meaning": "单韵母(第四声)",
+      "pinyin": "ǜ",
+      "unit": "单韵母-带声调"
+    },
+    {
+      "word": "ai",
+      "meaning": "复韵母",
+      "pinyin": "ai",
+      "unit": "复韵母-不带声调"
+    },
+    {
+      "word": "ei",
+      "meaning": "复韵母",
+      "pinyin": "ei",
+      "unit": "复韵母-不带声调"
+    },
+    {
+      "word": "ui",
+      "meaning": "复韵母",
+      "pinyin": "ui",
+      "unit": "复韵母-不带声调"
+    },
+    {
+      "word": "ao",
+      "meaning": "复韵母",
+      "pinyin": "ao",
+      "unit": "复韵母-不带声调"
+    },
+    {
+      "word": "ou",
+      "meaning": "复韵母",
+      "pinyin": "ou",
+      "unit": "复韵母-不带声调"
+    },
+    {
+      "word": "iu",
+      "meaning": "复韵母",
+      "pinyin": "iu",
+      "unit": "复韵母-不带声调"
+    },
+    {
+      "word": "ie",
+      "meaning": "复韵母",
+      "pinyin": "ie",
+      "unit": "复韵母-不带声调"
+    },
+    {
+      "word": "üe",
+      "meaning": "复韵母",
+      "pinyin": "üe",
+      "unit": "复韵母-不带声调"
+    },
+    {
+      "word": "er",
+      "meaning": "复韵母",
+      "pinyin": "er",
+      "unit": "复韵母-不带声调"
+    },
+    {
+      "word": "āi",
+      "meaning": "复韵母(第一声)",
+      "pinyin": "āi",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ēi",
+      "meaning": "复韵母(第一声)",
+      "pinyin": "ēi",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "uī",
+      "meaning": "复韵母(第一声)",
+      "pinyin": "uī",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "āo",
+      "meaning": "复韵母(第一声)",
+      "pinyin": "āo",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ōu",
+      "meaning": "复韵母(第一声)",
+      "pinyin": "ōu",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "iū",
+      "meaning": "复韵母(第一声)",
+      "pinyin": "iū",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "iē",
+      "meaning": "复韵母(第一声)",
+      "pinyin": "iē",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "üē",
+      "meaning": "复韵母(第一声)",
+      "pinyin": "üē",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ēr",
+      "meaning": "复韵母(第一声)",
+      "pinyin": "ēr",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ái",
+      "meaning": "复韵母(第二声)",
+      "pinyin": "ái",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "éi",
+      "meaning": "复韵母(第二声)",
+      "pinyin": "éi",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "uí",
+      "meaning": "复韵母(第二声)",
+      "pinyin": "uí",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "áo",
+      "meaning": "复韵母(第二声)",
+      "pinyin": "áo",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "óu",
+      "meaning": "复韵母(第二声)",
+      "pinyin": "óu",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "iú",
+      "meaning": "复韵母(第二声)",
+      "pinyin": "iú",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ié",
+      "meaning": "复韵母(第二声)",
+      "pinyin": "ié",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "üé",
+      "meaning": "复韵母(第二声)",
+      "pinyin": "üé",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ér",
+      "meaning": "复韵母(第二声)",
+      "pinyin": "ér",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ǎi",
+      "meaning": "复韵母(第三声)",
+      "pinyin": "ǎi",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ěi",
+      "meaning": "复韵母(第三声)",
+      "pinyin": "ěi",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "uǐ",
+      "meaning": "复韵母(第三声)",
+      "pinyin": "uǐ",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ǎo",
+      "meaning": "复韵母(第三声)",
+      "pinyin": "ǎo",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ǒu",
+      "meaning": "复韵母(第三声)",
+      "pinyin": "ǒu",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "iǔ",
+      "meaning": "复韵母(第三声)",
+      "pinyin": "iǔ",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "iě",
+      "meaning": "复韵母(第三声)",
+      "pinyin": "iě",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "üě",
+      "meaning": "复韵母(第三声)",
+      "pinyin": "üě",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ěr",
+      "meaning": "复韵母(第三声)",
+      "pinyin": "ěr",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ài",
+      "meaning": "复韵母(第四声)",
+      "pinyin": "ài",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "èi",
+      "meaning": "复韵母(第四声)",
+      "pinyin": "èi",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "uì",
+      "meaning": "复韵母(第四声)",
+      "pinyin": "uì",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "ào",
+      "meaning": "复韵母(第四声)",
+      "pinyin": "ào",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "òu",
+      "meaning": "复韵母(第四声)",
+      "pinyin": "òu",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "iù",
+      "meaning": "复韵母(第四声)",
+      "pinyin": "iù",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "iè",
+      "meaning": "复韵母(第四声)",
+      "pinyin": "iè",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "üè",
+      "meaning": "复韵母(第四声)",
+      "pinyin": "üè",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "èr",
+      "meaning": "复韵母(第四声)",
+      "pinyin": "èr",
+      "unit": "复韵母-带声调"
+    },
+    {
+      "word": "an",
+      "meaning": "前鼻韵母",
+      "pinyin": "an",
+      "unit": "前鼻韵母-不带声调"
+    },
+    {
+      "word": "en",
+      "meaning": "前鼻韵母",
+      "pinyin": "en",
+      "unit": "前鼻韵母-不带声调"
+    },
+    {
+      "word": "in",
+      "meaning": "前鼻韵母",
+      "pinyin": "in",
+      "unit": "前鼻韵母-不带声调"
+    },
+    {
+      "word": "un",
+      "meaning": "前鼻韵母",
+      "pinyin": "un",
+      "unit": "前鼻韵母-不带声调"
+    },
+    {
+      "word": "ün",
+      "meaning": "前鼻韵母",
+      "pinyin": "ün",
+      "unit": "前鼻韵母-不带声调"
+    },
+    {
+      "word": "ān",
+      "meaning": "前鼻韵母(第一声)",
+      "pinyin": "ān",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ēn",
+      "meaning": "前鼻韵母(第一声)",
+      "pinyin": "ēn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "īn",
+      "meaning": "前鼻韵母(第一声)",
+      "pinyin": "īn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ūn",
+      "meaning": "前鼻韵母(第一声)",
+      "pinyin": "ūn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ǖn",
+      "meaning": "前鼻韵母(第一声)",
+      "pinyin": "ǖn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "án",
+      "meaning": "前鼻韵母(第二声)",
+      "pinyin": "án",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "én",
+      "meaning": "前鼻韵母(第二声)",
+      "pinyin": "én",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ín",
+      "meaning": "前鼻韵母(第二声)",
+      "pinyin": "ín",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ún",
+      "meaning": "前鼻韵母(第二声)",
+      "pinyin": "ún",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ǘn",
+      "meaning": "前鼻韵母(第二声)",
+      "pinyin": "ǘn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ǎn",
+      "meaning": "前鼻韵母(第三声)",
+      "pinyin": "ǎn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ěn",
+      "meaning": "前鼻韵母(第三声)",
+      "pinyin": "ěn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ǐn",
+      "meaning": "前鼻韵母(第三声)",
+      "pinyin": "ǐn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ǔn",
+      "meaning": "前鼻韵母(第三声)",
+      "pinyin": "ǔn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ǚn",
+      "meaning": "前鼻韵母(第三声)",
+      "pinyin": "ǚn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "àn",
+      "meaning": "前鼻韵母(第四声)",
+      "pinyin": "àn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "èn",
+      "meaning": "前鼻韵母(第四声)",
+      "pinyin": "èn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ìn",
+      "meaning": "前鼻韵母(第四声)",
+      "pinyin": "ìn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ùn",
+      "meaning": "前鼻韵母(第四声)",
+      "pinyin": "ùn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ǜn",
+      "meaning": "前鼻韵母(第四声)",
+      "pinyin": "ǜn",
+      "unit": "前鼻韵母-带声调"
+    },
+    {
+      "word": "ang",
+      "meaning": "后鼻韵母",
+      "pinyin": "ang",
+      "unit": "后鼻韵母-不带声调"
+    },
+    {
+      "word": "eng",
+      "meaning": "后鼻韵母",
+      "pinyin": "eng",
+      "unit": "后鼻韵母-不带声调"
+    },
+    {
+      "word": "ing",
+      "meaning": "后鼻韵母",
+      "pinyin": "ing",
+      "unit": "后鼻韵母-不带声调"
+    },
+    {
+      "word": "ong",
+      "meaning": "后鼻韵母",
+      "pinyin": "ong",
+      "unit": "后鼻韵母-不带声调"
+    },
+    {
+      "word": "āng",
+      "meaning": "后鼻韵母(第一声)",
+      "pinyin": "āng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "ēng",
+      "meaning": "后鼻韵母(第一声)",
+      "pinyin": "ēng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "īng",
+      "meaning": "后鼻韵母(第一声)",
+      "pinyin": "īng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "ōng",
+      "meaning": "后鼻韵母(第一声)",
+      "pinyin": "ōng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "áng",
+      "meaning": "后鼻韵母(第二声)",
+      "pinyin": "áng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "éng",
+      "meaning": "后鼻韵母(第二声)",
+      "pinyin": "éng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "íng",
+      "meaning": "后鼻韵母(第二声)",
+      "pinyin": "íng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "óng",
+      "meaning": "后鼻韵母(第二声)",
+      "pinyin": "óng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "ǎng",
+      "meaning": "后鼻韵母(第三声)",
+      "pinyin": "ǎng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "ěng",
+      "meaning": "后鼻韵母(第三声)",
+      "pinyin": "ěng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "ǐng",
+      "meaning": "后鼻韵母(第三声)",
+      "pinyin": "ǐng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "ǒng",
+      "meaning": "后鼻韵母(第三声)",
+      "pinyin": "ǒng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "àng",
+      "meaning": "后鼻韵母(第四声)",
+      "pinyin": "àng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "èng",
+      "meaning": "后鼻韵母(第四声)",
+      "pinyin": "èng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "ìng",
+      "meaning": "后鼻韵母(第四声)",
+      "pinyin": "ìng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "òng",
+      "meaning": "后鼻韵母(第四声)",
+      "pinyin": "òng",
+      "unit": "后鼻韵母-带声调"
+    },
+    {
+      "word": "zhi",
+      "meaning": "整体认读",
+      "pinyin": "zhi",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "chi",
+      "meaning": "整体认读",
+      "pinyin": "chi",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "shi",
+      "meaning": "整体认读",
+      "pinyin": "shi",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "ri",
+      "meaning": "整体认读",
+      "pinyin": "ri",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "zi",
+      "meaning": "整体认读",
+      "pinyin": "zi",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "ci",
+      "meaning": "整体认读",
+      "pinyin": "ci",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "si",
+      "meaning": "整体认读",
+      "pinyin": "si",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "yi",
+      "meaning": "整体认读",
+      "pinyin": "yi",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "wu",
+      "meaning": "整体认读",
+      "pinyin": "wu",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "yu",
+      "meaning": "整体认读",
+      "pinyin": "yu",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "ye",
+      "meaning": "整体认读",
+      "pinyin": "ye",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "yue",
+      "meaning": "整体认读",
+      "pinyin": "yue",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "yuan",
+      "meaning": "整体认读",
+      "pinyin": "yuan",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "yin",
+      "meaning": "整体认读",
+      "pinyin": "yin",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "yun",
+      "meaning": "整体认读",
+      "pinyin": "yun",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "ying",
+      "meaning": "整体认读",
+      "pinyin": "ying",
+      "unit": "整体认读-不带声调"
+    },
+    {
+      "word": "zhī",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "zhī",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "chī",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "chī",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "shī",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "shī",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "rī",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "rī",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "zī",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "zī",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "cī",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "cī",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "sī",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "sī",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yī",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "yī",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "wū",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "wū",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yū",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "yū",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yē",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "yē",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yuē",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "yuē",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yuān",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "yuān",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yīn",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "yīn",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yūn",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "yūn",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yīng",
+      "meaning": "整体认读(第一声)",
+      "pinyin": "yīng",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "zhí",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "zhí",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "chí",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "chí",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "shí",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "shí",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "rí",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "rí",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "zí",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "zí",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "cí",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "cí",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "sí",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "sí",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yí",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "yí",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "wú",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "wú",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yú",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "yú",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yé",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "yé",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yué",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "yué",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yuán",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "yuán",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yín",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "yín",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yún",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "yún",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yíng",
+      "meaning": "整体认读(第二声)",
+      "pinyin": "yíng",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "zhǐ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "zhǐ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "chǐ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "chǐ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "shǐ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "shǐ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "rǐ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "rǐ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "zǐ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "zǐ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "cǐ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "cǐ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "sǐ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "sǐ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yǐ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "yǐ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "wǔ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "wǔ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yǔ",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "yǔ",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yě",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "yě",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yuě",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "yuě",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yuǎn",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "yuǎn",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yǐn",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "yǐn",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yǔn",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "yǔn",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yǐng",
+      "meaning": "整体认读(第三声)",
+      "pinyin": "yǐng",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "zhì",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "zhì",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "chì",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "chì",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "shì",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "shì",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "rì",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "rì",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "zì",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "zì",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "cì",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "cì",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "sì",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "sì",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yì",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "yì",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "wù",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "wù",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yù",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "yù",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yè",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "yè",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yuè",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "yuè",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yuàn",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "yuàn",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yìn",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "yìn",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yùn",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "yùn",
+      "unit": "整体认读-带声调"
+    },
+    {
+      "word": "yìng",
+      "meaning": "整体认读(第四声)",
+      "pinyin": "yìng",
+      "unit": "整体认读-带声调"
+    }
   ]
 }

@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { useWordStore } from '../stores/wordStore'
 import { speakEnglish, speakChinese, isSpeechSupported } from '../utils/audio'
+import { playPinyinAudio, playBlendAudio, playCorrectSound, playWrongSound, playClickSound, playCompleteSound, stopCurrentPlayingAudio } from '../utils/audioResourceManager'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -29,6 +30,30 @@ const totalHits = ref(0)
 const totalMisses = ref(0)
 const gameArea = ref(null)
 
+// 用于取消当前音频播放
+let currentAudioController = null
+
+// Check if current word is pinyin (韵母需要声调)
+const isPinyinMode = computed(() => {
+  return props.lang === 'zh' && currentWord.value && currentWord.value.unit
+})
+
+// Check if current word is a vowel (韵母)
+const isVowel = computed(() => {
+  if (!currentWord.value) return false
+  return currentWord.value.meaning && (
+    currentWord.value.meaning.includes('韵母') ||
+    currentWord.value.meaning.includes('整体认读')
+  )
+})
+
+// Get a random toned version for vowels
+function getRandomTone(wordData) {
+  if (!wordData || !wordData.pinyin) return wordData.word
+  const tones = wordData.pinyin.split(' ')
+  return tones[Math.floor(Math.random() * tones.length)] || wordData.word
+}
+
 // Difficulty settings
 const showSettings = ref(false)
 const difficulty = ref({
@@ -36,6 +61,7 @@ const difficulty = ref({
   wordLetters: 30,     // % chance to spawn other letters from the word
   decoyLetters: 40     // % chance to spawn decoy letters (not in word)
 })
+const audioLoopInterval = ref(5) // 音频循环间隔（秒）
 
 // Current word state
 const nextLetterIndex = ref(0) // Index of the next letter needed
@@ -47,18 +73,40 @@ const targetIdCounter = ref(0)
 const wordStartTime = ref(null) // Track time per word
 const wordMisses = ref(0) // Track misses per word
 
+// 组件是否挂载
+const isMounted = ref(true)
+
 // Computed: the next letter we need to click
 const nextNeededLetter = computed(() => {
   if (!currentWord.value) return null
-  const word = currentWord.value.word.toUpperCase()
+  const word = currentWord.value.word
   if (nextLetterIndex.value >= word.length) return null
-  return word[nextLetterIndex.value]
+  // For pinyin mode, return lowercase
+  if (isPinyinMode.value) {
+    return word[nextLetterIndex.value]
+  }
+  return word[nextLetterIndex.value].toUpperCase()
 })
 
 // Computed: display word showing progress
 const displayWord = computed(() => {
   if (!currentWord.value) return ''
-  const word = currentWord.value.word.toUpperCase()
+  const word = currentWord.value.word
+
+  // For pinyin mode, don't show the answer - only show underscores
+  if (isPinyinMode.value) {
+    let display = ''
+    for (let i = 0; i < word.length; i++) {
+      if (i < nextLetterIndex.value) {
+        display += word[i] // Already collected
+      } else {
+        display += '_' // Not yet collected
+      }
+    }
+    return display
+  }
+
+  // For English mode, show progress
   let display = ''
   for (let i = 0; i < word.length; i++) {
     if (i < nextLetterIndex.value) {
@@ -169,47 +217,56 @@ function initAudio() {
 }
 
 function playPopSound() {
-  initAudio()
-  const osc = audioCtx.createOscillator()
-  const gain = audioCtx.createGain()
-  osc.connect(gain)
-  gain.connect(audioCtx.destination)
-  osc.frequency.setValueAtTime(600, audioCtx.currentTime)
-  osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.15)
-  gain.gain.setValueAtTime(0.3, audioCtx.currentTime)
-  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15)
-  osc.start(audioCtx.currentTime)
-  osc.stop(audioCtx.currentTime + 0.15)
-}
-
-function playMissSound() {
-  initAudio()
-  const osc = audioCtx.createOscillator()
-  const gain = audioCtx.createGain()
-  osc.connect(gain)
-  gain.connect(audioCtx.destination)
-  osc.type = 'sawtooth'
-  osc.frequency.setValueAtTime(150, audioCtx.currentTime)
-  osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.2)
-  gain.gain.setValueAtTime(0.15, audioCtx.currentTime)
-  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2)
-  osc.start(audioCtx.currentTime)
-  osc.stop(audioCtx.currentTime + 0.2)
-}
-
-function playSuccessSound() {
-  initAudio()
-  const notes = [523, 659, 784]
-  notes.forEach((freq, i) => {
+  // Try to use local audio file first, fallback to Web Audio API
+  playClickSound().catch(() => {
+    initAudio()
     const osc = audioCtx.createOscillator()
     const gain = audioCtx.createGain()
     osc.connect(gain)
     gain.connect(audioCtx.destination)
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime + i * 0.1)
-    gain.gain.setValueAtTime(0.2, audioCtx.currentTime + i * 0.1)
-    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + i * 0.1 + 0.3)
-    osc.start(audioCtx.currentTime + i * 0.1)
-    osc.stop(audioCtx.currentTime + i * 0.1 + 0.3)
+    osc.frequency.setValueAtTime(600, audioCtx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.15)
+    gain.gain.setValueAtTime(0.3, audioCtx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15)
+    osc.start(audioCtx.currentTime)
+    osc.stop(audioCtx.currentTime + 0.15)
+  })
+}
+
+function playMissSound() {
+  // Try to use local audio file first, fallback to Web Audio API
+  playWrongSound().catch(() => {
+    initAudio()
+    const osc = audioCtx.createOscillator()
+    const gain = audioCtx.createGain()
+    osc.connect(gain)
+    gain.connect(audioCtx.destination)
+    osc.type = 'sawtooth'
+    osc.frequency.setValueAtTime(150, audioCtx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.2)
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2)
+    osc.start(audioCtx.currentTime)
+    osc.stop(audioCtx.currentTime + 0.2)
+  })
+}
+
+function playSuccessSound() {
+  // Try to use local audio file first, fallback to Web Audio API
+  playCompleteSound().catch(() => {
+    initAudio()
+    const notes = [523, 659, 784]
+    notes.forEach((freq, i) => {
+      const osc = audioCtx.createOscillator()
+      const gain = audioCtx.createGain()
+      osc.connect(gain)
+      gain.connect(audioCtx.destination)
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime + i * 0.1)
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime + i * 0.1)
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + i * 0.1 + 0.3)
+      osc.start(audioCtx.currentTime + i * 0.1)
+      osc.stop(audioCtx.currentTime + i * 0.1 + 0.3)
+    })
   })
 }
 
@@ -237,16 +294,19 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  isMounted.value = false
   stopTimers()
 })
 
 function stopTimers() {
   if (timerInterval.value) clearInterval(timerInterval.value)
   if (spawnTimer.value) clearInterval(spawnTimer.value)
-  if (audioLoopTimer.value) clearInterval(audioLoopTimer.value)
+  // audioLoopTimer 现在只是标志位，不需要 clearInterval
   timerInterval.value = null
   spawnTimer.value = null
   audioLoopTimer.value = null
+  // 停止当前音频播放
+  stopCurrentAudio()
 }
 
 function shuffleArray(array) {
@@ -310,19 +370,36 @@ function loadWord() {
 
 function startAudioLoop() {
   // Clear any existing audio loop
-  if (audioLoopTimer.value) {
-    clearInterval(audioLoopTimer.value)
+  audioLoopTimer.value = null
+
+  // 使用递归方式，等音频播放完成后再开始计时
+  async function playNext() {
+    // 如果组件已卸载、循环已停止、单词已完成或游戏停止，停止循环
+    if (!isMounted.value || !audioLoopTimer.value || isWordComplete.value || !gameStarted.value) {
+      audioLoopTimer.value = null
+      return
+    }
+
+    // 播放音频并等待完成
+    await playWordAudio()
+
+    // 再次检查是否停止
+    if (!isMounted.value || !audioLoopTimer.value || isWordComplete.value || !gameStarted.value) {
+      audioLoopTimer.value = null
+      return
+    }
+
+    // 等待间隔时间
+    await new Promise(r => setTimeout(r, audioLoopInterval.value * 1000))
+
+    // 继续播放下一个
+    playNext()
   }
 
-  // Play audio every 3 seconds until word is complete
-  audioLoopTimer.value = setInterval(() => {
-    if (isWordComplete.value) {
-      clearInterval(audioLoopTimer.value)
-      audioLoopTimer.value = null
-    } else {
-      playWordAudio()
-    }
-  }, 3000)
+  // 设置标志位表示循环正在运行
+  audioLoopTimer.value = true
+  // 开始播放
+  playNext()
 }
 
 function startContinuousSpawning() {
@@ -348,8 +425,11 @@ function startContinuousSpawning() {
 function spawnOneTarget() {
   if (!currentWord.value || !gameStarted.value) return
 
-  const word = currentWord.value.word.toUpperCase()
+  const word = currentWord.value.word
   const letters = word.split('')
+
+  // For pinyin mode, use lowercase; for English, use uppercase
+  const displayLetters = isPinyinMode.value ? letters : letters.map(l => l.toUpperCase())
   const areaWidth = gameArea.value?.offsetWidth || 800
   const areaHeight = gameArea.value?.offsetHeight || 500
   const padding = 60
@@ -369,30 +449,58 @@ function spawnOneTarget() {
     letterData = { letter: nextLetter, isCorrect: true }
   } else if (rand < wordThreshold) {
     // Spawn a letter from the word, but NOT the next one needed
-    const otherLetters = letters.filter((l, i) => i !== nextLetterIndex.value)
+    const otherLetters = displayLetters.filter((l, i) => i !== nextLetterIndex.value)
     if (otherLetters.length > 0) {
       const letter = otherLetters[Math.floor(Math.random() * otherLetters.length)]
       letterData = { letter, isCorrect: false }
     } else {
       // Fallback to decoy
+      if (isPinyinMode.value) {
+        // Chinese pinyin decoys
+        const pinyinDecoys = ['b', 'p', 'm', 'f', 'd', 't', 'n', 'l', 'g', 'k', 'h', 'j', 'q', 'x',
+          'zh', 'ch', 'sh', 'r', 'z', 'c', 's', 'y', 'w', 'a', 'o', 'e', 'i', 'u', 'ü',
+          'ai', 'ei', 'ui', 'ao', 'ou', 'iu', 'ie', 'üe', 'er', 'an', 'en', 'in', 'un', 'ün',
+          'ang', 'eng', 'ing', 'ong']
+        let decoyLetter
+        do {
+          decoyLetter = pinyinDecoys[Math.floor(Math.random() * pinyinDecoys.length)]
+        } while (displayLetters.includes(decoyLetter))
+        letterData = { letter: decoyLetter, isCorrect: false }
+      } else {
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        let decoyLetter
+        do {
+          decoyLetter = alphabet[Math.floor(Math.random() * 26)]
+        } while (displayLetters.includes(decoyLetter))
+        letterData = { letter: decoyLetter, isCorrect: false }
+      }
+    }
+  } else {
+    // Spawn a decoy (letter NOT in the word)
+    if (isPinyinMode.value) {
+      // Chinese pinyin decoys
+      const pinyinDecoys = ['b', 'p', 'm', 'f', 'd', 't', 'n', 'l', 'g', 'k', 'h', 'j', 'q', 'x',
+        'zh', 'ch', 'sh', 'r', 'z', 'c', 's', 'y', 'w', 'a', 'o', 'e', 'i', 'u', 'ü',
+        'ai', 'ei', 'ui', 'ao', 'ou', 'iu', 'ie', 'üe', 'er', 'an', 'en', 'in', 'un', 'ün',
+        'ang', 'eng', 'ing', 'ong']
+      let decoyLetter
+      do {
+        decoyLetter = pinyinDecoys[Math.floor(Math.random() * pinyinDecoys.length)]
+      } while (displayLetters.includes(decoyLetter))
+      letterData = { letter: decoyLetter, isCorrect: false }
+    } else {
       const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       let decoyLetter
       do {
         decoyLetter = alphabet[Math.floor(Math.random() * 26)]
-      } while (letters.includes(decoyLetter))
+      } while (displayLetters.includes(decoyLetter))
       letterData = { letter: decoyLetter, isCorrect: false }
     }
-  } else {
-    // Spawn a decoy (letter NOT in the word)
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    let decoyLetter
-    do {
-      decoyLetter = alphabet[Math.floor(Math.random() * 26)]
-    } while (letters.includes(decoyLetter))
-    letterData = { letter: decoyLetter, isCorrect: false }
   }
 
-  const size = 45 + Math.random() * 35 // Random size 45-80px
+  // Adjust size for pinyin (longer text needs bigger bubbles)
+  const isLongLetter = letterData.letter.length > 2
+  const size = isLongLetter ? (70 + Math.random() * 20) : (45 + Math.random() * 35)
   const color = colors[Math.floor(Math.random() * colors.length)]
 
   // Find non-overlapping position
@@ -503,10 +611,14 @@ function handleHit(target) {
   totalHits.value++
 
   // Check if this is the correct NEXT letter in order
-  const word = currentWord.value.word.toUpperCase()
+  const word = currentWord.value.word
   const expectedLetter = word[nextLetterIndex.value]
 
-  if (target.letter === expectedLetter) {
+  // For pinyin mode, compare lowercase; for English, compare uppercase
+  const hitLetter = isPinyinMode.value ? target.letter : target.letter.toUpperCase()
+  const expected = isPinyinMode.value ? expectedLetter : expectedLetter.toUpperCase()
+
+  if (hitLetter === expected) {
     // Correct next letter! Move to next position
     nextLetterIndex.value++
 
@@ -558,10 +670,8 @@ function wordComplete() {
     clearInterval(spawnTimer.value)
     spawnTimer.value = null
   }
-  if (audioLoopTimer.value) {
-    clearInterval(audioLoopTimer.value)
-    audioLoopTimer.value = null
-  }
+  // audioLoopTimer 现在只是标志位，不需要 clearInterval
+  audioLoopTimer.value = null
 
   // Play success sound
   playSuccessSound()
@@ -596,16 +706,50 @@ function gameFinish() {
   stopTimers()
 }
 
-function playWordAudio() {
+// 停止当前音频播放
+function stopCurrentAudio() {
+  if (currentAudioController) {
+    currentAudioController.abort()
+    currentAudioController = null
+  }
+  // 同时停止正在播放的音频对象
+  stopCurrentPlayingAudio()
+}
+
+async function playWordAudio() {
   if (!currentWord.value) return
+
+  // 先停止之前的音频
+  stopCurrentAudio()
+
+  // 创建新的 abort controller
+  const controller = new AbortController()
+  currentAudioController = controller
+
   try {
     if (props.lang === 'en') {
-      speakEnglish(currentWord.value.word)
+      await speakEnglish(currentWord.value.word)
+    } else if (isPinyinMode.value) {
+      // 检查是否有blendParts（拼读模式）
+      if (currentWord.value.blendParts && currentWord.value.blendParts.length > 1) {
+        // 拼读模式：按顺序播放各个部分
+        await playBlendAudio(currentWord.value.blendParts, { signal: controller.signal })
+      } else {
+        // 普通拼音模式
+        const pinyinText = isVowel.value ? getRandomTone(currentWord.value) : currentWord.value.word
+        await playPinyinAudio(pinyinText)
+      }
     } else {
-      speakChinese(currentWord.value.word)
+      await speakChinese(currentWord.value.word)
     }
   } catch (err) {
-    console.error('Speech error:', err)
+    if (err.name !== 'AbortError') {
+      console.error('Speech error:', err)
+    }
+  } finally {
+    if (currentAudioController === controller) {
+      currentAudioController = null
+    }
   }
 }
 
@@ -614,6 +758,11 @@ function handleKeydown(event) {
     event.preventDefault()
     playWordAudio()
   }
+}
+
+function goBackToSelection() {
+  // 返回到选择页面，保留之前的选择状态
+  router.push(`/select/${props.lang}/${props.listId}`)
 }
 
 onMounted(() => {
@@ -634,6 +783,12 @@ onUnmounted(() => {
         <p>{{ t('game.description') }}</p>
         <div class="word-preview">
           <p>{{ t('game.wordCount') }}: <strong>{{ practiceWords.length }}</strong></p>
+        </div>
+
+        <div class="start-actions">
+          <button class="btn btn-outline" @click="goBackToSelection">
+            📋 返回选择
+          </button>
         </div>
 
         <!-- Difficulty Settings -->
@@ -668,6 +823,11 @@ onUnmounted(() => {
             <div class="slider-group">
               <label>{{ t('game.decoyChance') }}: {{ difficulty.decoyLetters }}%</label>
               <input type="range" v-model.number="difficulty.decoyLetters" min="5" max="60" @input="updateDifficulty">
+            </div>
+
+            <div class="slider-group">
+              <label>语音循环间隔: {{ audioLoopInterval }}秒</label>
+              <input type="range" v-model.number="audioLoopInterval" min="2" max="10" step="1">
             </div>
           </div>
         </div>
@@ -732,7 +892,7 @@ onUnmounted(() => {
             backgroundColor: target.color,
             opacity: target.opacity,
             transform: `scale(${target.scale})`,
-            fontSize: (target.size * 0.45) + 'px'
+            fontSize: target.letter.length > 2 ? (target.size * 0.25) + 'px' : (target.size * 0.45) + 'px'
           }"
         >
           {{ target.letter }}
@@ -853,6 +1013,20 @@ onUnmounted(() => {
   padding: 1rem;
   border-radius: var(--radius-md);
   margin-bottom: 2rem;
+}
+
+.start-actions {
+  margin-bottom: 2rem;
+}
+
+.start-actions .btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.start-actions .btn:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .settings-section {
