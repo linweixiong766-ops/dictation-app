@@ -140,6 +140,30 @@ async function playCurrentWord() {
   }
 }
 
+// 用户点击播放按钮时调用
+async function handlePlayButtonClick() {
+  // 停止自动播放
+  const wasPlaying = isPlaying.value
+  if (wasPlaying) {
+    isPlaying.value = false
+    if (autoPlayTimer.value) {
+      clearInterval(autoPlayTimer.value)
+      autoPlayTimer.value = null
+    }
+  }
+
+  // 重置重复计数
+  currentRepeat.value = 0
+
+  // 播放当前单词
+  await playCurrentWord()
+
+  // 如果之前在自动播放，重新开始
+  if (wasPlaying) {
+    startAutoPlay()
+  }
+}
+
 async function startAutoPlay() {
   if (!practiceWords.value.length) return
 
@@ -336,9 +360,10 @@ onUnmounted(() => {
         {{ t('practice.wordOf', { current: currentIndex + 1, total: practiceWords.length }) }}
       </div>
 
-      <!-- 中文模式: 显示拼音 -->
+      <!-- 中文模式: 显示拼音 (拼音词库不显示，避免泄露答案) -->
       <div class="word-main" v-if="currentWord && lang === 'zh'">
-        <div class="meaning-display">{{ currentWord.pinyin }}</div>
+        <div class="meaning-display" v-if="!isPinyinMode">{{ currentWord.pinyin }}</div>
+        <div class="meaning-display pinyin-hint" v-else>🎧 请听读音</div>
       </div>
 
       <!-- 英文模式: 显示中文释义 -->
@@ -374,8 +399,9 @@ onUnmounted(() => {
               :class="{ 'current': index === currentIndex }"
             >
               <span class="answer-number">{{ index + 1 }}.</span>
-              <span class="answer-pinyin">{{ word.pinyin }}</span>
+              <span class="answer-pinyin" v-if="!word.unit">{{ word.pinyin }}</span>
               <span class="answer-word">{{ word.word }}</span>
+              <span class="answer-meaning" v-if="word.unit">{{ word.meaning }}</span>
             </div>
           </div>
           <!-- 英文模式答案表 -->
@@ -424,7 +450,7 @@ onUnmounted(() => {
           {{ showAnswer ? '🙈 ' + t('practice.hideAnswer') : '👀 ' + t('practice.showAnswer') }}
         </button>
 
-        <button class="btn btn-outline" @click="playCurrentWord" :disabled="!isSpeechSupported()">
+        <button class="btn btn-outline" @click="handlePlayButtonClick" :disabled="!isSpeechSupported()">
           🔊 {{ t('practice.playAudio') }}
         </button>
       </div>
@@ -443,7 +469,8 @@ onUnmounted(() => {
 
 <style scoped>
 .group-practice-view {
-  max-width: 800px;
+  max-width: 900px;
+  width: 85%;
   margin: 0 auto;
 }
 
@@ -541,6 +568,11 @@ onUnmounted(() => {
   font-size: 1.2rem;
   opacity: 0.85;
   font-style: italic;
+}
+
+.pinyin-hint {
+  font-size: 2rem;
+  opacity: 0.9;
 }
 
 .answer-section {
@@ -649,8 +681,8 @@ onUnmounted(() => {
 .answer-sheet {
   background: white;
   border-radius: var(--radius-lg);
-  max-width: 700px;
-  width: 100%;
+  max-width: 800px;
+  width: 90%;
   max-height: 85vh;
   overflow: hidden;
   display: flex;
