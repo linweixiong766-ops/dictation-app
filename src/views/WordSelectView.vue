@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { useWordStore } from '../stores/wordStore'
@@ -34,11 +34,18 @@ const availableUnits = computed(() => {
 
 const hasUnits = computed(() => availableUnits.value.length > 0)
 
-// 按单元分组的单词
+// 按单元分组的单词（支持搜索过滤）
 const wordsByUnit = computed(() => {
   if (!currentList.value) return {}
   const groups = {}
+  const query = searchQuery.value.trim().toLowerCase()
+
   currentList.value.words.forEach((w, index) => {
+    // 搜索过滤
+    if (query && !w.word.toLowerCase().includes(query) && !w.meaning.toLowerCase().includes(query)) {
+      return
+    }
+
     const unit = w.unit || '未分类'
     if (!groups[unit]) groups[unit] = []
     groups[unit].push({ ...w, originalIndex: index })
@@ -121,9 +128,12 @@ function toggleSelectAll() {
 }
 
 function onUnitChange() {
-  // Reset selection when unit changes
-  selectedWords.value = []
-  selectAll.value = false
+  // 不重置选择状态，让用户手动管理
+  // 只更新全选状态
+  const visibleWords = filteredWords.value
+  const visibleIndices = visibleWords.map(w => currentList.value.words.indexOf(w))
+  const allSelected = visibleIndices.every(i => selectedWords.value.includes(i))
+  selectAll.value = allSelected
 }
 
 function toggleUnit(unit) {
@@ -137,19 +147,20 @@ function toggleUnit(unit) {
   } else {
     selectedUnits.value.splice(index, 1)
   }
-  onUnitChange()
+  // 延迟更新选择状态，避免频繁重渲染
+  nextTick(() => onUnitChange())
 }
 
 function selectAllUnits() {
   selectedUnits.value = [...availableUnits.value]
   // 展开所有单元
   expandedGroups.value = [...availableUnits.value]
-  onUnitChange()
+  nextTick(() => onUnitChange())
 }
 
 function clearAllUnits() {
   selectedUnits.value = []
-  onUnitChange()
+  nextTick(() => onUnitChange())
 }
 
 function toggleGroup(unit) {
