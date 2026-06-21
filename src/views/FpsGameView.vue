@@ -393,7 +393,7 @@ function loadWord() {
   wordMisses.value = 0
 
   setTimeout(() => {
-    playWordAudio()
+    // startAudioLoop 内部会播放音频，不需要单独调用 playWordAudio
     startContinuousSpawning()
     startAudioLoop()
   }, 300)
