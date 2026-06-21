@@ -4,6 +4,44 @@ import json
 folder = 'D:/First-cc/first_cc/dictation-app/public/audio/pinyin/all-pinyin'
 files = [f.replace('.mp3', '') for f in os.listdir(folder) if f.endswith('.mp3')]
 
+# 也检查 whole-syllables 文件夹
+whole_folder = 'D:/First-cc/first_cc/dictation-app/public/audio/pinyin/whole-syllables'
+whole_files = [f.replace('.mp3', '') for f in os.listdir(whole_folder) if f.endswith('.mp3')]
+
+# 声调映射：数字后缀 -> 声调符号
+tone_map = {
+    'a': {1: 'ā', 2: 'á', 3: 'ǎ', 4: 'à'},
+    'e': {1: 'ē', 2: 'é', 3: 'ě', 4: 'è'},
+    'i': {1: 'ī', 2: 'í', 3: 'ǐ', 4: 'ì'},
+    'o': {1: 'ō', 2: 'ó', 3: 'ǒ', 4: 'ò'},
+    'u': {1: 'ū', 2: 'ú', 3: 'ǔ', 4: 'ù'},
+    'v': {1: 'ǖ', 2: 'ǘ', 3: 'ǚ', 4: 'ǜ'}
+}
+
+def convert_numbered_to_tone(s):
+    """将 chi1 转换为 chī"""
+    if s[-1].isdigit():
+        tone_num = int(s[-1])
+        base = s[:-1]
+        # 找到最后一个元音加声调
+        vowels = 'aeiouv'
+        result = ''
+        added = False
+        for c in reversed(base):
+            if c in vowels and not added:
+                result = tone_map[c][tone_num] + result
+                added = True
+            else:
+                result = c + result
+        return result
+    return s
+
+# 将 whole-syllables 文件转换为带声调的形式
+for f in whole_files:
+    toned = convert_numbered_to_tone(f)
+    if toned not in files and toned not in [convert_numbered_to_tone(x) for x in files]:
+        files.append(toned)
+
 def remove_tones(s):
     result = ''
     for c in s:
@@ -51,21 +89,23 @@ whole_syllable_data = [
 ]
 
 for base, initial in whole_syllable_data:
-    # 找到所有带声调的版本
+    # 找到所有带声调的版本（必须有声调）
     for f in files:
         if remove_tones(f) == base and f not in seen:
-            seen.add(f)
-            initial_sound = initial_sounds.get(initial, initial)
-            words.append({
-                'word': f,
-                'meaning': '拼读练习',
-                'pinyin': f,
-                'unit': '整体认读拼读',
-                'initial': initial,
-                'medial': None,
-                'initialSound': initial_sound,
-                'blendParts': [initial_sound, f]
-            })
+            # 检查是否有声调
+            has_tone = any(c in f for c in 'āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ')
+            if has_tone:
+                seen.add(f)
+                words.append({
+                    'word': f,
+                    'meaning': '拼读练习',
+                    'pinyin': f,
+                    'unit': '整体认读拼读',
+                    'initial': initial,
+                    'medial': None,
+                    'initialSound': initial,
+                    'blendParts': [f]  # 整体认读只发一个音
+                })
 
 for pinyin in sorted(files):
     base = remove_tones(pinyin)

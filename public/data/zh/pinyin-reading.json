@@ -15900,34 +15900,6 @@
       ]
     },
     {
-      "word": "yué",
-      "meaning": "拼读练习",
-      "pinyin": "yué",
-      "unit": "复韵母拼读",
-      "initial": "y",
-      "medial": null,
-      "initialSound": "y",
-      "blendParts": [
-        "y",
-        "ué",
-        "yué"
-      ]
-    },
-    {
-      "word": "yuě",
-      "meaning": "拼读练习",
-      "pinyin": "yuě",
-      "unit": "复韵母拼读",
-      "initial": "y",
-      "medial": null,
-      "initialSound": "y",
-      "blendParts": [
-        "y",
-        "uě",
-        "yuě"
-      ]
-    },
-    {
       "word": "zài",
       "meaning": "拼读练习",
       "pinyin": "zài",
@@ -16454,7 +16426,6 @@
       "medial": null,
       "initialSound": "ch",
       "blendParts": [
-        "ch",
         "chì"
       ]
     },
@@ -16467,7 +16438,6 @@
       "medial": null,
       "initialSound": "ch",
       "blendParts": [
-        "ch",
         "chí"
       ]
     },
@@ -16480,7 +16450,6 @@
       "medial": null,
       "initialSound": "ch",
       "blendParts": [
-        "ch",
         "chī"
       ]
     },
@@ -16493,7 +16462,6 @@
       "medial": null,
       "initialSound": "ch",
       "blendParts": [
-        "ch",
         "chǐ"
       ]
     },
@@ -16506,7 +16474,6 @@
       "medial": null,
       "initialSound": "c",
       "blendParts": [
-        "c",
         "cì"
       ]
     },
@@ -16519,7 +16486,6 @@
       "medial": null,
       "initialSound": "c",
       "blendParts": [
-        "c",
         "cí"
       ]
     },
@@ -16532,7 +16498,6 @@
       "medial": null,
       "initialSound": "c",
       "blendParts": [
-        "c",
         "cī"
       ]
     },
@@ -16545,7 +16510,6 @@
       "medial": null,
       "initialSound": "c",
       "blendParts": [
-        "c",
         "cǐ"
       ]
     },
@@ -16558,8 +16522,43 @@
       "medial": null,
       "initialSound": "r",
       "blendParts": [
-        "r",
         "rì"
+      ]
+    },
+    {
+      "word": "rī",
+      "meaning": "拼读练习",
+      "pinyin": "rī",
+      "unit": "整体认读拼读",
+      "initial": "r",
+      "medial": null,
+      "initialSound": "r",
+      "blendParts": [
+        "rī"
+      ]
+    },
+    {
+      "word": "rí",
+      "meaning": "拼读练习",
+      "pinyin": "rí",
+      "unit": "整体认读拼读",
+      "initial": "r",
+      "medial": null,
+      "initialSound": "r",
+      "blendParts": [
+        "rí"
+      ]
+    },
+    {
+      "word": "rǐ",
+      "meaning": "拼读练习",
+      "pinyin": "rǐ",
+      "unit": "整体认读拼读",
+      "initial": "r",
+      "medial": null,
+      "initialSound": "r",
+      "blendParts": [
+        "rǐ"
       ]
     },
     {
@@ -16571,7 +16570,6 @@
       "medial": null,
       "initialSound": "sh",
       "blendParts": [
-        "sh",
         "shì"
       ]
     },
@@ -16584,7 +16582,6 @@
       "medial": null,
       "initialSound": "sh",
       "blendParts": [
-        "sh",
         "shí"
       ]
     },
@@ -16597,7 +16594,6 @@
       "medial": null,
       "initialSound": "sh",
       "blendParts": [
-        "sh",
         "shī"
       ]
     },
@@ -16610,7 +16606,6 @@
       "medial": null,
       "initialSound": "sh",
       "blendParts": [
-        "sh",
         "shǐ"
       ]
     },
@@ -16623,7 +16618,6 @@
       "medial": null,
       "initialSound": "s",
       "blendParts": [
-        "s",
         "sì"
       ]
     },
@@ -16636,7 +16630,6 @@
       "medial": null,
       "initialSound": "s",
       "blendParts": [
-        "s",
         "sī"
       ]
     },
@@ -16649,8 +16642,19 @@
       "medial": null,
       "initialSound": "s",
       "blendParts": [
-        "s",
         "sǐ"
+      ]
+    },
+    {
+      "word": "sí",
+      "meaning": "拼读练习",
+      "pinyin": "sí",
+      "unit": "整体认读拼读",
+      "initial": "s",
+      "medial": null,
+      "initialSound": "s",
+      "blendParts": [
+        "sí"
       ]
     },
     {
@@ -16662,7 +16666,6 @@
       "medial": null,
       "initialSound": "w",
       "blendParts": [
-        "w",
         "wù"
       ]
     },
@@ -16675,7 +16678,6 @@
       "medial": null,
       "initialSound": "w",
       "blendParts": [
-        "w",
         "wú"
       ]
     },
@@ -16688,7 +16690,6 @@
       "medial": null,
       "initialSound": "w",
       "blendParts": [
-        "w",
         "wū"
       ]
     },
@@ -16701,7 +16702,6 @@
       "medial": null,
       "initialSound": "w",
       "blendParts": [
-        "w",
         "wǔ"
       ]
     },
@@ -16714,7 +16714,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yè"
       ]
     },
@@ -16727,7 +16726,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yé"
       ]
     },
@@ -16740,7 +16738,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yē"
       ]
     },
@@ -16753,7 +16750,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yě"
       ]
     },
@@ -16766,7 +16762,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yì"
       ]
     },
@@ -16779,7 +16774,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yí"
       ]
     },
@@ -16792,7 +16786,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yī"
       ]
     },
@@ -16805,7 +16798,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yǐ"
       ]
     },
@@ -16818,7 +16810,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yìn"
       ]
     },
@@ -16831,7 +16822,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yín"
       ]
     },
@@ -16844,7 +16834,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yīn"
       ]
     },
@@ -16857,7 +16846,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yǐn"
       ]
     },
@@ -16870,7 +16858,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yìng"
       ]
     },
@@ -16883,7 +16870,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yíng"
       ]
     },
@@ -16896,7 +16882,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yīng"
       ]
     },
@@ -16909,7 +16894,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yǐng"
       ]
     },
@@ -16922,7 +16906,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yù"
       ]
     },
@@ -16935,7 +16918,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yú"
       ]
     },
@@ -16948,7 +16930,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yū"
       ]
     },
@@ -16961,7 +16942,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yǔ"
       ]
     },
@@ -16974,7 +16954,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yuàn"
       ]
     },
@@ -16987,7 +16966,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yuán"
       ]
     },
@@ -17000,7 +16978,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yuān"
       ]
     },
@@ -17013,7 +16990,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yuǎn"
       ]
     },
@@ -17026,7 +17002,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yuè"
       ]
     },
@@ -17039,8 +17014,31 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yuē"
+      ]
+    },
+    {
+      "word": "yué",
+      "meaning": "拼读练习",
+      "pinyin": "yué",
+      "unit": "整体认读拼读",
+      "initial": "y",
+      "medial": null,
+      "initialSound": "y",
+      "blendParts": [
+        "yué"
+      ]
+    },
+    {
+      "word": "yuě",
+      "meaning": "拼读练习",
+      "pinyin": "yuě",
+      "unit": "整体认读拼读",
+      "initial": "y",
+      "medial": null,
+      "initialSound": "y",
+      "blendParts": [
+        "yuě"
       ]
     },
     {
@@ -17052,7 +17050,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yùn"
       ]
     },
@@ -17065,7 +17062,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yún"
       ]
     },
@@ -17078,7 +17074,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yūn"
       ]
     },
@@ -17091,7 +17086,6 @@
       "medial": null,
       "initialSound": "y",
       "blendParts": [
-        "y",
         "yǔn"
       ]
     },
@@ -17104,7 +17098,6 @@
       "medial": null,
       "initialSound": "zh",
       "blendParts": [
-        "zh",
         "zhì"
       ]
     },
@@ -17117,7 +17110,6 @@
       "medial": null,
       "initialSound": "zh",
       "blendParts": [
-        "zh",
         "zhí"
       ]
     },
@@ -17130,7 +17122,6 @@
       "medial": null,
       "initialSound": "zh",
       "blendParts": [
-        "zh",
         "zhī"
       ]
     },
@@ -17143,7 +17134,6 @@
       "medial": null,
       "initialSound": "zh",
       "blendParts": [
-        "zh",
         "zhǐ"
       ]
     },
@@ -17156,7 +17146,6 @@
       "medial": null,
       "initialSound": "z",
       "blendParts": [
-        "z",
         "zì"
       ]
     },
@@ -17169,7 +17158,6 @@
       "medial": null,
       "initialSound": "z",
       "blendParts": [
-        "z",
         "zí"
       ]
     },
@@ -17182,7 +17170,6 @@
       "medial": null,
       "initialSound": "z",
       "blendParts": [
-        "z",
         "zī"
       ]
     },
@@ -17195,7 +17182,6 @@
       "medial": null,
       "initialSound": "z",
       "blendParts": [
-        "z",
         "zǐ"
       ]
     }
