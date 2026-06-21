@@ -238,7 +238,11 @@ const SFX_BASE = '/audio/sfx/'
 export async function playSoundEffect(name) {
   const src = `${SFX_BASE}${name}.mp3`
   try {
-    await playAudioFile(src)
+    // 音效使用独立的 Audio 对象，不中断当前播放
+    const audio = new Audio(src)
+    audio.onended = () => {}
+    audio.onerror = () => {}
+    await audio.play()
   } catch {
     // SFX missing -> silently ignore
   }
@@ -268,7 +272,7 @@ export async function playPinyinSequence(pinyins, options = {}) {
 
 /**
  * Play blend mode audio: parts played sequentially with no TTS fallback
- * @param {string[]} parts - e.g., ["bō", "ái", "bái"] or ["bō", "ī", "àn", "biàn"]
+ * @param {string[]} parts - e.g., ["b", "ái", "bái"] or ["b", "i", "àn", "biàn"]
  * @param {object} options - { signal }
  */
 export async function playBlendAudio(parts, options = {}) {
@@ -283,37 +287,28 @@ export async function playBlendAudio(parts, options = {}) {
     const part = parts[i]
     const isLast = i === parts.length - 1
 
-    // Add small delay before the last part (blended result)
+    // 最后一个部分（拼读结果）前加延迟
     if (isLast && parts.length > 1) {
-      await new Promise(r => setTimeout(r, 300))
+      await new Promise(r => setTimeout(r, 400))
       if (signal?.aborted) return
     }
 
-    // Try to play local audio file only (no TTS fallback)
+    // 播放音频文件
     const path = getAudioPath(part)
     if (path) {
       try {
-        // 使用 Promise.race 来支持中断
-        await Promise.race([
-          playAudioFile(`/${path}`),
-          new Promise((_, reject) => {
-            if (signal) {
-              signal.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')), { once: true })
-            }
-          })
-        ])
+        await playAudioFile(`/${path}`)
       } catch (err) {
         if (err.name === 'AbortError') return
-        // File not found - skip this part
         console.warn(`Audio file not found for: ${part}`)
       }
     } else {
       console.warn(`No audio path for: ${part}`)
     }
 
-    // Small gap between parts (except after last)
+    // 每个部分之间的间隔（最后一个不加）
     if (!isLast) {
-      await new Promise(r => setTimeout(r, 100))
+      await new Promise(r => setTimeout(r, 150))
     }
   }
 }

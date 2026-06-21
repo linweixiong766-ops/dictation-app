@@ -76,6 +76,37 @@ const wordMisses = ref(0) // Track misses per word
 // 组件是否挂载
 const isMounted = ref(true)
 
+// 枪械后坐力效果
+const isRecoiling = ref(false)
+
+// 鼠标位置追踪
+const mouseX = ref(0)
+const mouseY = ref(0)
+
+// 计算大炮旋转角度
+const gunRotation = computed(() => {
+  if (!gameArea.value) return 0
+
+  const rect = gameArea.value.getBoundingClientRect()
+  const gameWidth = rect.width
+  const gameHeight = rect.height
+
+  // 大炮的位置（底部中间）
+  const cannonX = gameWidth / 2
+  const cannonY = gameHeight - 60
+
+  // 计算鼠标相对于大炮的位置
+  const dx = mouseX.value - cannonX
+  const dy = mouseY.value - cannonY
+
+  // 计算角度（弧度转角度）
+  // 大炮默认朝上（-90°），所以需要调整
+  const angle = Math.atan2(dx, -dy) * (180 / Math.PI)
+
+  // 限制角度范围（-75° 到 75°）
+  return Math.max(-75, Math.min(75, angle))
+})
+
 // Computed: the next letter we need to click
 const nextNeededLetter = computed(() => {
   if (!currentWord.value) return null
@@ -380,8 +411,8 @@ function startAudioLoop() {
       return
     }
 
-    // 播放音频并等待完成
-    await playWordAudio()
+    // 播放音频并等待完成（从循环调用，不中断之前的音频）
+    await playWordAudio(true)
 
     // 再次检查是否停止
     if (!isMounted.value || !audioLoopTimer.value || isWordComplete.value || !gameStarted.value) {
@@ -565,6 +596,9 @@ function removeTarget(id) {
 function handleGameAreaClick(event) {
   if (!gameStarted.value) return
 
+  // 触发后坐力效果（不影响音频）
+  triggerRecoil()
+
   const rect = gameArea.value.getBoundingClientRect()
   const x = event.clientX - rect.left
   const y = event.clientY - rect.top
@@ -586,6 +620,16 @@ function handleGameAreaClick(event) {
   } else {
     handleMiss(x, y)
   }
+
+  // 注意：这里不调用 stopCurrentAudio()，让音频循环继续播放
+}
+
+// 触发大炮后坐力效果
+function triggerRecoil() {
+  isRecoiling.value = true
+  setTimeout(() => {
+    isRecoiling.value = false
+  }, 200)
 }
 
 function handleHit(target) {
@@ -716,11 +760,13 @@ function stopCurrentAudio() {
   stopCurrentPlayingAudio()
 }
 
-async function playWordAudio() {
+async function playWordAudio(isFromLoop = false) {
   if (!currentWord.value) return
 
-  // 先停止之前的音频
-  stopCurrentAudio()
+  // 只有非循环调用时才停止之前的音频
+  if (!isFromLoop) {
+    stopCurrentAudio()
+  }
 
   // 创建新的 abort controller
   const controller = new AbortController()
@@ -765,12 +811,22 @@ function goBackToSelection() {
   router.push(`/select/${props.lang}/${props.listId}`)
 }
 
+// 追踪鼠标位置
+function handleMouseMove(event) {
+  if (!gameArea.value) return
+  const rect = gameArea.value.getBoundingClientRect()
+  mouseX.value = event.clientX - rect.left
+  mouseY.value = event.clientY - rect.top
+}
+
 onMounted(() => {
   window.addEventListener('keydown', handleKeydown)
+  window.addEventListener('mousemove', handleMouseMove)
 })
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
+  window.removeEventListener('mousemove', handleMouseMove)
 })
 </script>
 
@@ -912,6 +968,23 @@ onUnmounted(() => {
         >
           <div class="pop-particle" v-for="i in 8" :key="i" :style="{ '--i': i }"></div>
           <span v-if="effect.isMiss" class="miss-x">✕</span>
+        </div>
+
+        <!-- 大炮 -->
+        <div
+          class="cannon-container"
+          :class="{ 'recoil': isRecoiling }"
+          :style="{
+            transform: `rotate(${gunRotation}deg)`,
+            '--rotation': `rotate(${gunRotation}deg)`
+          }"
+        >
+          <div class="cannon-body">
+            <div class="cannon-barrel"></div>
+            <div class="cannon-base"></div>
+            <div class="cannon-wheel left"></div>
+            <div class="cannon-wheel right"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1215,6 +1288,143 @@ onUnmounted(() => {
   cursor: crosshair;
   overflow: hidden;
   transition: background 0.2s;
+  /* 自定义准星 */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="none" stroke="white" stroke-width="2"/><line x1="16" y1="4" x2="16" y2="12" stroke="white" stroke-width="2"/><line x1="16" y1="20" x2="16" y2="28" stroke="white" stroke-width="2"/><line x1="4" y1="16" x2="12" y2="16" stroke="white" stroke-width="2"/><line x1="20" y1="16" x2="28" y2="16" stroke="white" stroke-width="2"/><circle cx="16" cy="16" r="2" fill="white"/></svg>') 16 16, crosshair;
+}
+
+/* 大炮容器 */
+.cannon-container {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  z-index: 10;
+  pointer-events: none;
+  transform-origin: center bottom;
+}
+
+/* 后坐力动画 - 使用 margin 避免影响旋转 */
+.cannon-container.recoil {
+  animation: cannon-recoil 0.2s ease-out;
+}
+
+@keyframes cannon-recoil {
+  0% {
+    margin-bottom: 0;
+  }
+  20% {
+    margin-bottom: 20px;
+  }
+  100% {
+    margin-bottom: 0;
+  }
+}
+
+/* 大炮主体 */
+.cannon-body {
+  position: relative;
+  width: 60px;
+  height: 120px;
+}
+
+/* 炮管 */
+.cannon-barrel {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 90px;
+  background: linear-gradient(90deg, #2d3748 0%, #4a5568 30%, #718096 50%, #4a5568 70%, #2d3748 100%);
+  border-radius: 8px 8px 5px 5px;
+  box-shadow:
+    inset 0 -5px 10px rgba(0, 0, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 炮口 */
+.cannon-barrel::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 15px;
+  background: linear-gradient(180deg, #718096 0%, #4a5568 100%);
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 炮口内孔 */
+.cannon-barrel::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 10px;
+  background: #1a202c;
+  border-radius: 3px 3px 0 0;
+}
+
+/* 炮座 */
+.cannon-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 30px;
+  background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 炮座装饰 */
+.cannon-base::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 5px;
+  background: #A0522D;
+  border-radius: 2px;
+}
+
+/* 轮子 */
+.cannon-wheel {
+  position: absolute;
+  bottom: 5px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #8B4513 0%, #654321 100%);
+  border-radius: 50%;
+  border: 3px solid #4a3520;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cannon-wheel.left {
+  left: 0;
+}
+
+.cannon-wheel.right {
+  right: 0;
+}
+
+/* 轮子辐条 */
+.cannon-wheel::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #4a3520;
+  border-radius: 50%;
 }
 
 /* Target Bubbles */
