@@ -1329,11 +1329,11 @@
       "pinyin": "juàn",
       "unit": "三拼音节拼读",
       "initial": "j",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "j",
       "blendParts": [
         "j",
-        "u",
+        "v",
         "àn",
         "juàn"
       ]
@@ -1344,11 +1344,11 @@
       "pinyin": "juān",
       "unit": "三拼音节拼读",
       "initial": "j",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "j",
       "blendParts": [
         "j",
-        "u",
+        "v",
         "ān",
         "juān"
       ]
@@ -1359,11 +1359,11 @@
       "pinyin": "juǎn",
       "unit": "三拼音节拼读",
       "initial": "j",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "j",
       "blendParts": [
         "j",
-        "u",
+        "v",
         "ǎn",
         "juǎn"
       ]
@@ -2379,11 +2379,11 @@
       "pinyin": "quàn",
       "unit": "三拼音节拼读",
       "initial": "q",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "q",
       "blendParts": [
         "q",
-        "u",
+        "v",
         "àn",
         "quàn"
       ]
@@ -2394,11 +2394,11 @@
       "pinyin": "quán",
       "unit": "三拼音节拼读",
       "initial": "q",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "q",
       "blendParts": [
         "q",
-        "u",
+        "v",
         "án",
         "quán"
       ]
@@ -2409,11 +2409,11 @@
       "pinyin": "quān",
       "unit": "三拼音节拼读",
       "initial": "q",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "q",
       "blendParts": [
         "q",
-        "u",
+        "v",
         "ān",
         "quān"
       ]
@@ -2424,11 +2424,11 @@
       "pinyin": "quǎn",
       "unit": "三拼音节拼读",
       "initial": "q",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "q",
       "blendParts": [
         "q",
-        "u",
+        "v",
         "ǎn",
         "quǎn"
       ]
@@ -3204,11 +3204,11 @@
       "pinyin": "xuàn",
       "unit": "三拼音节拼读",
       "initial": "x",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "x",
       "blendParts": [
         "x",
-        "u",
+        "v",
         "àn",
         "xuàn"
       ]
@@ -3219,11 +3219,11 @@
       "pinyin": "xuán",
       "unit": "三拼音节拼读",
       "initial": "x",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "x",
       "blendParts": [
         "x",
-        "u",
+        "v",
         "án",
         "xuán"
       ]
@@ -3234,11 +3234,11 @@
       "pinyin": "xuān",
       "unit": "三拼音节拼读",
       "initial": "x",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "x",
       "blendParts": [
         "x",
-        "u",
+        "v",
         "ān",
         "xuān"
       ]
@@ -3249,11 +3249,11 @@
       "pinyin": "xuǎn",
       "unit": "三拼音节拼读",
       "initial": "x",
-      "medial": "u",
+      "medial": "v",
       "initialSound": "x",
       "blendParts": [
         "x",
-        "u",
+        "v",
         "ǎn",
         "xuǎn"
       ]
@@ -7243,7 +7243,7 @@
       "initialSound": "j",
       "blendParts": [
         "j",
-        "ù",
+        "v",
         "jù"
       ]
     },
@@ -7257,7 +7257,7 @@
       "initialSound": "j",
       "blendParts": [
         "j",
-        "ú",
+        "v",
         "jú"
       ]
     },
@@ -7271,7 +7271,7 @@
       "initialSound": "j",
       "blendParts": [
         "j",
-        "ū",
+        "v",
         "jū"
       ]
     },
@@ -7285,7 +7285,7 @@
       "initialSound": "j",
       "blendParts": [
         "j",
-        "ǔ",
+        "v",
         "jǔ"
       ]
     },
@@ -8321,7 +8321,7 @@
       "initialSound": "q",
       "blendParts": [
         "q",
-        "ù",
+        "v",
         "qù"
       ]
     },
@@ -8335,7 +8335,7 @@
       "initialSound": "q",
       "blendParts": [
         "q",
-        "ú",
+        "v",
         "qú"
       ]
     },
@@ -8349,7 +8349,7 @@
       "initialSound": "q",
       "blendParts": [
         "q",
-        "ū",
+        "v",
         "qū"
       ]
     },
@@ -8363,7 +8363,7 @@
       "initialSound": "q",
       "blendParts": [
         "q",
-        "ǔ",
+        "v",
         "qǔ"
       ]
     },
@@ -9035,7 +9035,7 @@
       "initialSound": "x",
       "blendParts": [
         "x",
-        "ù",
+        "v",
         "xù"
       ]
     },
@@ -9049,7 +9049,7 @@
       "initialSound": "x",
       "blendParts": [
         "x",
-        "ú",
+        "v",
         "xú"
       ]
     },
@@ -9063,7 +9063,7 @@
       "initialSound": "x",
       "blendParts": [
         "x",
-        "ū",
+        "v",
         "xū"
       ]
     },
@@ -9077,7 +9077,7 @@
       "initialSound": "x",
       "blendParts": [
         "x",
-        "ǔ",
+        "v",
         "xǔ"
       ]
     },

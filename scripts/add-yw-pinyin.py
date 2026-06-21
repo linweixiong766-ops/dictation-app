@@ -127,10 +127,16 @@ for pinyin in sorted(files):
     rest_pinyin = pinyin[len(initial):]
     initial_sound = initial_sounds.get(initial, initial)
 
+    # j, q, x 后面的 u 应该读作 ü (v)
+    is_jqx_u = initial in ['j', 'q', 'x'] and rest_base.startswith('u')
+
     # 先检查是否是两拼音节（initial + final）
     if rest_base in single_vowels or rest_base in compound_vowels or rest_base in front_nasal or rest_base in back_nasal:
         medial = None
         final = rest_pinyin
+        # j, q, x + u -> v
+        if is_jqx_u and rest_base == 'u':
+            final = 'v' + rest_pinyin[1:] if len(rest_pinyin) > 1 else 'v'
         blend_parts = [initial_sound, final, pinyin]
 
         if rest_base in single_vowels:
@@ -146,6 +152,10 @@ for pinyin in sorted(files):
         medial = rest_base[0]
         final_base = rest_base[1:]
         final_pinyin = rest_pinyin[1:]
+
+        # j, q, x 后面的 u 应该读作 ü (v)
+        if is_jqx_u:
+            medial = 'v'
 
         # 检查 medial + final 是否组成复韵母
         combined = medial + final_base
