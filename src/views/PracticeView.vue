@@ -124,7 +124,7 @@ async function playAudio() {
       await speakEnglish(currentWord.value.word)
     } else if (isPinyinMode.value) {
       // 检查是否有blendParts（拼读模式）
-      if (currentWord.value.blendParts && currentWord.value.blendParts.length > 1) {
+      if (currentWord.value.blendParts && currentWord.value.blendParts.length >= 1) {
         // 拼读模式：按顺序播放各个部分
         await playBlendAudio(currentWord.value.blendParts, { signal: controller.signal })
       } else {
