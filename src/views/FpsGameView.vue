@@ -68,7 +68,6 @@ const nextLetterIndex = ref(0) // Index of the next letter needed
 const activeTargets = ref([])
 const popEffects = ref([])
 const spawnTimer = ref(null)
-const audioLoopTimer = ref(null)
 const targetIdCounter = ref(0)
 const wordStartTime = ref(null) // Track time per word
 const wordMisses = ref(0) // Track misses per word
@@ -332,12 +331,12 @@ onUnmounted(() => {
 function stopTimers() {
   if (timerInterval.value) clearInterval(timerInterval.value)
   if (spawnTimer.value) clearInterval(spawnTimer.value)
-  // audioLoopTimer 现在只是标志位，不需要 clearInterval
   timerInterval.value = null
   spawnTimer.value = null
-  audioLoopTimer.value = null
+  // 停止音频循环
+  loopGeneration++
   // 停止当前音频播放
-  stopCurrentAudio()
+  stopCurrentPlayingAudio()
 }
 
 function shuffleArray(array) {
@@ -399,26 +398,26 @@ function loadWord() {
   }, 300)
 }
 
+let loopGeneration = 0 // 用于区分新旧循环
+
 function startAudioLoop() {
-  // Clear any existing audio loop
-  audioLoopTimer.value = null
+  // 停止旧循环和正在播放的音频
+  loopGeneration++
+  const myGeneration = loopGeneration
+  stopCurrentPlayingAudio()
 
   // 使用递归方式，等音频播放完成后再开始计时
   async function playNext() {
-    // 如果组件已卸载、循环已停止、单词已完成或游戏停止，停止循环
-    if (!isMounted.value || !audioLoopTimer.value || isWordComplete.value || !gameStarted.value) {
-      audioLoopTimer.value = null
-      return
-    }
+    // 检查是否是当前循环（防止旧循环继续运行）
+    if (loopGeneration !== myGeneration) return
+    if (!isMounted.value || isWordComplete.value || !gameStarted.value) return
 
-    // 播放音频并等待完成（从循环调用，不中断之前的音频）
+    // 播放音频并等待完成
     await playWordAudio(true)
 
-    // 再次检查是否停止
-    if (!isMounted.value || !audioLoopTimer.value || isWordComplete.value || !gameStarted.value) {
-      audioLoopTimer.value = null
-      return
-    }
+    // 再次检查是否是当前循环
+    if (loopGeneration !== myGeneration) return
+    if (!isMounted.value || isWordComplete.value || !gameStarted.value) return
 
     // 等待间隔时间
     await new Promise(r => setTimeout(r, audioLoopInterval.value * 1000))
@@ -427,8 +426,6 @@ function startAudioLoop() {
     playNext()
   }
 
-  // 设置标志位表示循环正在运行
-  audioLoopTimer.value = true
   // 开始播放
   playNext()
 }
@@ -714,8 +711,9 @@ function wordComplete() {
     clearInterval(spawnTimer.value)
     spawnTimer.value = null
   }
-  // audioLoopTimer 现在只是标志位，不需要 clearInterval
-  audioLoopTimer.value = null
+  // 停止音频循环
+  loopGeneration++
+  stopCurrentPlayingAudio()
 
   // Play success sound
   playSuccessSound()
