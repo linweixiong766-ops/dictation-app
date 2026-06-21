@@ -30,6 +30,8 @@ const completed = ref(false) // 是否完成所有单词
 
 // 用于取消当前音频播放
 let currentAudioController = null
+// 用于区分新旧循环，防止竞态条件
+let loopGeneration = 0
 
 const currentWord = computed(() => {
   if (!practiceWords.value.length) return null
@@ -140,25 +142,31 @@ async function playCurrentWord() {
 async function startAutoPlay() {
   if (!practiceWords.value.length) return
 
+  // 停止旧循环
+  loopGeneration++
+  const myGeneration = loopGeneration
+  stopCurrentPlayingAudio()
+
   isPlaying.value = true
   completed.value = false
   currentRepeat.value = 1
 
   // 使用递归方式，等音频播放完成后再开始计时
   async function playNext() {
-    if (!isPlaying.value) return
+    // 检查是否是当前循环
+    if (loopGeneration !== myGeneration || !isPlaying.value) return
 
     // 播放当前单词并等待完成
     await playCurrentWord()
 
-    // 如果停止了，直接返回
-    if (!isPlaying.value) return
+    // 再次检查是否是当前循环
+    if (loopGeneration !== myGeneration || !isPlaying.value) return
 
     // 等待间隔时间
     await new Promise(r => setTimeout(r, playInterval.value))
 
-    // 如果停止了，直接返回
-    if (!isPlaying.value) return
+    // 再次检查
+    if (loopGeneration !== myGeneration || !isPlaying.value) return
 
     // Check if we need to repeat the current word
     if (currentRepeat.value < repeatCount.value) {
@@ -186,12 +194,13 @@ async function startAutoPlay() {
 
 function stopAutoPlay() {
   isPlaying.value = false
+  loopGeneration++
   if (autoPlayTimer.value) {
     clearInterval(autoPlayTimer.value)
     autoPlayTimer.value = null
   }
   // 停止当前音频播放
-  stopCurrentAudio()
+  stopCurrentPlayingAudio()
   // Stop speech
   if (window.speechSynthesis) {
     window.speechSynthesis.cancel()
