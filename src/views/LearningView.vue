@@ -27,6 +27,8 @@ const showMeaning = ref(true)
 const repeatCount = ref(1) // 每个单词重复次数 (1-5)
 const currentRepeat = ref(0) // 当前单词已重复次数
 const completed = ref(false) // 是否完成所有单词
+const loopCount = ref(1) // 整体循环次数 (1=不循环, 0=无限循环)
+const currentLoop = ref(0) // 当前循环次数
 
 // 用于取消当前音频播放
 let currentAudioController = null
@@ -150,6 +152,7 @@ async function startAutoPlay() {
   isPlaying.value = true
   completed.value = false
   currentRepeat.value = 1
+  currentLoop.value = 1
 
   // 使用递归方式，等音频播放完成后再开始计时
   async function playNext() {
@@ -180,10 +183,19 @@ async function startAutoPlay() {
         currentIndex.value++
         playNext()
       } else {
-        // All words completed
-        stopAutoPlay()
-        completed.value = true
-        return
+        // 当前循环完成
+        // 检查是否需要继续循环
+        if (loopCount.value === 0 || currentLoop.value < loopCount.value) {
+          // 继续下一轮循环
+          currentLoop.value++
+          currentIndex.value = 0
+          playNext()
+        } else {
+          // 所有循环完成
+          stopAutoPlay()
+          completed.value = true
+          return
+        }
       }
     }
   }
@@ -316,6 +328,9 @@ onUnmounted(() => {
       <div class="header-right">
         <span class="word-count">
           {{ currentIndex + 1 }} / {{ practiceWords.length }}
+          <span v-if="isPlaying && loopCount !== 1" class="loop-count">
+            (第 {{ currentLoop }} / {{ loopCount === 0 ? '∞' : loopCount }} 轮)
+          </span>
         </span>
       </div>
     </div>
@@ -344,6 +359,17 @@ onUnmounted(() => {
             <option :value="2">2 {{ t('learning.times') }}</option>
             <option :value="3">3 {{ t('learning.times') }}</option>
             <option :value="5">5 {{ t('learning.times') }}</option>
+          </select>
+        </div>
+        <div class="setting-item">
+          <label>整体循环</label>
+          <select v-model="loopCount" class="input-select" :disabled="isPlaying">
+            <option :value="1">1 轮</option>
+            <option :value="2">2 轮</option>
+            <option :value="3">3 轮</option>
+            <option :value="5">5 轮</option>
+            <option :value="10">10 轮</option>
+            <option :value="0">无限循环</option>
           </select>
         </div>
         <!-- Chinese mode: show pinyin toggle -->
@@ -488,6 +514,12 @@ onUnmounted(() => {
   padding: 0.5rem 1rem;
   border-radius: var(--radius-md);
   font-weight: 600;
+}
+
+.loop-count {
+  font-size: 0.85em;
+  opacity: 0.9;
+  margin-left: 0.5rem;
 }
 
 .settings-card {
