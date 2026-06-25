@@ -293,11 +293,21 @@ export async function playBlendAudio(parts, options = {}) {
       if (signal?.aborted) return
     }
 
-    // 播放音频文件
+    // 播放音频文件，支持中断
     const path = getAudioPath(part)
     if (path) {
       try {
-        await playAudioFile(`/${path}`)
+        await Promise.race([
+          playAudioFile(`/${path}`),
+          new Promise((_, reject) => {
+            if (signal) {
+              signal.addEventListener('abort', () => {
+                stopCurrentPlayingAudio()
+                reject(new DOMException('Aborted', 'AbortError'))
+              }, { once: true })
+            }
+          })
+        ])
       } catch (err) {
         if (err.name === 'AbortError') return
         console.warn(`Audio file not found for: ${part}`)

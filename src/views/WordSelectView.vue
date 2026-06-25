@@ -41,8 +41,11 @@ const wordsByUnit = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
 
   currentList.value.words.forEach((w, index) => {
-    // 搜索过滤
-    if (query && !w.word.toLowerCase().includes(query) && !w.meaning.toLowerCase().includes(query)) {
+    // 搜索过滤（支持搜索单词、释义、拼音）
+    if (query &&
+        !w.word.toLowerCase().includes(query) &&
+        !w.meaning.toLowerCase().includes(query) &&
+        !(w.pinyin && w.pinyin.toLowerCase().includes(query))) {
       return
     }
 
@@ -62,12 +65,13 @@ const filteredWords = computed(() => {
     words = words.filter(w => selectedUnits.value.includes(w.unit))
   }
 
-  // Filter by search query
+  // Filter by search query（支持搜索单词、释义、拼音）
   if (searchQuery.value.trim()) {
     const query = searchQuery.value.trim().toLowerCase()
     words = words.filter(w =>
       w.word.toLowerCase().includes(query) ||
-      w.meaning.toLowerCase().includes(query)
+      w.meaning.toLowerCase().includes(query) ||
+      (w.pinyin && w.pinyin.toLowerCase().includes(query))
     )
   }
 
