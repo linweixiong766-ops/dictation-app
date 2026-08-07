@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, watch, nextTick, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { useWordStore } from '../stores/wordStore'
@@ -19,8 +19,9 @@ const selectedWords = ref([])
 const searchQuery = ref('')
 const selectAll = ref(false)
 const selectedUnits = ref([]) // 改为多选
-const showUnitPanel = ref(false) // 控制单元选择面板显示
+const showUnitDropdown = ref(false) // 控制单元下拉框显示
 const expandedGroups = ref([]) // 控制分组展开/折叠
+const lastClickedUnit = ref(null) // 记录最后点击的单元
 
 // Get available units from word list
 const availableUnits = computed(() => {
@@ -106,7 +107,21 @@ onMounted(async () => {
   }
   // 默认展开所有单元
   expandedGroups.value = [...availableUnits.value]
+
+  // 添加点击外部关闭下拉框的监听
+  document.addEventListener('click', handleClickOutside)
 })
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+
+function handleClickOutside(event) {
+  const dropdown = document.querySelector('.unit-dropdown-wrapper')
+  if (dropdown && !dropdown.contains(event.target)) {
+    showUnitDropdown.value = false
+  }
+}
 
 function toggleWord(index) {
   const pos = selectedWords.value.indexOf(index)
@@ -151,9 +166,21 @@ function toggleUnit(unit) {
   } else {
     selectedUnits.value.splice(index, 1)
   }
+  // 记录最后点击的单元，用于排序
+  lastClickedUnit.value = unit
   // 延迟更新选择状态，避免频繁重渲染
   nextTick(() => onUnitChange())
 }
+
+// 排序后的单元列表：最后点击的排在最前面
+const sortedUnits = computed(() => {
+  if (!lastClickedUnit.value) return availableUnits.value
+  return [...availableUnits.value].sort((a, b) => {
+    if (a === lastClickedUnit.value) return -1
+    if (b === lastClickedUnit.value) return 1
+    return 0
+  })
+})
 
 function selectAllUnits() {
   selectedUnits.value = [...availableUnits.value]
@@ -247,9 +274,41 @@ function startLearning() {
         />
       </div>
       <div class="unit-filter" v-if="hasUnits">
-        <button class="btn btn-outline btn-sm" @click="showUnitPanel = !showUnitPanel">
-          📚 选择单元 {{ selectedUnits.length > 0 ? `(${selectedUnits.length})` : '' }}
-        </button>
+        <div class="unit-dropdown-wrapper">
+          <button
+            class="btn unit-dropdown-btn"
+            :class="{ 'active': showUnitDropdown, 'has-selection': selectedUnits.length > 0 }"
+            @click="showUnitDropdown = !showUnitDropdown"
+          >
+            📚 选择单元
+            <span v-if="selectedUnits.length > 0" class="unit-badge">{{ selectedUnits.length }}</span>
+            <span class="dropdown-arrow">{{ showUnitDropdown ? '▲' : '▼' }}</span>
+          </button>
+          <div v-if="showUnitDropdown" class="unit-dropdown">
+            <div class="unit-dropdown-header">
+              <button class="btn btn-sm btn-outline" @click="selectAllUnits">全选</button>
+              <button class="btn btn-sm btn-outline" @click="clearAllUnits">清除</button>
+              <button class="btn btn-sm btn-outline" @click="showUnitDropdown = false">关闭</button>
+            </div>
+            <div class="unit-dropdown-list">
+              <div
+                v-for="unit in sortedUnits"
+                :key="unit"
+                class="unit-dropdown-item"
+                :class="{ 'selected': selectedUnits.includes(unit) }"
+                @click="toggleUnit(unit)"
+              >
+                <input
+                  type="checkbox"
+                  :checked="selectedUnits.includes(unit)"
+                  @click.stop
+                />
+                <span class="unit-dropdown-name">{{ unit }}</span>
+                <span class="unit-dropdown-count">{{ wordsByUnit[unit]?.length || 0 }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="toolbar-actions">
         <label class="select-all-label">
@@ -289,35 +348,6 @@ function startLearning() {
         >
           🎯 {{ t('practice.playGame') }} ({{ selectedCount }})
         </button>
-      </div>
-    </div>
-
-    <!-- 单元选择面板 -->
-    <div v-if="showUnitPanel && hasUnits" class="unit-panel">
-      <div class="unit-panel-header">
-        <h3>选择练习单元</h3>
-        <div class="unit-panel-actions">
-          <button class="btn btn-sm btn-outline" @click="selectAllUnits">全选</button>
-          <button class="btn btn-sm btn-outline" @click="clearAllUnits">清除</button>
-          <button class="btn btn-sm" @click="showUnitPanel = false">关闭</button>
-        </div>
-      </div>
-      <div class="unit-grid">
-        <div
-          v-for="unit in availableUnits"
-          :key="unit"
-          class="unit-item"
-          :class="{ 'selected': selectedUnits.includes(unit) }"
-          @click="toggleUnit(unit)"
-        >
-          <input
-            type="checkbox"
-            :checked="selectedUnits.includes(unit)"
-            @click.stop
-          />
-          <span class="unit-name">{{ unit }}</span>
-          <span class="unit-count">{{ wordsByUnit[unit]?.length || 0 }}</span>
-        </div>
       </div>
     </div>
 
@@ -462,22 +492,132 @@ function startLearning() {
   min-width: 150px;
 }
 
-.input-select {
-  width: 100%;
+.unit-dropdown-wrapper {
+  position: relative;
+}
+
+.unit-dropdown-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.unit-dropdown-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+}
+
+.unit-dropdown-btn.active {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  transform: translateY(0);
+}
+
+.unit-dropdown-btn.has-selection {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.unit-dropdown-btn.has-selection:hover {
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.unit-badge {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.dropdown-arrow {
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+}
+
+.unit-dropdown {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 0;
+  min-width: 280px;
+  background: white;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+  z-index: 1000;
+  animation: dropdownSlide 0.2s ease-out;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.unit-dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.unit-dropdown-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.unit-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   padding: 0.75rem 1rem;
-  border: 2px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 1rem;
-  background: var(--bg-card);
-  color: var(--text);
   cursor: pointer;
+  border-radius: var(--radius-sm);
   transition: var(--transition);
 }
 
-.input-select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+.unit-dropdown-item:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.unit-dropdown-item.selected {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.unit-dropdown-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.unit-dropdown-name {
+  flex: 1;
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.unit-dropdown-count {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  background: var(--gray-200);
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
 }
 
 .toolbar-actions {
@@ -492,80 +632,6 @@ function startLearning() {
   gap: 0.5rem;
   cursor: pointer;
   font-weight: 500;
-}
-
-.unit-panel {
-  background: white;
-  border: 2px solid var(--primary);
-  border-radius: var(--radius-md);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
-}
-
-.unit-panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.unit-panel-header h3 {
-  margin: 0;
-  color: var(--gray-800);
-}
-
-.unit-panel-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.unit-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 0.75rem;
-}
-
-.unit-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: var(--gray-50);
-  border: 2px solid var(--gray-200);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.unit-item:hover {
-  border-color: var(--primary-light);
-  background: rgba(99, 102, 241, 0.05);
-}
-
-.unit-item.selected {
-  border-color: var(--primary);
-  background: rgba(99, 102, 241, 0.1);
-}
-
-.unit-item input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-}
-
-.unit-name {
-  flex: 1;
-  font-weight: 500;
-  color: var(--gray-700);
-}
-
-.unit-count {
-  font-size: 0.85rem;
-  color: var(--gray-500);
-  background: var(--gray-200);
-  padding: 0.15rem 0.5rem;
-  border-radius: 10px;
 }
 
 .word-groups {
