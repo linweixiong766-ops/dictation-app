@@ -298,11 +298,9 @@ function startLearning() {
                 :class="{ 'selected': selectedUnits.includes(unit) }"
                 @click="toggleUnit(unit)"
               >
-                <input
-                  type="checkbox"
-                  :checked="selectedUnits.includes(unit)"
-                  @click.stop
-                />
+                <div class="unit-checkbox" :class="{ 'checked': selectedUnits.includes(unit) }">
+                  <span v-if="selectedUnits.includes(unit)">✓</span>
+                </div>
                 <span class="unit-dropdown-name">{{ unit }}</span>
                 <span class="unit-dropdown-count">{{ wordsByUnit[unit]?.length || 0 }}</span>
               </div>
@@ -497,27 +495,30 @@ function startLearning() {
 }
 
 .unit-dropdown-btn {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
   color: white;
   font-weight: 600;
-  padding: 0.75rem 1.25rem;
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  transition: var(--transition);
-  border: 2px solid transparent;
+  gap: 0.6rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
 .unit-dropdown-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  background: linear-gradient(135deg, #9b6ff7, #8b4ff8);
 }
 
 .unit-dropdown-btn.active {
-  background: linear-gradient(135deg, #d97706, #b45309);
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
   transform: translateY(0);
 }
 
@@ -527,43 +528,48 @@ function startLearning() {
 }
 
 .unit-dropdown-btn.has-selection:hover {
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, #14d696, #06b57a);
 }
 
 .unit-badge {
-  background: rgba(255, 255, 255, 0.3);
-  padding: 0.25rem 0.6rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 0.2rem 0.5rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
   font-weight: 700;
+  min-width: 20px;
+  text-align: center;
 }
 
 .dropdown-arrow {
-  font-size: 0.75rem;
-  margin-left: 0.25rem;
+  font-size: 0.7rem;
+  margin-left: 0.15rem;
+  opacity: 0.8;
 }
 
 .unit-dropdown {
   position: absolute;
   top: calc(100% + 0.75rem);
   left: 0;
-  min-width: 280px;
+  min-width: 300px;
   background: white;
-  border: 2px solid var(--primary);
-  border-radius: var(--radius-md);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
   z-index: 1000;
-  animation: dropdownSlide 0.2s ease-out;
+  animation: dropdownSlide 0.25s ease-out;
+  overflow: hidden;
 }
 
 @keyframes dropdownSlide {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -571,53 +577,89 @@ function startLearning() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid var(--gray-200);
-  background: var(--gray-50);
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+}
+
+.unit-dropdown-header .btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: 8px;
 }
 
 .unit-dropdown-list {
-  max-height: 300px;
+  max-height: 320px;
   overflow-y: auto;
   padding: 0.5rem;
+}
+
+.unit-dropdown-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.unit-dropdown-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.unit-dropdown-list::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
 }
 
 .unit-dropdown-item {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 0.8rem;
   cursor: pointer;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  margin: 2px 0;
 }
 
 .unit-dropdown-item:hover {
-  background: rgba(99, 102, 241, 0.05);
+  background: #f3f4f6;
 }
 
 .unit-dropdown-item.selected {
-  background: rgba(99, 102, 241, 0.1);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(139, 92, 246, 0.12));
 }
 
-.unit-dropdown-item input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
+.unit-checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.unit-checkbox.checked {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-color: #7c3aed;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .unit-dropdown-name {
   flex: 1;
   font-weight: 500;
-  color: var(--gray-700);
+  color: #374151;
+  font-size: 0.95rem;
 }
 
 .unit-dropdown-count {
-  font-size: 0.85rem;
-  color: var(--gray-500);
-  background: var(--gray-200);
+  font-size: 0.8rem;
+  color: #6b7280;
+  background: #f3f4f6;
   padding: 0.2rem 0.6rem;
-  border-radius: 10px;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .toolbar-actions {
