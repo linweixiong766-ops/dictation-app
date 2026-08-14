@@ -21,7 +21,6 @@ const selectAll = ref(false)
 const selectedUnits = ref([]) // 改为多选
 const showUnitDropdown = ref(false) // 控制单元下拉框显示
 const expandedGroups = ref([]) // 控制分组展开/折叠
-const lastClickedUnit = ref(null) // 记录最后点击的单元
 
 // Get available units from word list
 const availableUnits = computed(() => {
@@ -166,21 +165,9 @@ function toggleUnit(unit) {
   } else {
     selectedUnits.value.splice(index, 1)
   }
-  // 记录最后点击的单元，用于排序
-  lastClickedUnit.value = unit
   // 延迟更新选择状态，避免频繁重渲染
   nextTick(() => onUnitChange())
 }
-
-// 排序后的单元列表：最后点击的排在最前面
-const sortedUnits = computed(() => {
-  if (!lastClickedUnit.value) return availableUnits.value
-  return [...availableUnits.value].sort((a, b) => {
-    if (a === lastClickedUnit.value) return -1
-    if (b === lastClickedUnit.value) return 1
-    return 0
-  })
-})
 
 function selectAllUnits() {
   selectedUnits.value = [...availableUnits.value]
@@ -292,7 +279,7 @@ function startLearning() {
             </div>
             <div class="unit-dropdown-list">
               <div
-                v-for="unit in sortedUnits"
+                v-for="unit in availableUnits"
                 :key="unit"
                 class="unit-dropdown-item"
                 :class="{ 'selected': selectedUnits.includes(unit) }"
